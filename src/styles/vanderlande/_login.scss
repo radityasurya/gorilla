@@ -1,0 +1,22 @@
+// LOGIN
+
+body{
+	background: orange;
+	color: white;
+}
+
+.pane{
+	background-color: orange;
+	color: white;
+}
+
+#login{
+	.pane {
+		background-color: orange;
+		color: white;
+	}
+	.login-box {
+		padding-left: 7%;
+		padding-right: 7%;
+	}
+}
