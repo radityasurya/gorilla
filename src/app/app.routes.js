@@ -17,7 +17,8 @@
         // setup an abstract state for the tabs directive
         .state('login', {
             url: '/login',
-            templateUrl: 'app/login/login.html'
+            templateUrl: 'app/login/login.html',
+			controller: 'LoginController as vm'
         });
 
         // Each tab has its own nav history stack which is defined in the corresponding module.

@@ -20,14 +20,16 @@
 		<p>Enter or scan credentials:</p>
 		<div class="list ">
 			<label class="item item-input">
-				<input type="text" placeholder="Name">
+				<input type="text" placeholder="Name" ng-model="vm.username">
 			</label>
 			<label class="item item-input">
-				<input type="password" placeholder="Password">
+				<input type="password" placeholder="Password" ng-model="vm.password">
 			</label>
 		</div>
-		<button class="button button-block" ng-click="">
+		<button class="button button-block" ng-click="vm.login()">
 			Login
 		</button>
+		
+		{{vm.berhasil}}
 	</ion-content>
 </div>

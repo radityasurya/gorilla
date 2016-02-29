@@ -6,7 +6,7 @@
         /* Angular modules */
         // 'ngResource',
         // 'ngMessages',
-		'ngCordova'
+		'ngCordova',
 
         /* Cross-app module */
         // 'my.appModule',

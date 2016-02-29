@@ -7,13 +7,12 @@
 
 	runBlock.$inject = ['$ionicPlatform',
 						'$cordovaSplashscreen',
-						'$timeout',
-						'GlobalFactory'];
+						'$timeout'];
 
 	function runBlock($ionicPlatform,
 		$cordovaSplashscreen,
 		$timeout,
-		GlobalFactory, $scope) {
+		$scope) {
 		$ionicPlatform.ready(function () {
 			$timeout(function () {
 				$cordovaSplashscreen.hide();
@@ -29,24 +28,13 @@
 				// org.apache.cordova.statusbar required
 				StatusBar.styleLightContent();
 			}
-			
-			console.log('get the supported functions');
-						
+					
 			activate();
 			
 			////////////
 
 			function activate() {
-				return getSupportedFunctions().then(function () {
-					console.log('Supported function loaded!');
-				});
-			}
 
-			function getSupportedFunctions() {
-				return GlobalFactory.getSupportedFunctions()
-					.then(function (data) {
-						console.log(data);
-					});
 			}
 		});
 	}
