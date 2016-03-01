@@ -7,12 +7,14 @@
 
 	runBlock.$inject = ['$ionicPlatform',
 						'$cordovaSplashscreen',
-						'$timeout'];
+						'$timeout',
+						];
 
 	function runBlock($ionicPlatform,
 		$cordovaSplashscreen,
 		$timeout,
-		$scope) {
+		$scope) 
+	{
 		$ionicPlatform.ready(function () {
 			$timeout(function () {
 				$cordovaSplashscreen.hide();
@@ -27,14 +29,6 @@
 			if (window.StatusBar) {
 				// org.apache.cordova.statusbar required
 				StatusBar.styleLightContent();
-			}
-					
-			activate();
-			
-			////////////
-
-			function activate() {
-
 			}
 		});
 	}

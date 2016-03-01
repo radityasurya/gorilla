@@ -8,9 +8,6 @@
         'app.core',
 
         /* Feature areas */
-        'app.account',
-        'app.chats',
-        'app.dash',
 		'app.login'
     ]);
 })();

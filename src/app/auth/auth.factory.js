@@ -1,18 +1,17 @@
 (function () {
 	'use strict';
+	
 	angular
-		.module('app.login')
+		.module('app')
 		.factory('AuthService', factory);
 
-	factory.$inject = ['$http', '$rootScope', 'base64'];
+	factory.$inject = ['$http', '$rootScope'];
 
 	/* @ngInject */
-	function factory($http, $rootScope, $base64) {
+	function factory($http, $rootScope) {
 
 		var service = {
-			login: login,
-			setCredentials: setCredentials,
-			resetCredentials: resetCredentials
+			login: login
 		};
 
 		return service;
@@ -39,18 +38,9 @@
 				});
 		}
 
-		function setCredentials(username, password) {
-
-		}
-
-		function resetCredentials() {
-			$rootScope.globals = {};
-			$http.defaults.common.Authorization = 'Basic';
-		}
-
 		function provideHeader(username, password) {
-			var authdata = $base64.encode(username + ':' + password);
-			
+			//var authdata = $base64.encode(username + ':' + password);
+			var authdata = 'hehe';
 			return {
 				'Authorization': 'Basic ' + authdata,
 				'Accept': 'application/json',

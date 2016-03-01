@@ -7,6 +7,7 @@
         // 'ngResource',
         // 'ngMessages',
 		'ngCordova',
+		'base64'
 
         /* Cross-app module */
         // 'my.appModule',
