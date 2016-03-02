@@ -8,6 +8,8 @@
         'app.core',
 
         /* Feature areas */
+		'app.station',
 		'app.login'
+
     ]);
 })();

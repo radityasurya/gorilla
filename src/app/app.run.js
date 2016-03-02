@@ -7,18 +7,25 @@
 
 	runBlock.$inject = ['$ionicPlatform',
 						'$cordovaSplashscreen',
+						'$cordovaStatusbar',
 						'$timeout',
 						];
 
 	function runBlock($ionicPlatform,
 		$cordovaSplashscreen,
+		$cordovaStatusbar,
 		$timeout,
 		$scope) 
 	{
 		$ionicPlatform.ready(function () {
+			// Splash Screen
 			$timeout(function () {
 				$cordovaSplashscreen.hide();
 			}, 100);
+			
+			// Style the status bar
+			$cordovaStatusbar.styleHex('#F17B21'); //red
+			
 			// Hide the accessory bar by default (remove this to show the accessory bar
 			// above the keyboard for form inputs)
 			if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {

@@ -1,22 +1,48 @@
 // LOGIN
 
 body{
-	background: orange;
+	background: #F17B21;
 	color: white;
 }
 
-.pane{
-	background-color: orange;
+.login-box{
+	background: #F17B21;
+	padding: 10%;
+	padding-top: 5%;
 	color: white;
 }
 
 #login{
-	.pane {
-		background-color: orange;
+	#vanderlande{
+		.img-responsive{
+			width: 100%;
+			height: auto;
+		}
+		height: 43px;
+		margin-bottom: 10px;
+		@include tablet {
+			height: 111px;
+		}
+		h1{
+			display: block;
+			text-indent: -9999px;
+		}
+	}
+	.item-instructions {
+		margin-bottom: 5;
 		color: white;
 	}
-	.login-box {
-		padding-left: 7%;
-		padding-right: 7%;
+	.form-group{
+		margin-bottom: 8px;
+		.item-label{
+		@include border-radius(8px);
+		}
+	}
+	.button-login{
+		margin-top: 20px;
+		@include border-radius(8px);
+		color: white;
+		background: transparent;
+		border-color: #727373;
 	}
 }

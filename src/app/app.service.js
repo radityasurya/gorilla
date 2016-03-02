@@ -5,12 +5,12 @@
 		.module('app')
 		.factory('$global', global);
 
-	global.$inject = ['$http', '$base64', '$q'];
+	global.$inject = ['$http', '$base64', '$q', '$rootScope'];
 	
 	var _suppFunction;
 	
 	/* @ngInject */
-	function global($http, $base64, $q) {
+	function global($http, $base64, $q, $rootScope) {
 
 		// Variable 
 		var _url = 'http://172.21.27.17:7003/';
@@ -20,7 +20,9 @@
 			setSupport: setSupport,
 			getSupport: getSupport,
 			fetchSupport: fetchSupport,
-			login: login
+			login: login,
+			setCredentials: setCredentials,
+			resetCredentials: resetCredentials
 		};
 
 		return service;
@@ -78,6 +80,24 @@
 				'Accept-Language': 'en-GB',
 				'Content-Type': 'application/json; charset=utf-8'
 			};
+		}
+		
+		function setCredentials(username, password) {
+			var authdata = $base64.encode(username + ':' + password);
+			
+			$rootScope.globals = {
+				currentUser: {
+					username: username,
+					authdata: authdata
+				}
+			};
+			
+			$http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+		}
+		
+		function resetCredentials() {
+			$rootScope.globals = {};
+			$http.defaults.headers.common.Authorization = 'Basic';
 		}
 	}
 })();

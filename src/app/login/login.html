@@ -1,9 +1,35 @@
+<!-- LOGIN VIEW -->
 <div id="login">
-	<ion-content class="padding login-box" overflow-scroll="false" >
-		<br>
-		<br>
-		{{vm.nama}}
-		<p>Enter or scan credentials:</p>
+
+	<ion-content class=" login-box" overflow-scroll="false" >
+		<!-- LOGO -->
+		<div id="vanderlande">
+			<img class="img-responsive" ng-src="images/vanderlande.png">
+			<h1>Vanderlande Manual Track & Trace</h1>
+		</div>
+		
+		<!-- LOGIN FORM -->
+		<form name="loginForm" ng-submit="vm.login()" novalidate>
+			<p class="item-instructions">Enter or scan credentials:</p>
+			<div class="list">
+				<!-- USERNAME -->
+				<div class="form-group">
+					<label class="item item-input item-label">
+						<input type="text" placeholder="Name" ng-model="vm.username">
+					</label>	
+				</div>
+				<!-- PASSWORD -->
+				<div class="form-group">
+					<label class="item item-input item-label">
+						<input type="password" placeholder="Password" ng-model="vm.password">
+					</label>	
+				</div>
+				<!-- LOGIN BUTTON -->
+				<button type="submit" class="button button-block button-login">Login</button>
+			</div>
+		</form>
+		
+<!--		
 		<div class="list ">
 			<label class="item item-input">
 				<input type="text" placeholder="Name" ng-model="vm.username">
@@ -15,9 +41,7 @@
 		<button class="button button-block" ng-click="vm.login()">
 			Login
 		</button>
-		
-		{{vm.status}}
-		
+		<img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="/>-->		
 		
 	</ion-content>
 </div>

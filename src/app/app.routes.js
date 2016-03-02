@@ -19,7 +19,12 @@
             url: '/login',
             templateUrl: 'app/login/login.html',
 			controller: 'LoginController as vm'
-        });
+        })
+		.state('station', {
+			url: '/station',
+			templateUrl: 'app/station/station.html',
+			controller: 'StationController as vm'
+		});
 
         // Each tab has its own nav history stack which is defined in the corresponding module.
 
