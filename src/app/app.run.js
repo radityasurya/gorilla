@@ -5,16 +5,16 @@
 		.module('app')
 		.run(runBlock);
 
-	runBlock.$inject = ['$ionicPlatform',
+	runBlock.$inject = ['$global', '$ionicPlatform',
 						'$cordovaSplashscreen',
 						'$cordovaStatusbar',
-						'$timeout',
+						'$timeout', '$location', '$rootScope',
 						];
 
-	function runBlock($ionicPlatform,
+	function runBlock($global, $ionicPlatform,
 		$cordovaSplashscreen,
 		$cordovaStatusbar,
-		$timeout,
+		$timeout, $location, $rootScope,
 		$scope) 
 	{
 		$ionicPlatform.ready(function () {
@@ -24,7 +24,7 @@
 			}, 100);
 			
 			// Style the status bar
-			$cordovaStatusbar.styleHex('#F17B21'); //red
+			//$cordovaStatusbar.styleHex('#F17B21'); //red
 			
 			// Hide the accessory bar by default (remove this to show the accessory bar
 			// above the keyboard for form inputs)
@@ -37,6 +37,18 @@
 				// org.apache.cordova.statusbar required
 				StatusBar.styleLightContent();
 			}
+			
+			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+				// Check if the state.authrequired && service.isAuthenticared
+				// If it isn't > $state.transition(login)
+				// event.preventDefault();
+				if ($location.path() !== '/login' && !$global.isLoggedIn()) {
+					console.log('not logged in!');
+					console.log('redirect to login');
+					$location.path('/login');
+				}
+			});
 		});
+
 	}
 })();
