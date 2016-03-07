@@ -16,8 +16,8 @@
 	function global($http, $base64, $q, $rootScope) {
 
 		// Variable 
-		var _url = 'http://172.21.27.17:7003/';
-		var _path = 'mttws/public/meta/SupportedFunctions';
+		var _url = 'http://172.19.18.225/mttws/';
+		var _path = 'public/meta/SupportedFunctions';
 		
 		// User
 		var user = {
@@ -60,7 +60,7 @@
 		function fetchSupport() {
 			var defer = $q.defer();
 
-			$http.get(_url + _path)
+			$http.get('http://172.19.18.225/mttws/public/meta/SupportedFunctions')
 				.then(function (response) {
 					defer.resolve(response.data);
 				}, function (response) {
@@ -71,7 +71,6 @@
 		}
 
 		function getSupport() {
-			console.log(_suppFunction);
 			return _suppFunction;
 		}
 
@@ -80,16 +79,14 @@
 
 			console.log('login');
 			console.log('-- Begin Authenticating Service --');
-			var url = 'http://172.21.27.17:7003/mttws/security/Roles';
+			var url = 'http://172.19.18.225/mttws/security/Roles/' + username + '/' + password;
 			var headersdata = provideHeader(username, password);
 
 			console.log(headersdata);
 
-			$http.get(url, {
-					headers: headersdata
-				})
+			$http.get(url)
 				.then(function (response) {
-					setUser(username, password);
+					setCredentials(username, password);
 					deferred.resolve(response.data);
 				}, function (response) {
 					deferred.reject(response);
@@ -99,11 +96,12 @@
 		}
 		
 		function logout() {
-			// Reset user
-			// Reset cookies
 			// Reset headers
-			$http.post('https://logout', {}).finally(function (data) {
-				delete $http.defaults.headers.common.Authorization;
+			resetCredentials();
+			
+			$http.get('/mttws/security/Roles/logout/logout')
+				.then(function (data) {
+					console.log(data);
 			});
 		}
 

@@ -22,8 +22,10 @@
 			// Fetch supportedFunctions from the server
 			$global.fetchSupport().then(function (data) {
 				$global.setSupport(data); // Set up on the global service
+				vm.status = 'loaded!';
 			}, function () {
 				vm.error = 'error';
+				vm.status = 'failed';
 			});
 		}
 
@@ -32,11 +34,9 @@
 			console.log('User: ' + vm.username + ' Pass: ' + vm.password);
 			$global.login(vm.username, vm.password).then(function (data) {
 				console.log(data);
-				vm.status = data;
 				$state.go('station');
 			}, function (data) {
 				console.log(data.status);
-				vm.status = data.status;
 			});
 		}
 

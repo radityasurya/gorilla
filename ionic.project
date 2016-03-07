@@ -1,6 +1,12 @@
 {
     "name": "MTT",
     "app_id": "",
+	"proxies": [
+		{
+			"path": "/mttws",
+			"proxyUrl":"http://172.19.18.225/mttws" 
+		}
+	],
     "gulpStartupTasks": [
         "inject",
         "watch"

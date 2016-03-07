@@ -9,6 +9,11 @@
         </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <allow-intent href="*"/>
+	<allow-intent href="http://*/*" />
+	<allow-intent href="https://*/*" />
+  <allow-navigation href="http://172.19.18.225/*"/>
+  <plugin name="cordova-plugin-whitelist" version="1.2.2" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

@@ -5,7 +5,7 @@
     .module('app.core', [
         /* Angular modules */
         // 'ngResource',
-        // 'ngMessages',
+        'ngMessages',
 		'ngCordova',
 		'base64'
 
