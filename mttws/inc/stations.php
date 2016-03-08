@@ -9,25 +9,27 @@ $uri = urldecode( $uri );
 $newURI = explode("/", $uri);
 
 $count = count($newURI);
-$url = "http://172.21.27.17:7003/mttws/security/Roles";
+$url = "http://172.21.27.17:7003/mttws/configuration/Stations";
 
 \Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));
 
-if($count >= 3) {
-	$auth = end($newURI);
-	
+if($count > 4) {
+	$username = $newURI[3];
+	$password = $newURI[4];
 	$response = \Httpful\Request::get($url)
-		->addHeader('Authorization', 'Basic ' . $auth)
 		->withAccept('application/json')
 		->withAcceptLanguage('eng-GB')
 		->withContentType('application/json; charset=utf-8')
-		//->authenticateWith($username, $password)
+		->authenticateWith($username, $password)
 		->send();
 }
 else {
-	$response = \Httpful\Request::get($url)
-		->send();
+$response = \Httpful\Request::get($url)
+	->send();
 }
+
+//$encoded_response = array_map('utf8_encode', $response);
+
 
 if(strpos($response, 'Error 401--Unauthorized') !== false) {
 	echo "{ " . '"' . 'status"' . ':' .'"' . '401' . '" }';

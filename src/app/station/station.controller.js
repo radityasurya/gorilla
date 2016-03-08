@@ -20,7 +20,7 @@
 
 		function activate() {
 			vm.supportedFunctions = $global.getSupport();
-			vm.username = $rootScope.globals.currentUser.username;
+			vm.username = $rootScope.currentUser.username;
 		}
 		
 		function logout() {

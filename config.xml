@@ -23,8 +23,9 @@
   <preference name="SplashScreen" value="screen"/>
   <preference name="SplashScreenDelay" value="10000"/>
   <preference name="ShowSplashScreenSpinner" value="false"/>
-  <preference name="FadeSplashScreen" value="true"/>
-  <preference name="fade-splash-screen-duration" value="0.5"/>
+  <preference name="FadeSplashScreen" value="false"/>
+  <preference name="fade-splash-screen-duration" value="0"/>
+  <preference name="StatusBarBackgroundColor" value="#F17B21" />
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>

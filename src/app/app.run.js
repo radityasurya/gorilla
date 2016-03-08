@@ -39,10 +39,11 @@
 			}
 			
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+				console.log($rootScope.currentUser.isLoggedIn);
 				// Check if the state.authrequired && service.isAuthenticared
 				// If it isn't > $state.transition(login)
 				// event.preventDefault();
-				if ($location.path() !== '/login' && !$global.isLoggedIn()) {
+				if ($location.path() !== '/login' && !$rootScope.currentUser.isLoggedIn) {
 					console.log('not logged in!');
 					console.log('redirect to login');
 					$location.path('/login');
