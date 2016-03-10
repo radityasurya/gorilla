@@ -5,13 +5,15 @@
 		.module('app.login')
 		.controller('LoginController', LoginController);
 
-	LoginController.$inject = ['$global', '$http', '$scope', '$state', '$ionicLoading', '$window'];
+	LoginController.$inject = ['$global', '$http', '$scope',
+	'$state', '$ionicLoading', '$window', 'toaster'];
 
 	/* @ngInject */
-	function LoginController($global, $http, $scope, $state, $ionicLoading, $window) {
+	function LoginController($global, $http, $scope, $state,
+	$ionicLoading, $window, toaster) {
 		var vm = this;
 
-		vm.login = login;
+		vm.login = toast;
 		vm.status = 'unloaded';
 		
 		vm.width = $window.innerWidth;
@@ -29,12 +31,17 @@
 				$global.setSupport(data); // Set up on the global service
 				console.log('fetched');
 				vm.status = 'loaded!';
+				vm.isError = false;
 			}, function () {
-				vm.error = 'error';
+				vm.error = 'Failed to load supported functions';
 				vm.status = 'failed';
+				vm.isError = true;
 			});
 			
-			// $ionicLoading.show();
+		}
+		
+		function toast() {
+			toaster.pop('error', 'title', 'text');
 		}
 
 		function login() {
@@ -44,6 +51,8 @@
 				console.log(data);
 				$state.go('station');
 			}, function (data) {
+				vm.isError = true;
+				vm.error = 'Wrong username or password';
 				console.log(data.status);
 			});
 		}

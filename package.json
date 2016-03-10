@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "MTT new front-end application",
   "dependencies": {
+    "angularjs-toaster": "^1.2.0",
     "gulp": "^3.9.0"
   },
   "devDependencies": {

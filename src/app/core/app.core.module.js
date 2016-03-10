@@ -6,9 +6,11 @@
         /* Angular modules */
         // 'ngResource',
         'ngMessages',
+		'ngAnimate',
 		'ngCordova',
+		'toaster',
 		'base64',
-
+		
         /* Cross-app module */
         // 'my.appModule',
 		'app.service'

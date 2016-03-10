@@ -1,3 +1,5 @@
+$vanderlande:					  #F17B21 !default;
+
 body{
 	background: #F17B21;
 	color: white;
@@ -53,6 +55,7 @@ body{
 	}
 	.login-form{
 		margin-top: 90px;
+		
 	}
 	.img-responsive{
 		width: 100%;
@@ -68,11 +71,27 @@ body{
 		@include border-radius(8px);
 		}
 	}
-	.button-login{
+	.button-login {
 		margin-top: 20px;
 		@include border-radius(8px);
-		color: white;
-		background: transparent;
 		border-color: #727373;
 	}
+}
+
+#toast-container > div {
+	opacity: 0.95;
+}
+
+// Buttons
+// -------------------------------
+$button-custom-bg: #F17B21 !default;
+$button-custom-text: #fff !default;
+$button-custom-border: #727373 !default;
+$button-custom-active-bg: darken(#F17B21, 10%) !default;
+$button-custom-active-border: darken(#727373, 10%) !default;
+
+&.button-login {
+	@include button-style($button-custom-bg, $button-custom-border, $button-custom-active-bg, $button-custom-active-border, $button-custom-text);
+	@include button-clear($button-custom-bg);
+	@include button-outline($button-custom-bg);
 }

@@ -5,6 +5,8 @@
 			<!-- VANDERLANDE LOGOS -->
 			<img class="vdl-logo" ng-src="images/vanderlande.png">
 
+			<!-- ERROR MESSGE -->
+			<toaster-container toaster-options="{'time-out': 5000, 'close-button':true, 'position-class': 'toast-top-right'}"></toaster-container>
 		</div>
 
 		<!-- LOGIN FORM -->
@@ -26,16 +28,8 @@
 					</div>
 
 					<!-- LOGIN BUTTON -->
-					<button type="submit" class="button button-block button-login" ng-disabled="loginForm.$invalid">Login</button>
+					<button type="submit" class="button button-block button-login">Login</button>
 
-					<!-- ERROR MESSGE -->
-					<div class="form-error">
-						<h3>
-							<i class="ion-alert-circled" data-pack="default" data-tags="attention, warning, notice, !, exclamation"></i>
-							Error
-						</h3>
-						<p>This is the error notification</p>
-					</div>
 
 				</div>
 
