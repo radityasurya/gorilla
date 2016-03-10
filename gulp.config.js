@@ -39,7 +39,8 @@ module.exports = function() {
             src + '**/*.module.js',
             src + '**/*.js',
             '!' + src + '**/*.spec.js',
-            '!' + bower.directory + '**/*.js'
+            '!' + bower.directory + '**/*.js',
+			'!' + bower.directory + '**/**/*js'
         ],
         jsOrder: [
             '**/app.module.js',
@@ -97,6 +98,8 @@ module.exports = function() {
             files: [].concat(
                 bowerFiles,
                 config.specHelpers,
+				src + 'lib/base64/angular-base64.js',
+				src + 'lib/angularjs-toaster/toaster.min.js',
                 app + '**/*.module.js',
                 app + '**/*.js',
                 temp + config.templateCache.file

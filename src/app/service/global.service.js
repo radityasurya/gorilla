@@ -38,9 +38,6 @@
 
 		function fetchSupport() {
 			var defer = $q.defer();
-
-			console.log('-- Begin Fetching SupportedFunctions --');
-
 			ApiService.supportedFunctions()
 				.then(function (response) {
 					defer.resolve(response.data);

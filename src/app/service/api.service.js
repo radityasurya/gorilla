@@ -13,6 +13,7 @@
 		var _baseUrl = 'http://172.19.18.225/mttws/';
 		
 		var service = {
+			baseUrl: baseUrl,
 			supportedFunctions: supportedFunctions,
 			login: roles,
 			logout: roles,
@@ -22,6 +23,10 @@
 		return service;
 
 		////////////////
+		
+		function baseUrl() {
+			return _baseUrl;
+		}
 
 		function supportedFunctions() {
 			return $http.get(_baseUrl + 'public/meta/SupportedFunctions');

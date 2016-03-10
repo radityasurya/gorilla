@@ -62,7 +62,7 @@
 			$ionicLoading.show({
 				template: '<ion-spinner icon="lines" style="stroke: #F17B21; fill: #F17B21"></ion-spinner>',
 				showBackdrop: true,
-				duration: 800
+				duration: 500
 			});
 		});
 
