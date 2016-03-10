@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular
-		.module('app')
+		.module('app.service')
 		.factory('$global', global);
 
 	global.$inject = ['$http', '$base64', '$q', '$rootScope', 'ApiService'];
@@ -10,7 +10,7 @@
 	var _suppFunction;
 
 	/* @ngInject */
-	function global($http, $base64, $q, $rootScope, ApiService) {
+	function global($http, $base64, $q, $rootScope, ApiService, $ionicLoading) {
 				
 		$rootScope.currentUser = {
 			username: '',

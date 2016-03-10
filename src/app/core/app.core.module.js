@@ -7,10 +7,11 @@
         // 'ngResource',
         'ngMessages',
 		'ngCordova',
-		'base64'
+		'base64',
 
         /* Cross-app module */
         // 'my.appModule',
+		'app.service'
 
         /* 3rd party modules */
         // 'firebase'

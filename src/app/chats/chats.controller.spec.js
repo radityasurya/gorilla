@@ -1,4 +1,5 @@
 /* jshint -W117, -W030 */
+/*
 describe('ChatsController', function() {
     var $controller;
 
@@ -26,3 +27,4 @@ describe('ChatsController', function() {
     });
 
 });
+*/

@@ -5,6 +5,7 @@
     .module('app', [
         /* Shared modules */
         'ionic',
+		'app.service',
         'app.core',
 
         /* Feature areas */

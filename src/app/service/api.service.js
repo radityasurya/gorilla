@@ -1,7 +1,7 @@
 (function () {
 	'use strict';
 	angular
-		.module('app')
+		.module('app.service')
 		.factory('ApiService', ApiService);
 	
 	ApiService.$inject = ['$http'];

@@ -15,11 +15,10 @@ body{
 }
 
 #login{
+	background: #F17B21;
 	height: 100%;
 	padding-top: 5%;
-	
 	.login-box{
-		background: #F17B21;
 		.center {
 			margin-left: auto;
 			margin-right: auto;
@@ -28,6 +27,8 @@ body{
 		color: white;
 	}
 	#vanderlande{
+		position: absolute;
+		top: 0;
 		background: white;
 		img {
 			height: auto;
@@ -41,7 +42,10 @@ body{
 		}
 	}
 	#login-form {
-		min-height: 50%;
+		position: absolute;
+		bottom: 0;
+		min-height: 300px;
+		height: 50%;
 		padding-top: 25px;
 	}
 	.img-responsive{
@@ -55,7 +59,7 @@ body{
 	.form-group{
 		margin-bottom: 8px;
 		.item-label{
-		@include border-radius(8px);
+			@include border-radius(8px);
 		}
 	}
 	.button-login{

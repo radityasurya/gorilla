@@ -1,53 +1,58 @@
-// LOGIN
-
 body{
 	background: #F17B21;
 	color: white;
 }
 
-// GRID
-.row-12 { height: 100%; }
-.row-6 { height: 50%; }
-
-// Scroll
-.scroll {
-	height: 100%;
+#logoMTT {
+	position: fixed;
+	width: 110px;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 99;
 }
 
 #login{
+	background: white;
+	position: relative;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 412px;
+	min-width: 320px;
 	height: 100%;
-	padding-top: 5%;
+	max-height: 736px;
+	min-height: 480px;
 	
-	.login-box{
+	.vdl-logo {
+		padding-top: 10px;
+		display: block;
+		position: relative;
+		width: 90%;
+		margin: 0 auto;
+	}
+	
+	.login {
+		position: absolute;
 		background: #F17B21;
-		.center {
-			margin-left: auto;
-			margin-right: auto;
-			display: block;
-		}
-		color: white;
-	}
-	#vanderlande{
-		position: absolute;
-		top: 0;
-		background: white;
-		img {
-			height: auto;
-			@include tablet {
-				height: auto;
-			}
-		}
-		h1{
-			display: block;
-			text-indent: -9999px;
-		}
-	}
-	#login-form {
-		position: absolute;
 		bottom: 0;
-		min-height: 300px;
-		height: 50%;
-		padding-top: 25px;
+		width: 100%;
+		.login-form{
+			padding: 0 1.5em 1.5em;
+		}
+		&:before {
+			content: '';
+			background-image: url('../images/MTTIcon.png');
+			background-size:100% auto;
+			position: absolute;
+			top: -60px;
+			left: 50%;
+			margin-left: -60px;
+			width: 120px;
+			height: 120px;
+		}
+	}
+	.login-form{
+		margin-top: 90px;
 	}
 	.img-responsive{
 		width: 100%;

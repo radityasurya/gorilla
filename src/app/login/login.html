@@ -1,45 +1,45 @@
 <!-- LOGIN VIEW -->
 <div id="login">
-	<ion-content class="login-box" overflow-scroll="true">
-		<!-- VANDERLANDE LOGOS -->
-		<div id="vanderlande" class="row row-center row-6">
-			<!-- VANDERLANDE LOGO -->
-			<div class="col-90 center">
-				<img class="img-responsive" ng-src="images/vanderlande.png">
-			</div>
+	<ion-content class="login-box" scroll="false" overflow-scroll="false">
+		<div class="box" ng-style="{'min-height': vm.box}">
+			<!-- VANDERLANDE LOGOS -->
+			<img class="vdl-logo" ng-src="images/vanderlande.png">
+
 		</div>
 
 		<!-- LOGIN FORM -->
-		<div id="login-form" class="row row-center row-6">
-			<div class="col-90 center">
-				<!-- LOGIN FORM -->
-				<form name="loginForm" ng-submit="vm.login()" novalidate="">
-					<p class="item-instructions">Enter or scan credentials:</p>
-					<div class="list">
-						<!-- USERNAME -->
-						<div class="form-group">
-							<label class="item item-input item-label">
-								<input name="username" type="text" placeholder="Name" ng-model="vm.username" ng-minlength="5" required>
-							</label>
-						</div>
-						<!-- PASSWORD -->
-						<div class="form-group">
-							<label class="item item-input item-label">
-								<input name="password" type="password" placeholder="Password" ng-minlength="5" ng-model="vm.password" required>
-							</label>
-						</div>
-						
-						<div class="login-form-errors">
-							<p>Please enter the ...</p>
-						</div>
-						
-						<!-- LOGIN BUTTON -->
-						<button type="submit" class="button button-block button-login" ng-disabled="loginForm.$invalid">Login</button>
+		<div class="login" ng-style="{'min-height': vm.box}">
+			<form name="loginForm" ng-submit="vm.login()" novalidate="" class="login-form">
+				<p class="item-instructions">Enter or scan credentials:</p>
+				<div class="list">
+					<!-- USERNAME -->
+					<div class="form-group">
+						<label class="item item-input item-label">
+							<input name="username" type="text" placeholder="Name" ng-model="vm.username" ng-minlength="5" required>
+						</label>
 					</div>
-				</form>
-				<p>{{vm.status}}</p>
-			</div>
-		</div>
+					<!-- PASSWORD -->
+					<div class="form-group">
+						<label class="item item-input item-label">
+							<input name="password" type="password" placeholder="Password" ng-minlength="5" ng-model="vm.password" required>
+						</label>
+					</div>
 
+					<!-- LOGIN BUTTON -->
+					<button type="submit" class="button button-block button-login" ng-disabled="loginForm.$invalid">Login</button>
+
+					<!-- ERROR MESSGE -->
+					<div class="form-error">
+						<h3>
+							<i class="ion-alert-circled" data-pack="default" data-tags="attention, warning, notice, !, exclamation"></i>
+							Error
+						</h3>
+						<p>This is the error notification</p>
+					</div>
+
+				</div>
+
+			</form>
+		</div>
 	</ion-content>
 </div>

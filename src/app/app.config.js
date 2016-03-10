@@ -5,9 +5,9 @@
     .module('app')
     .config(configure);
 
-    configure.$inject = ['$ionicConfigProvider', '$httpProvider'];
+	configure.$inject = ['$ionicConfigProvider', '$httpProvider'];
 
-    function configure ($ionicConfigProvider, $httpProvider) {
+	function configure ($ionicConfigProvider, $httpProvider) {
         // Add your configuration here
         $ionicConfigProvider.navBar.alignTitle('center');       // Center title in IOS, ANDROID, WINDOWS PHONE
 		
@@ -23,7 +23,18 @@
 		delete $httpProvider.defaults.headers.common['X-Requested-With'];
 		
 		// $httpProvider.interceptors.push('AuthInterceptor');
-
+		$httpProvider.interceptors.push(function ($rootScope) {
+			return {
+				request: function(config) {
+					$rootScope.$broadcast('loading:show');
+					return config;
+				},
+				response: function(response) {
+					$rootScope.$broadcast('loading:hide');
+					return response;
+				}
+			};
+		});
     }
 
 })();

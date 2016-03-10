@@ -2,8 +2,7 @@
 	'use strict';
 
 	angular
-		.module('app.station', [
+		.module('app.service', [
 		'ionic',
-		'app.service'
 	]);
 })();

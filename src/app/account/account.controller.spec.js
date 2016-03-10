@@ -1,4 +1,5 @@
 /* jshint -W117, -W030 */
+/*
 describe('AccountController', function() {
     var $controller;
 
@@ -26,3 +27,4 @@ describe('AccountController', function() {
     });
 
 });
+*/

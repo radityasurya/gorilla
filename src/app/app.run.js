@@ -5,26 +5,31 @@
 		.module('app')
 		.run(runBlock);
 
-	runBlock.$inject = ['$global', '$ionicPlatform',
+	runBlock.$inject = [
+						'$ionicPlatform',
+						'$timeout',
+						'$global',
 						'$cordovaSplashscreen',
 						'$cordovaStatusbar',
-						'$timeout', '$location', '$rootScope',
+						'$rootScope', '$ionicLoading',
+						'$location'
 						];
 
-	function runBlock($global, $ionicPlatform,
-		$cordovaSplashscreen,
+	function runBlock(
+	$ionicPlatform,
+		$timeout,
+		$global, 
+		$cordovaSplashscreen, 
 		$cordovaStatusbar,
-		$timeout, $location, $rootScope,
-		$scope) 
+		$rootScope,
+	$ionicLoading,
+		$location)
 	{
 		$ionicPlatform.ready(function () {
 			// Splash Screen
 			$timeout(function () {
 				$cordovaSplashscreen.hide();
 			}, 100);
-			
-			// Style the status bar
-			//$cordovaStatusbar.styleHex('#F17B21'); //red
 			
 			// Hide the accessory bar by default (remove this to show the accessory bar
 			// above the keyboard for form inputs)
@@ -49,6 +54,21 @@
 					$location.path('/login');
 				}
 			});
+
+		});
+		
+		$rootScope.$on('loading:show', function() {
+			console.log('showed');
+			$ionicLoading.show({
+				template: '<ion-spinner icon="lines" style="stroke: #F17B21; fill: #F17B21"></ion-spinner>',
+				showBackdrop: true,
+				duration: 10000
+			});
+		});
+
+		$rootScope.$on('loading:hide', function() {
+			console.log('hidden');
+			$ionicLoading.hide();
 		});
 
 	}
