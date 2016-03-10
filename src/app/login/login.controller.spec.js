@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 
 describe('LoginController', function() {
-    var $controller;
+    var $controller, $global;
 
     // Load the module for the account
 	beforeEach(module('toaster'));
@@ -10,9 +10,10 @@ describe('LoginController', function() {
     beforeEach(module('app.login'));
 
     // Instantiate the controller and mocks for every test
-    beforeEach(inject(function(_$controller_) {
+    beforeEach(inject(function(_$controller_, _$global_) {
         var $scope = {};
 		$controller = _$controller_('LoginController', {$scope: $scope});
+		$global = _$global_;
     }));
 
     describe('Login controller', function() {
@@ -26,8 +27,15 @@ describe('LoginController', function() {
 		it('calculate the window height for responsiveness', inject(function($controller) {
 			// expect($controller.vm.box(500)).toBeEqualTo(250);
 		}))
-		// TODO: LoginController should call login on $global service
 		
+		// TODO: LoginController should call login on $global service
+		it('Call login on the $global service', inject(function($controller) {
+			// expect($global.login).toHaveBeenCalled();
+		}));
+		
+		it('should not have a property called vm', function() {
+			expect($controller.vm).toBeUndefined();
+		});
 		
 		// TODO: Success fetch supportedFunctions
 		// TODO: Fail to fetch supportedFunctions

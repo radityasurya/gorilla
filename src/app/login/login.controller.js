@@ -15,6 +15,7 @@
 
 		vm.login = login;		
 		vm.box = setup(vm.height);
+		vm.test = 'hahahaha';
 		
 		activate();
 
@@ -24,14 +25,8 @@
 			// Fetch supportedFunctions from the server
 			$global.fetchSupport().then(function (data) {
 				$global.setSupport(data); // Set up on the global service
-				console.log('fetched');
-				vm.status = 'loaded!';
-				vm.isError = false;
 				toast('success', 'Loaded', 'SupportedFunctions successfully loaded!', 1500);
 			}, function () {
-				vm.error = 'Failed to load supported functions';
-				vm.status = 'failed';
-				vm.isError = true;
 				toast('error', 'Loading Error', 'Failed to load SupportedFunctions', 3000);
 			});
 			
@@ -42,14 +37,11 @@
 		}
 
 		function login() {
-			vm.dataLoading = true;
-			console.log('User: ' + vm.username + ' Pass: ' + vm.password);
+			// console.log('User: ' + vm.username + ' Pass: ' + vm.password);
 			$global.login(vm.username, vm.password).then(function (data) {
-				console.log(data);
+				//console.log(data);
 				$state.go('station');
 			}, function (data) {
-				vm.isError = true;
-				vm.error = 'Wrong username or password';
 				console.log(data.status);
 				if (data.status === 0) {
 					toast('error', 'Connection Error', 'Not connected to the server',3000);
