@@ -38,7 +38,10 @@
 		}
 
 		function login() {
-			cordova.plugins.Keyboard.close();
+			if ($window.cordova &&
+				$window.cordova.plugins) {
+				cordova.plugins.Keyboard.close();
+			}
 			window.scrollTo(0,0);
 
 			$global.login(vm.username, vm.password).then(function (data) {

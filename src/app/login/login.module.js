@@ -5,5 +5,6 @@
     .module('app.login', [
         'ionic',
 		'app.service',
+		'ngCordova'
     ]);
 })();

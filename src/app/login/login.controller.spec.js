@@ -4,6 +4,7 @@ describe('LoginController:', function() {
     var controller, $global, scope, $state, $q;
 
     // Load the module for the account
+	beforeEach(module('ngCordova'));
 	beforeEach(module('toaster'));
 	beforeEach(module('base64'));
 	beforeEach(module('app.service'));
@@ -15,11 +16,6 @@ describe('LoginController:', function() {
 		$global = _$global_;
 		$q = _$q_;
 		controller = _$controller_('LoginController as vm', {$scope: scope});
-		// scope.$digest();
-		function emptyPromise() {
-			deferred = $q.defer();
-			return deferred.promise;
-		}
     }));
 
     describe('Login controller', function() {
@@ -42,10 +38,6 @@ describe('LoginController:', function() {
 			controller.login();
 			expect($global.login).toHaveBeenCalled();
 		}));
-		
-		it('should not have a property called vm', function() {
-			expect(controller.vm).toBeUndefined();
-		});
 		
 		// TODO: LoginController should fetch supportedFunctions
 		it('should fetch supportedFunctions from $global service', function() {

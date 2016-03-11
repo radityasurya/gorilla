@@ -11,9 +11,12 @@
 		
 		// Variable
 		var _baseUrl = 'http://172.19.18.225/mttws/';
+		var _timeout = 5000;
 		
 		var service = {
-			baseUrl: baseUrl,
+			BASE_URL: BASE_URL,
+			getTimeout: getTimeout,
+			setTimeout: setTimeout,
 			supportedFunctions: supportedFunctions,
 			login: roles,
 			logout: roles,
@@ -24,20 +27,28 @@
 
 		////////////////
 		
-		function baseUrl() {
+		function BASE_URL() {
 			return _baseUrl;
+		}
+		
+		function getTimeout() {
+			return _timeout;
+		}
+		
+		function setTimeout(t) {
+			_timeout = t;
 		}
 
 		function supportedFunctions() {
-			return $http.get(_baseUrl + 'public/meta/SupportedFunctions', {timeout:5000});
+			return $http.get(BASE_URL() + 'public/meta/SupportedFunctions', {timeout:getTimeout()});
 		}
 
 		function roles(auth) {
-			return $http.get(_baseUrl + 'security/Roles/' + auth, {timeout:5000});
+			return $http.get(BASE_URL() + 'security/Roles/' + auth, {timeout:getTimeout()});
 		}
 		
 		function stations(auth) {
-			return $http.get(_baseUrl + 'mttws/configuration/Stations', {timeout:5000});
+			return $http.get(BASE_URL() + 'mttws/configuration/Stations', {timeout:getTimeout()});
 		}
 	}
 })();
