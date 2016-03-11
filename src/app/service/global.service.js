@@ -7,11 +7,11 @@
 
 	global.$inject = ['$http', '$base64', '$q', '$rootScope', 'ApiService'];
 
-	var _suppFunction;
-
 	/* @ngInject */
 	function global($http, $base64, $q, $rootScope, ApiService, $ionicLoading) {
-				
+		
+		var suppFunction = [];
+		
 		$rootScope.currentUser = {
 			username: '',
 			authdata: '',
@@ -33,7 +33,7 @@
 		////////////////
 				
 		function setSupport(json) {
-			_suppFunction = angular.copy(json);
+			suppFunction = angular.copy(json);
 		}
 
 		function fetchSupport() {
@@ -49,7 +49,7 @@
 		}
 
 		function getSupport() {
-			return _suppFunction;
+			return suppFunction;
 		}
 
 		function login(username, password, callback) {
@@ -97,7 +97,7 @@
 				isLoggedIn: true
 			};
 			
-			console.log($rootScope.currentUser);
+			// console.log($rootScope.currentUser);
 		}
 
 		function resetCredentials() {
@@ -106,6 +106,10 @@
 				authdata: '',
 				isLoggedIn: false
 			};
+		}
+		
+		function encrypt64(username, password) {
+			return $base64.encode(username + ':' + password);
 		}
 	}
 })();
