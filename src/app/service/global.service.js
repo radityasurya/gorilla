@@ -55,7 +55,7 @@
 		function login(username, password, callback) {
 			var deferred = $q.defer();
 
-			console.log('-- Begin Authenticating Service --');
+			// console.log('-- Begin Authenticating Service --');
 			var authdata = $base64.encode(username + ':' + password);
 			
 			ApiService.login(authdata)

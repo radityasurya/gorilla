@@ -29,15 +29,15 @@
 		}
 
 		function supportedFunctions() {
-			return $http.get(_baseUrl + 'public/meta/SupportedFunctions');
+			return $http.get(_baseUrl + 'public/meta/SupportedFunctions', {timeout:5000});
 		}
 
 		function roles(auth) {
-			return $http.get(_baseUrl + 'security/Roles/' + auth);
+			return $http.get(_baseUrl + 'security/Roles/' + auth, {timeout:5000});
 		}
 		
 		function stations(auth) {
-			return $http.get(_baseUrl + 'mttws/configuration/Stations');
+			return $http.get(_baseUrl + 'mttws/configuration/Stations', {timeout:5000});
 		}
 	}
 })();

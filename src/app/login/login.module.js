@@ -4,6 +4,6 @@
     angular
     .module('app.login', [
         'ionic',
-		'app.service'
+		'app.service',
     ]);
 })();

@@ -40,7 +40,7 @@
 
 			if (window.StatusBar) {
 				// org.apache.cordova.statusbar required
-				StatusBar.styleLightContent();
+				StatusBar.styleDefault();
 			}
 			
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
@@ -54,7 +54,14 @@
 					$location.path('/login');
 				}
 			});
-
+			
+			window.addEventListener('native.keyboardhide', keyboardHideHandler);
+			
+			function keyboardHideHandler(e) {
+				window.scrollTo(0,0);
+			}
+			
+			document.addEventListener('focusout', function(e) {window.scrollTo(0, 0);});
 		});
 		
 		$rootScope.$on('loading:show', function() {
@@ -62,7 +69,7 @@
 			$ionicLoading.show({
 				template: '<ion-spinner icon="lines" style="stroke: #F17B21; fill: #F17B21"></ion-spinner>',
 				showBackdrop: true,
-				duration: 500
+				duration: 5000
 			});
 		});
 

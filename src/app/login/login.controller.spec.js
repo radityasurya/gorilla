@@ -1,7 +1,7 @@
 /* jshint -W117, -W030 */
 
-describe('LoginController', function() {
-    var $controller, $global;
+describe('LoginController:', function() {
+    var controller, $global, scope, $state, $q;
 
     // Load the module for the account
 	beforeEach(module('toaster'));
@@ -10,35 +10,49 @@ describe('LoginController', function() {
     beforeEach(module('app.login'));
 
     // Instantiate the controller and mocks for every test
-    beforeEach(inject(function(_$controller_, _$global_) {
-        var $scope = {};
-		$controller = _$controller_('LoginController', {$scope: $scope});
+    beforeEach(inject(function($rootScope, _$controller_, _$global_, _$q_) {
+        scope = $rootScope.$new();
 		$global = _$global_;
+		$q = _$q_;
+		controller = _$controller_('LoginController as vm', {$scope: scope});
+		// scope.$digest();
+		function emptyPromise() {
+			deferred = $q.defer();
+			return deferred.promise;
+		}
     }));
 
     describe('Login controller', function() {
 
 		// TODO: The Login Controller should be available
 		it('should be available', inject(function($controller) {
-			expect($controller).toBeDefined();
+			expect(controller).toBeDefined();
 		}));
 		
 		// TODO: Setup function should be valid
-		it('calculate the window height for responsiveness', inject(function($controller) {
-			// expect($controller.vm.box(500)).toBeEqualTo(250);
-		}))
+		it('able to calculate the window height for responsiveness', inject(function() {
+			spyOn(controller, 'box');
+			controller.box(500);
+			expect(controller.box).toHaveBeenCalled();
+		}));
 		
 		// TODO: LoginController should call login on $global service
-		it('Call login on the $global service', inject(function($controller) {
-			// expect($global.login).toHaveBeenCalled();
+		it('call login on the $global service', inject(function($controller) {
+			spyOn($global, 'login').and.callThrough();
+			controller.login();
+			expect($global.login).toHaveBeenCalled();
 		}));
 		
 		it('should not have a property called vm', function() {
-			expect($controller.vm).toBeUndefined();
+			expect(controller.vm).toBeUndefined();
 		});
 		
-		// TODO: Success fetch supportedFunctions
-		// TODO: Fail to fetch supportedFunctions
+		// TODO: LoginController should fetch supportedFunctions
+		it('should fetch supportedFunctions from $global service', function() {
+			spyOn($global, 'fetchSupport').and.callThrough();
+			
+		});
+		
 		// TODO: Success to login
 		// TODO: Failed to login
 		

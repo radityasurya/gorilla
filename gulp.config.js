@@ -99,6 +99,7 @@ module.exports = function() {
                 bowerFiles,
                 config.specHelpers,
 				src + 'lib/base64/angular-base64.js',
+				src + 'lib/ngCordova/dist/ng-cordova.js',
 				src + 'lib/angularjs-toaster/toaster.min.js',
                 app + '**/*.module.js',
                 app + '**/*.js',

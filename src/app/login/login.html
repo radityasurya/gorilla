@@ -1,6 +1,6 @@
 <!-- LOGIN VIEW -->
 <div id="login">
-	<ion-content class="login-box" scroll="false" overflow-scroll="false">
+	<ion-content class="login-box" scroll="false" overflow-scroll="false" scroll="true">
 		<div class="box" ng-style="{'min-height': vm.box}">
 			<!-- VANDERLANDE LOGOS -->
 			<img class="vdl-logo" ng-src="images/vanderlande.png">
@@ -12,7 +12,7 @@
 		<!-- LOGIN FORM -->
 		<div class="login" ng-style="{'min-height': vm.box}">
 			<form name="loginForm" ng-submit="vm.login()" novalidate="" class="login-form">
-				<p class="item-instructions">Enter or scan credentials:</p>
+				<p class="item-instructions">Enter or scan credentials: {{vm.error}}</p>
 				<div class="list">
 					<!-- USERNAME -->
 					<div class="form-group">

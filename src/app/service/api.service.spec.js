@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('ApiService', function() {
+describe('ApiService:', function() {
 	var ApiService;
 	
 	// Load the module for the service

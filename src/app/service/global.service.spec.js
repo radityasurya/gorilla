@@ -1,5 +1,5 @@
 /* jshint -W117, -W030 */
-describe('$global', function() {
+describe('$global:', function() {
 	var $global;
 
 	beforeEach(module('base64'));
@@ -10,7 +10,7 @@ describe('$global', function() {
 	}));	
 	
 	// TODO: The Global Service be available
-	it('Service should be available', inject(function($global) {
+	it('$global Service should be available', inject(function($global) {
 		expect($global).toBeDefined();
 	}));
 	

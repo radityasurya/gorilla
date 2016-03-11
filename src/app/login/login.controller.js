@@ -12,10 +12,9 @@
 	function LoginController($global, $http, $scope, $state,
 	$ionicLoading, $window, toaster) {
 		var vm = this;
-
+		vm.test = 'ada';
 		vm.login = login;		
 		vm.box = setup(vm.height);
-		vm.test = 'hahahaha';
 		
 		activate();
 
@@ -25,9 +24,11 @@
 			// Fetch supportedFunctions from the server
 			$global.fetchSupport().then(function (data) {
 				$global.setSupport(data); // Set up on the global service
-				toast('success', 'Loaded', 'SupportedFunctions successfully loaded!', 1500);
-			}, function () {
-				toast('error', 'Loading Error', 'Failed to load SupportedFunctions', 3000);
+				toast('success', 'Loaded', 'SupportedFunctions successfully loaded!', 2000);
+			}, function (data) {
+				console.log(data);
+				vm.error = 'haha';
+				toast('error', 'Loading Error', 'Failed to load SupportedFunctions', 5000);
 			});
 			
 		}
@@ -37,24 +38,30 @@
 		}
 
 		function login() {
-			// console.log('User: ' + vm.username + ' Pass: ' + vm.password);
+			cordova.plugins.Keyboard.close();
+			window.scrollTo(0,0);
+
 			$global.login(vm.username, vm.password).then(function (data) {
 				//console.log(data);
 				$state.go('station');
 			}, function (data) {
 				console.log(data.status);
 				if (data.status === 0) {
-					toast('error', 'Connection Error', 'Not connected to the server',3000);
+					toast('error', 'Connection Error', 'Not connected to the server',5000);
 				} else if (data.status === 401) {
-					toast('error', 'Login Error', 'Wrong username or password',3000);
+					toast('error', 'Login Error', 'Wrong username or password',5000);
 				}
 			});
 		}
 		
 		function setup(height) {
 			// calc height
-			var width = (height / 2) + 'px';
-			return width;
+			var temp = (height / 2) + 'px';
+			
+			if (height === 0) {
+				return 305;
+			}
+			return temp;
 		}
 
 	}

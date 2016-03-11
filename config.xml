@@ -10,10 +10,10 @@
   <content src="index.html"/>
   <access origin="*"/>
   <allow-intent href="*"/>
-	<allow-intent href="http://*/*" />
-	<allow-intent href="https://*/*" />
+  <allow-intent href="http://*/*"/>
+  <allow-intent href="https://*/*"/>
   <allow-navigation href="http://172.19.18.225/*"/>
-  <plugin name="cordova-plugin-whitelist" version="1.2.2" />
+  <plugin name="cordova-plugin-whitelist" version="1.2.2"/>
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
@@ -25,7 +25,7 @@
   <preference name="ShowSplashScreenSpinner" value="false"/>
   <preference name="FadeSplashScreen" value="false"/>
   <preference name="fade-splash-screen-duration" value="0"/>
-  <preference name="StatusBarBackgroundColor" value="#F17B21" />
+  <preference name="StatusBarBackgroundColor" value="#F17B21"/>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
