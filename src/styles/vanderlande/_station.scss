@@ -9,5 +9,50 @@ body{
 	background-size: 100% 1px;
 	background-repeat: no-repeat;
 	background: #F17B21;
-	background-color: white;
+	background-color: #F17B21;
+	color: white;
+	
+	.title{
+		font-weight: 300;
+	}
+	
+	.white {
+		color: white;
+	}
+}
+
+.list-station{
+	text-align: center;
+	.list{ margin-left: 15px; }
+}
+.item-station{
+	color: #e48a64;
+	border-left: none;
+	border-right: none;
+	.activated {
+		background: #F7F7F7!important;
+		border-color: #F7F7F7!important;
+	}
+}
+.bar-subheader{
+	background: #f7f6ed;
+}
+.subheader{
+	color: #b5c1d0;
+	font-weight: 200!important;
+	font-size: 14px!important;
+	height: 28px!important;
+	margin-top:-8px!important;
+}
+.padding{
+	padding-right: 0;
+}
+.item-content{
+	padding-top: 26px!important;
+	padding-bottom: 26px!important;
+}
+.icon-station{
+	color:#bac5d5;
+	font-size: 24px!important;
+	left:0!important;
 }

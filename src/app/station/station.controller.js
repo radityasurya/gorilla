@@ -5,12 +5,14 @@
 		.module('app.station')
 		.controller('StationController', StationController);
 
-	StationController.$inject = ['$global', '$state', '$rootScope', '$ionicPopup'];
+	StationController.$inject = ['$global', '$state', '$rootScope',
+	'$ionicPopup', 'StationService'];
 
 	/* @ngInject */
-	function StationController($global, $state, $rootScope, $ionicPopup) {
+	function StationController($global, $state, $rootScope, $ionicPopup, StationService) {
 		var vm = this;
-		vm.property = 'Controller';
+
+		// Variable
 		
 		vm.logout = logout;
 				
@@ -19,10 +21,18 @@
 		////////////////
 
 		function activate() {
-			vm.supportedFunctions = $global.getSupport();
 			vm.username = $rootScope.currentUser.username;
+			
+			StationService.getStations().then(function (data) {
+				vm.stations = data;
+			}, function (response) {
+				console.log(response);
+			});
+			
+			console.log(vm.stations);
+			
 		}
-		
+			
 		function logout() {
 			console.log('logout');
 			

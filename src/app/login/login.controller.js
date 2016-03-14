@@ -43,7 +43,7 @@
 			window.scrollTo(0,0);
 
 			$global.login(vm.username, vm.password).then(function (data) {
-				//console.log(data);
+				console.log(data);
 				$state.go('station');
 			}, function (data) {
 				console.log(data.status);
