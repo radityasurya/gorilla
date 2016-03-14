@@ -12,7 +12,6 @@
 	function LoginController($global, $http, $scope, $state,
 	$ionicLoading, $window, toaster) {
 		var vm = this;
-		vm.test = 'ada';
 		vm.login = login;		
 		vm.box = setup(vm.height);
 		
@@ -27,7 +26,6 @@
 				toast('success', 'Loaded', 'SupportedFunctions successfully loaded!', 2000);
 			}, function (data) {
 				console.log(data);
-				vm.error = 'haha';
 				toast('error', 'Loading Error', 'Failed to load SupportedFunctions', 5000);
 			});
 			

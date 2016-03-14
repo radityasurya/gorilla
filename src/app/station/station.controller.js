@@ -5,10 +5,10 @@
 		.module('app.station')
 		.controller('StationController', StationController);
 
-	StationController.$inject = ['$global', '$state', '$rootScope'];
+	StationController.$inject = ['$global', '$state', '$rootScope', '$ionicPopup'];
 
 	/* @ngInject */
-	function StationController($global, $state, $rootScope) {
+	function StationController($global, $state, $rootScope, $ionicPopup) {
 		var vm = this;
 		vm.property = 'Controller';
 		
@@ -25,8 +25,20 @@
 		
 		function logout() {
 			console.log('logout');
-			$global.logout();
-			$state.go('login');
+			
+			var confirmPopup = $ionicPopup.confirm({
+				title: 'Logout',
+				template: 'Are you sure you want to logout?'
+			});
+			
+			confirmPopup.then(function(res) {
+				if (res) {
+					$global.logout();
+					$state.go('login');
+				} else {
+					console.log('do nothing');
+				}
+			});
 		}
 	}
 })();

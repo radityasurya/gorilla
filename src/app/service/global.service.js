@@ -25,7 +25,8 @@
 			login: login,
 			logout: logout,
 			setCredentials: setCredentials,
-			resetCredentials: resetCredentials
+			resetCredentials: resetCredentials,
+			encrypt64: encrypt64
 		};
 
 		return service;
