@@ -24,6 +24,11 @@
 			url: '/station',
 			templateUrl: 'app/station/station.html',
 			controller: 'StationController as vm'
+		})
+		.state('station-detail', {
+			url: '/station/:stationName',
+			templateUrl: 'app/station/station-detail.html',
+			controller: 'StationDetailController as vm'
 		});
 
         // Each tab has its own nav history stack which is defined in the corresponding module.

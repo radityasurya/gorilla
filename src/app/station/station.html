@@ -1,15 +1,13 @@
 <div id="station">
 	<div class="bar bar-header bar-header-vanderlande">
-		<button class="button button-icon icon ion-power white" ng-click="vm.logout()"></button>
 		<div class="h1 title white">Select Location</div>
-		<button class="button button-icon icon ion-ios-location white"></button>
 	</div>
 	<div class="bar bar-subheader">
 		<h2 class="title subheader">Scan</h2>
 	</div>
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
 		<ion-list class="list-station">
-			<ion-item href="#/detail" class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station">
+			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station" href="#/station/{{key}}" >
 				<i class="icon ion-ios-briefcase icon-station"></i>
 				{{key}}
 				<i class="icon ion-ios-arrow-right"></i>
