@@ -6,7 +6,6 @@ $rules = array(
 	'supportedFunctions'   => "/public/meta/SupportedFunctions",    // '/public/meta/SupportedFunctions'
 	'roles'     		   => "/security/Roles",              		// '/security/Roles/'
 	'stations'     		   => "configuration/Stations",              		// '/security/Roles/'
-	'monitoredStations'    => "monitor/MonitoredStations",              		// 'monitor/MonitoredStations'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );

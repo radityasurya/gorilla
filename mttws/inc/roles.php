@@ -24,14 +24,10 @@ if($count >= 3) {
 		//->authenticateWith($username, $password)
 		->send();
 }
-else {
-	$response = \Httpful\Request::get($url)
-		->send();
-}
 
 if(strpos($response, 'Error 401--Unauthorized') !== false) {
 	echo "{ " . '"' . 'status"' . ':' .'"' . '401' . '" }';
-	header("HTTP/1.1 401 Unauthorized");
+	header('HTTP/1.1 401 Unauthorized', true, 401);
 	exit;
 } else {
 	echo ($response);

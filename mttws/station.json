@@ -1,0 +1,438 @@
+{
+	"OOG CI HBS E": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 19": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 18": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"OvernightStore": {
+		"type": "Store",
+		"locations": [
+			"OvernightStore"
+		],
+		"allowedClassification": true
+	},
+	"B139 HBS": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"OOG CI HBS B": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 12": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 13": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 10": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 11": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 16": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 17": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 14": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"L4 7740": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 15": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"SOOG HBS": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"OOG Store": {
+		"type": "Store",
+		"locations": [
+			"South Rack 10",
+			"North Rack 33",
+			"South Rack 12",
+			"North Rack 31",
+			"South Rack 8",
+			"South Rack 14",
+			"South Rack 16",
+			"North Rack 21",
+			"South Rack 3",
+			"South Rack 19",
+			"North Rack 23",
+			"QPU Rack 3",
+			"South Rack 1",
+			"South Rack 17",
+			"North Rack 25",
+			"QPU Rack 1",
+			"South Rack 7",
+			"North Rack 27",
+			"South Rack 5",
+			"North Rack 29",
+			"North Rack 32",
+			"South Rack 11",
+			"North Rack 30",
+			"South Rack 9",
+			"South Rack 13",
+			"South Rack 15",
+			"North Rack 20",
+			"North Rack 22",
+			"QPU Rack 4",
+			"South Rack 2",
+			"North Rack 24",
+			"QPU Rack 2",
+			"South Rack 18",
+			"North Rack 26",
+			"South Rack 6",
+			"North Rack 28",
+			"South Rack 4"
+		],
+		"allowedClassification": true
+	},
+	"Stillage 1": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Stillage 2": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 29": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Stillage 3": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"G22 OOG Sort": {
+		"type": "Tracking",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Stillage 4": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Stillage 5": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Stillage 6": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Pet Store": {
+		"type": "Store",
+		"locations": [
+			"Pet Store"
+		],
+		"allowedClassification": true
+	},
+	"OOG CI Sort": {
+		"type": "Tracking",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 21": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 22": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 23": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"L4 7750": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 24": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 25": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 26": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 27": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 28": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 20": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"SOOG ITO In": {
+		"type": "Tracking",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 9": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"B139 OOG Sort": {
+		"type": "Tracking",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 7": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 31": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 8": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 30": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 5": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 6": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 3": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 4": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Tx SC Out 7712": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 1": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Tx SC Out 7711": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 2": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Tx SC Out 7714": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Tx SC Out 7713": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 38": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 37": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 36": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"ITO Stillage": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"Lateral 35": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 34": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 33": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"Lateral 32": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": true
+	},
+	"SOOG CI HBS": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"UnexpectedBag": {
+		"type": "Tracking",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"SOOGStore HBS3": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"(S)OOG PBStore": {
+		"type": "Store",
+		"locations": [
+			"PB Store 2",
+			"PB Store 1",
+			"PB Store 3"
+		],
+		"allowedClassification": true
+	},
+	"SOOGStore HBS2": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"SOOG CIStore 2": {
+		"type": "Store",
+		"locations": [
+			"CIStore 2"
+		],
+		"allowedClassification": true
+	},
+	"SOOG CIStore 1": {
+		"type": "Store",
+		"locations": [
+			"CIStore 1"
+		],
+		"allowedClassification": true
+	},
+	"SOOGStore HBS1": {
+		"type": "Screening",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"SOOG Store 3": {
+		"type": "Store",
+		"locations": [
+			"SOOG Store 3"
+		],
+		"allowedClassification": true
+	},
+	"QPU 3": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"QPU 2": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"QPU 1": {
+		"type": "Stillage",
+		"locations": [],
+		"allowedClassification": false
+	},
+	"SOOG Store 2": {
+		"type": "Store",
+		"locations": [
+			"SOOG Store 2"
+		],
+		"allowedClassification": true
+	},
+	"SOOG Store 1": {
+		"type": "Store",
+		"locations": [
+			"SOOG Store 1"
+		],
+		"allowedClassification": true
+	}
+}
