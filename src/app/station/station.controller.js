@@ -6,10 +6,10 @@
 		.controller('StationController', StationController);
 
 	StationController.$inject = ['$global', '$state', '$rootScope',
-	'$ionicPopup', 'StationService'];
+	'$ionicPopup', 'StationService', '$timeout'];
 
 	/* @ngInject */
-	function StationController($global, $state, $rootScope, $ionicPopup, StationService) {
+	function StationController($global, $state, $rootScope, $ionicPopup, StationService, $timeout) {
 		var vm = this;
 
 		// Variable
@@ -21,6 +21,9 @@
 		////////////////
 
 		function activate() {
+			
+			console.log('fired');
+			
 			vm.username = $rootScope.currentUser.username;
 			
 			StationService.getStations().then(function (data) {
@@ -29,8 +32,12 @@
 				console.log(response);
 			});
 			
-			console.log(vm.stations);
-			
+			StationService.getMonitoredStations()
+			.then(function (data) {
+				console.log(data);
+			}, function (response) {
+				console.log(response);
+			});
 		}
 			
 		function logout() {

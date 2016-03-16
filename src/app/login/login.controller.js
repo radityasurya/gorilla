@@ -22,7 +22,6 @@
 		function activate() {
 			// Fetch supportedFunctions from the server
 			$global.fetchSupport().then(function (data) {
-				$global.setSupport(data); // Set up on the global service
 				toast('success', 'Loaded', 'SupportedFunctions successfully loaded!', 2000);
 			}, function (data) {
 				console.log(data);

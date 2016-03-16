@@ -15,12 +15,11 @@
 		$rootScope.currentUser = {
 			username: '',
 			authdata: '',
+			monitoredStations: {},
 			isLoggedIn: false
 		};
 		
 		var service = {
-			setSupport: setSupport,
-			getSupport: getSupport,
 			fetchSupport: fetchSupport,
 			login: login,
 			logout: logout,
@@ -32,32 +31,27 @@
 		return service;
 
 		////////////////
-				
-		function setSupport(json) {
-			suppFunction = angular.copy(json);
-		}
-
+		
 		function fetchSupport() {
 			var defer = $q.defer();
+			
 			ApiService.supportedFunctions()
-				.then(function (response) {
-					defer.resolve(response.data);
-				}, function (response) {
-					defer.reject(response);
-				});
+			.then(function (response) {
+				defer.resolve(response.data);
+			}, function (response) {
+				defer.reject(response.data);
+			});
 			
 			return defer.promise;
 		}
-
-		function getSupport() {
-			return suppFunction;
-		}
-
+				
 		function login(username, password, callback) {
 			var defer = $q.defer();
-
+			console.log($rootScope.currentUser);
 			console.log('-- Begin Authenticating Service --');
 			var authdata = $base64.encode(username + ':' + password);
+			
+			console.log(authdata);
 			
 			ApiService.restCall('Roles', authdata)
 			.then(function (response) {
@@ -100,11 +94,16 @@
 		}
 
 		function resetCredentials() {
+			console.log('resetting credentials');
 			$rootScope.currentUser = {
 				username: '',
 				authdata: '',
 				isLoggedIn: false
 			};
+			
+			$rootScope.currentUser = null;
+			
+			console.log($rootScope.currentUser);
 		}
 		
 		function encrypt64(username, password) {
