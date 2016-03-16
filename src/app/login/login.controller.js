@@ -42,11 +42,10 @@
 			}
 			window.scrollTo(0,0);
 
-			$global.login(vm.username, vm.password).then(function (data) {
-				console.log(data);
+			$global.login(vm.username, vm.password)
+			.then(function (data) {
 				$state.go('station');
 			}, function (data) {
-				console.log(data.status);
 				if (data.status === 0) {
 					toast('error', 'Connection Error', 'Not connected to the server',5000);
 				} else if (data.status === 401) {

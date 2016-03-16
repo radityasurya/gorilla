@@ -45,7 +45,7 @@
 				}, function (response) {
 					defer.reject(response);
 				});
-
+			
 			return defer.promise;
 		}
 
@@ -54,22 +54,22 @@
 		}
 
 		function login(username, password, callback) {
-			var deferred = $q.defer();
+			var defer = $q.defer();
 
-			// console.log('-- Begin Authenticating Service --');
+			console.log('-- Begin Authenticating Service --');
 			var authdata = $base64.encode(username + ':' + password);
 			
-			ApiService.login(authdata)
-				.then(function (response) {
-				// Register User
+			ApiService.restCall('Roles', authdata)
+			.then(function (response) {
+				console.log(response);
 				setCredentials(username, authdata);
-				deferred.resolve(response.data);
+				defer.resolve(response.data);
 			}, function (response) {
-				// Error
-				deferred.reject(response);
+				console.log(response);
+				defer.reject(response);
 			});
-
-			return deferred.promise;
+			
+			return defer.promise;
 		}
 		
 		function logout() {
@@ -78,13 +78,13 @@
 			// Reset Credentials
 			resetCredentials();
 			
-			ApiService.logout('')
-				.then(function (response) {
-					// Cannot logout
-				deferred.resolve(response);
+			ApiService.restCall('Roles', 'logout')
+			.then(function (response) {
+				console.log(response);
+				deferred.resolve(response.data);
 			}, function (response) {
-				// Logout Success
 				resetCredentials();
+				console.log(response);
 				deferred.reject(response);
 			});
 			
@@ -97,8 +97,6 @@
 				authdata: authdata,
 				isLoggedIn: true
 			};
-			
-			// console.log($rootScope.currentUser);
 		}
 
 		function resetCredentials() {

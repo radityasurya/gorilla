@@ -22,7 +22,7 @@
 		function getStations() {
 			var defer = $q.defer();
 			
-			ApiService.stations(auth).then(function (response) {
+			ApiService.restCall('Stations', auth).then(function (response) {
 				console.log(response.data);
 				//$timeout(function () {
 					defer.resolve(response.data);
