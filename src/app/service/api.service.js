@@ -48,7 +48,7 @@
 		}
 		
 		function stations(auth) {
-			return $http.get(BASE_URL() + 'mttws/configuration/Stations', {timeout:getTimeout()});
+			return $http.get(BASE_URL() + 'mttws/configuration/Stations/' + auth, {timeout:getTimeout()});
 		}
 	}
 })();

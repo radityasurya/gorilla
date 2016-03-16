@@ -4,10 +4,12 @@
 		.module('app.station')
 		.factory('StationService', StationService);
 
-	StationService.$inject = ['ApiService', '$q', '$timeout'];
+	StationService.$inject = ['ApiService', '$q', '$timeout', '$rootScope'];
 
 	/* @ngInject */
-	function StationService(ApiService, $q, $timeout) {
+	function StationService(ApiService, $q, $timeout, $rootScope) {
+				
+		var auth = $rootScope.currentUser.authdata;
 		
 		var service = {
 			getStations: getStations
@@ -20,7 +22,7 @@
 		function getStations() {
 			var defer = $q.defer();
 			
-			ApiService.stations().then(function (response) {
+			ApiService.stations(auth).then(function (response) {
 				console.log(response.data);
 				//$timeout(function () {
 					defer.resolve(response.data);
