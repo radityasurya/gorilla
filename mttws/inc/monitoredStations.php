@@ -1,5 +1,7 @@
 <?php
 
+// base/mttws/monitor/MonitoredStations?auth=[auth]
+
 include('httpful.phar');
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
@@ -8,14 +10,18 @@ $uri = urldecode( $uri );
 
 $newURI = explode("/", $uri);
 
+if (isset($_GET['auth'])) {
+	$auth = $_GET['auth'];
+}else{
+	$auth = '';
+}
+
 $count = count($newURI);
 $url = "http://172.21.27.17:7003/mttws/monitor/MonitoredStations";
 
 \Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));
 
 if($count >= 3) {
-
-	$auth = end($newURI);
 	$response = \Httpful\Request::get($url)
 		->addHeader('Authorization', 'Basic ' . $auth)
 		->withAccept('application/json')

@@ -8,7 +8,9 @@
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
 		<ion-list class="list-station">
 			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station" href="#/station/{{key}}" >
-				<i class="icon ion-ios-briefcase icon-station"></i>
+				<i class="icon ion-ios-briefcase icon-station">
+					{{value.type}}
+				</i>
 				{{key}}
 				<i class="icon ion-ios-arrow-right"></i>
 

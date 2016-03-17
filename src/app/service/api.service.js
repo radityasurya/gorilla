@@ -13,6 +13,7 @@
 		var _baseUrl = 'http://172.19.18.225/mttws/';
 		var _supportedFunction = {};
 		var _timeout = 5000;
+		var _header = {};
 				
 		var service = {
 			BASE_URL: BASE_URL,
@@ -75,9 +76,14 @@
 			return BASE_URL() + URI;
 		}
 		
-		function restCall(name, auth) {
-			return $http.get(getURI(name) + '/' + auth);
+		function restCall(name, auth, params) {
+			
+			var _url = getURI(name) + '?auth=' + auth + '&' + params;
+			
+			console.log(_url);
+			
+			return $http.get(_url);
 		}
-
+		
 	}
 })();

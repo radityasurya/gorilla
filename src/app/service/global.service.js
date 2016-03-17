@@ -5,10 +5,23 @@
 		.module('app.service')
 		.factory('$global', global);
 
-	global.$inject = ['$http', '$base64', '$q', '$rootScope', 'ApiService'];
+	global.$inject = [
+						'$http',
+						'$base64',
+						'$q',
+						'$rootScope',
+						'ApiService',
+						'UserService'
+					];
 
 	/* @ngInject */
-	function global($http, $base64, $q, $rootScope, ApiService, $ionicLoading) {
+	function global($http, 
+					$base64,
+					$q, 
+					$rootScope, 
+					ApiService,
+					UserService,
+					$ionicLoading) {
 		
 		var suppFunction = [];
 		
@@ -41,25 +54,20 @@
 			}, function (response) {
 				defer.reject(response.data);
 			});
-			
+						
 			return defer.promise;
 		}
 				
-		function login(username, password, callback) {
+		function login(username, password, callback) {		
 			var defer = $q.defer();
-			console.log($rootScope.currentUser);
-			console.log('-- Begin Authenticating Service --');
+
 			var authdata = $base64.encode(username + ':' + password);
 			
-			console.log(authdata);
-			
-			ApiService.restCall('Roles', authdata)
+			ApiService.restCall('Roles', authdata, '')
 			.then(function (response) {
-				console.log(response);
-				setCredentials(username, authdata);
+				setCredentials(username, authdata, response.data);
 				defer.resolve(response.data);
 			}, function (response) {
-				console.log(response);
 				defer.reject(response);
 			});
 			
@@ -72,38 +80,24 @@
 			// Reset Credentials
 			resetCredentials();
 			
-			ApiService.restCall('Roles', 'logout')
+			ApiService.restCall('Roles', 'logout', '')
 			.then(function (response) {
-				console.log(response);
 				deferred.resolve(response.data);
 			}, function (response) {
 				resetCredentials();
-				console.log(response);
 				deferred.reject(response);
 			});
 			
 			return deferred.promise;
 		}
 
-		function setCredentials(username, authdata) {
-			$rootScope.currentUser = {
-				username: username,
-				authdata: authdata,
-				isLoggedIn: true
-			};
+		function setCredentials(username, authdata, roles) {
+			UserService.createUser(username, authdata);
+			UserService.setRoles(roles);
 		}
 
 		function resetCredentials() {
-			console.log('resetting credentials');
-			$rootScope.currentUser = {
-				username: '',
-				authdata: '',
-				isLoggedIn: false
-			};
-			
-			$rootScope.currentUser = null;
-			
-			console.log($rootScope.currentUser);
+			UserService.resetUser();
 		}
 		
 		function encrypt64(username, password) {

@@ -6,6 +6,12 @@ $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
 $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 $uri = urldecode( $uri );
 
+if (isset($_GET['auth'])) {
+	$auth = $_GET['auth'];
+}else{
+	$auth = '';
+}
+
 $newURI = explode("/", $uri);
 
 $count = count($newURI);
@@ -14,8 +20,6 @@ $url = "http://172.21.27.17:7003/mttws/configuration/Stations";
 \Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));
 
 if($count >= 3) {
-
-	$auth = end($newURI);
 	$response = \Httpful\Request::get($url)
 		->addHeader('Authorization', 'Basic ' . $auth)
 		->withAccept('application/json')

@@ -1,15 +1,27 @@
 <div id="station-detail">
 	<div class="bar bar-header bar-header-vanderlande">
 		<button class="button button-icon icon ion-power white" ng-click="vm.logout()"></button>
-		<div class="h1 title white"  ng-click="vm.back()">{{vm.currentStation.stationName}} <i class="ion-ios-arrow-down"></i></div>
+		<div class="h1 title white"  ng-click="vm.back()">{{vm.currentStation.stationName}}</div>
 		<button class="button button-icon icon ion-ios-location white"></button>
 	</div>
 	<div class="bar bar-subheader">
 		<h2 class="title subheader">Scan</h2>
 	</div>
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
-		<div class="scanbag">
+		<div class="scanbag" ng-show="!vm.isExist">
 			Scan Bag<br><span>for</span><br>Task
 		</div>
+		
+		<ion-list ng-show="vm.isExist" class="list-station">testasssss
+			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station" href="#/station/{{key}}" >
+				<i class="icon ion-ios-briefcase icon-station">
+					{{value.type}}
+				</i>
+				{{key}}
+				<i class="icon ion-ios-arrow-right"></i>
+				
+			</ion-item>
+		</ion-list>
+		
 	</ion-content>
 </div>

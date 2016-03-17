@@ -12,7 +12,7 @@
 						'$cordovaSplashscreen',
 						'$cordovaStatusbar',
 						'$rootScope', '$ionicLoading',
-						'$location'
+						'$state', '$ionicPopup'
 						];
 
 	function runBlock(
@@ -21,9 +21,8 @@
 		$global, 
 		$cordovaSplashscreen, 
 		$cordovaStatusbar,
-		$rootScope,
-	$ionicLoading,
-		$location)
+		$rootScope, $ionicLoading,
+		$state, $ionicPopup)
 	{
 		$ionicPlatform.ready(function () {
 			// Splash Screen
@@ -44,24 +43,49 @@
 			}
 			
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-				console.log($rootScope.currentUser.isLoggedIn);
-				// Check if the state.authrequired && service.isAuthenticared
-				// If it isn't > $state.transition(login)
-				// event.preventDefault();
-				if ($location.path() !== '/login' && !$rootScope.currentUser.isLoggedIn) {
-					console.log('not logged in!');
-					console.log('redirect to login');
-					$location.path('/login');
-				}
+				// console.log($rootScope.currentUser.isLoggedIn);
+//				if ($location.path() !== '/login' && !$rootScope.currentUser.isLoggedIn) {
+//					console.log('not logged in!');
+//					console.log('redirect to login');
+//					$location.path('/login');
+//				}
 			});
 			
+			// Keyboard Fix
 			window.addEventListener('native.keyboardhide', keyboardHideHandler);
-			
 			function keyboardHideHandler(e) {
 				window.scrollTo(0,0);
 			}
-			
 			document.addEventListener('focusout', function(e) {window.scrollTo(0, 0);});
+			
+			// Back Button
+			$ionicPlatform.registerBackButtonAction(function (event) {
+				if ($state.current.name === 'login') {
+					$ionicPopup.confirm({
+						title: 'Exit',
+						template: 'Are you sure you want to exit?'
+					}).then(function(res) {
+						if (res) {
+							navigator.app.exitApp();
+						}
+					});
+				} else if ($state.current.name === 'station') {
+					$ionicPopup.confirm({
+						title: 'Logout',
+						template: 'Are you sure you want to logout?'
+					}).then(function(res) {
+						if (res) {
+							$global.logout();
+							$state.go('login');
+						} else {
+							console.log('do nothing');
+						}
+					});
+				} else {
+					navigator.app.backHistory();
+				}
+			}, 100);
+			
 		});
 		
 		$rootScope.$on('loading:show', function() {

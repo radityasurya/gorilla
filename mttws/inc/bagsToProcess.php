@@ -1,21 +1,31 @@
 <?php
 
+// base/mttws/monitor/MonitoredStations?auth=[auth]
+
 include('httpful.phar');
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
 $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 $uri = urldecode( $uri );
 
-if (isset($_GET['auth'])) {
-	$auth = $_GET['auth'];
-}else{
-	$auth = '';
+$newURI = explode("/", $uri);
+$count = count($newURI);
+
+$url = "http://172.21.27.17:7003/mttws/query/BagsToProcess";
+
+$auth = isset($_GET['auth']) ? $_GET['auth'] : '';
+$station = isset($_GET['station']) ? $_GET['station'] : '';
+$device = isset($_GET['device']) ? $_GET['device'] : '';
+$storeStations = isset($_GET['StoreStation']) ? $_GET['StoreStation'] : '';
+
+$url .= "?station=" . $station . "&device=" . $device;
+if(count($storeStations) > 0) {
+	for($i = 0; $i < count($storeStations) ; $i++) {
+
+		$url .= "&storeStation=" . $storeStations[$i];
+	}
 }
 
-$newURI = explode("/", $uri);
-
-$count = count($newURI);
-$url = "http://172.21.27.17:7003/mttws/security/Roles";
 
 \Httpful\Httpful::register(\Httpful\Mime::JSON, new \Httpful\Handlers\JsonHandler(array('decode_as_array' => true)));
 
@@ -28,10 +38,13 @@ if($count >= 3) {
 		//->authenticateWith($username, $password)
 		->send();
 }
-
+else {
+$response = \Httpful\Request::get($url)
+	->send();
+}
 if(strpos($response, 'Error 401--Unauthorized') !== false) {
 	echo "{ " . '"' . 'status"' . ':' .'"' . '401' . '" }';
-	header('HTTP/1.1 401 Unauthorized', true, 401);
+	header("HTTP/1.1 401 Unauthorized");
 	exit;
 } else {
 	echo ($response);

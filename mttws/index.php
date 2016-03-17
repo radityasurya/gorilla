@@ -7,6 +7,7 @@ $rules = array(
 	'roles'     		   => "/security/Roles",              		// '/security/Roles/'
 	'stations'     		   => "configuration/Stations",              		// '/security/Roles/'
 	'monitoredStations'    => "monitor/MonitoredStations",              		// 'monitor/MonitoredStations'
+	'bagsToProcess'    => "query/BagsToProcess",              		// 'monitor/MonitoredStations'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );

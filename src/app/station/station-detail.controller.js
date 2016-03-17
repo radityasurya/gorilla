@@ -7,30 +7,41 @@
 
 	StationDetailController.$inject = ['$global', '$state', '$stateParams',
 	'$ionicPopup', 'StationService', '$ionicHistory', '$rootScope',
-	'$timeout', '$log'];
+	'$timeout', '$log', 'UserService'];
 
 	/* @ngInject */
 	function StationDetailController($global, $state, $stateParams,
 	$ionicPopup, StationService, $ionicHistory, $rootScope,
-	$timeout, $log) {
+	$timeout, $log, UserService) {
 		var vm = this;
-		console.log($stateParams);
+		UserService.setCurrentStation($stateParams);
 		vm.currentStation = $stateParams;
 		vm.logout = logout;
 		vm.back = back;
+		vm.isExist = false;
 		
 		activate();
 
 		////////////////
 
 		function activate() {
-			// Get BagToProcess
 			// Get MonitoredStations
-			console.log($rootScope.currentUser.monitoredStations);
+			console.log(UserService.getMonitoredStations());
+			
+			// Get BagToProcess
+			StationService.getBagsToProcess(
+				UserService.getCurrentStation(),
+				'Emulator',
+				UserService.getMonitoredStations())
+			.then(function (response) {
+				console.log(response);
+			}, function (response) {
+				console.log(response);
+			});
 		}
 		
 		function back() {
-			console.log('clicked');
+			console.log('back');
 			$ionicHistory.goBack();
 		}
 		
