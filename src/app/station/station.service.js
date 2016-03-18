@@ -13,7 +13,8 @@
 			getStations: getStations,
 			getMonitoredStations: getMonitoredStations,
 			getBagsToProcess: getBagsToProcess,
-			createParams: createParams
+			createParams: createParams,
+			filterStoreStation: filterStoreStation
 		};
 
 		return service;
@@ -25,15 +26,28 @@
 			var defer = $q.defer();
 			
 			ApiService.restCall('Stations', UserService.getUser().auth, '').then(function (response) {
-				//$timeout(function () {
-					defer.resolve(response.data);
-				//},5000);
+				var storeStation = filterStoreStation(response.data);
+				UserService.setMonitoredStations(storeStation);
+				console.log(storeStation);
+				defer.resolve(response.data);
 			}, function (response) {
 				console.log(response);
 				defer.reject(response.data);
 			});
 			
 			return defer.promise;
+		}
+		
+		function filterStoreStation(stations) {
+			var storeStations = [];
+	
+			angular.forEach(stations, function(station, index) {
+				if (stations[index].type === 'Store') {
+					storeStations[index] = station;
+				}
+			});
+			
+			return storeStations;
 		}
 		
 		// Only handler and superman
@@ -44,7 +58,6 @@
 			
 			ApiService.restCall('MonitoredStations', UserService.getUser().auth, '')
 			.then(function (response) {
-				console.log(response);
 				UserService.setMonitoredStations(response.data);
 				defer.resolve(response.data);
 			}, function (response) {

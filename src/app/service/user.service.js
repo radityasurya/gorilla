@@ -16,7 +16,7 @@
 			auth: '',
 			isLoggedIn: false,
 			roles: {},
-			monitoredStations: {}
+			monitoredStations: []
 		};
 
 		var service = {
@@ -70,7 +70,7 @@
 		}
 		
 		function setMonitoredStations(rolesFromJson) {
-			_user.monitoredStations = angular.copy(rolesFromJson);
+			_user.monitoredStations = rolesFromJson;
 		}
 
 		function getMonitoredStations(rolesFromJson) {

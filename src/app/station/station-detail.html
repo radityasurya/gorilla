@@ -1,3 +1,18 @@
+<!--
+
+$$hashKey:"object:549"
+etdStd:"2016-03-18T11:30:03.467+0000"
+flightNumber:"SA1104"
+lpn:"1234567890"
+storeLocation:"PB Store 1"
+storeStation:"(S)OOG PBStore"
+taskDescription:"Deliver"
+taskDestinations:"240"
+taskType:"OTHER"
+
+-->
+
+
 <div id="station-detail">
 	<div class="bar bar-header bar-header-vanderlande">
 		<button class="button button-icon icon ion-power white" ng-click="vm.logout()"></button>
@@ -12,14 +27,36 @@
 			Scan Bag<br><span>for</span><br>Task
 		</div>
 		
-		<ion-list ng-show="vm.isExist" class="list-station">testasssss
-			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station" href="#/station/{{key}}" >
-				<i class="icon ion-ios-briefcase icon-station">
-					{{value.type}}
-				</i>
-				{{key}}
-				<i class="icon ion-ios-arrow-right"></i>
-				
+		<ion-list ng-show="vm.isExist"  class="list-station-details">
+			<ion-item class="item-station-details" ng-repeat="(key, value) in vm.bagsToProcess" item="station" href="#/station/{{key}}" >
+				<div class="row">
+					<div class="col col-10">
+						<div class="row">Icon</div></div>
+					<div class="col col-33">
+						<div class="row">Bag Tag</div>
+						<div class="row">0436587604</div>
+					</div>
+					<div class="col">
+						<div class="row">Task</div>
+						<div class="row">Deliver to MU-6</div>
+					</div>
+					<div class="col col-10"><div class="row">Arrow</div></div>
+				</div>
+				<div class="row">
+					<div class="col col-10">
+						<div class="row">Icon</div></div>
+				<div class="col col-33">
+						<div class="row">Flight</div>
+						<div class="row">KL 426</div>
+					</div>
+					<div class="col">
+						<div class="row">Store Location</div>
+						<div class="row">OOG Store Rack 2</div>
+					</div>
+				<div class="col col-10">
+					<div class="row">Time Left</div>
+				</div>
+				</div>
 			</ion-item>
 		</ion-list>
 		

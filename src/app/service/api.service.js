@@ -78,7 +78,7 @@
 		
 		function restCall(name, auth, params) {
 			
-			var _url = getURI(name) + '?auth=' + auth + '&' + params;
+			var _url = getURI(name) + '?auth=' + auth + params;
 			
 			console.log(_url);
 			

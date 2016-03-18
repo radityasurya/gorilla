@@ -35,8 +35,11 @@
 				UserService.getMonitoredStations())
 			.then(function (response) {
 				console.log(response);
+				vm.isExist = true;
+				vm.bagsToProcess = response;
 			}, function (response) {
 				console.log(response);
+				vm.isExist = false;
 			});
 		}
 		

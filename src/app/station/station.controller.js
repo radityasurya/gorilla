@@ -30,11 +30,6 @@
 				console.log(response);
 			});
 			
-			StationService.getMonitoredStations().then(function (data) {
-				
-			}, function (response) {
-				
-			});
 		}
 
 		function logout() {
