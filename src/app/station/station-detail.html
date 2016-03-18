@@ -16,7 +16,7 @@ taskType:"OTHER"
 <div id="station-detail">
 	<div class="bar bar-header bar-header-vanderlande">
 		<button class="button button-icon icon ion-power white" ng-click="vm.logout()"></button>
-		<div class="h1 title white"  ng-click="vm.back()">{{vm.currentStation.stationName}}</div>
+		<div class="h1 title white" ng-click="vm.back()">{{vm.currentStation.stationName}}</div>
 		<button class="button button-icon icon ion-ios-location white"></button>
 	</div>
 	<div class="bar bar-subheader">
@@ -24,41 +24,43 @@ taskType:"OTHER"
 	</div>
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
 		<div class="scanbag" ng-show="!vm.isExist">
-			Scan Bag<br><span>for</span><br>Task
+			Scan Bag
+			<br><span>for</span>
+			<br>Task
 		</div>
-		
-		<ion-list ng-show="vm.isExist"  class="list-station-details">
-			<ion-item class="item-station-details" ng-repeat="(key, value) in vm.bagsToProcess" item="station" href="#/station/{{key}}" >
+
+		<ion-list ng-show="vm.isExist" class="list-station-details">
+			<ion-item class="item-station-details" ng-repeat="(key, value) in vm.bagsToProcess" item="station" href="#/station/{{key}}">
 				<div class="row">
 					<div class="col col-10">
-						<div class="row">Icon</div></div>
+						<div class="row bag-tags-icon"><i class="icon ion-ios-briefcase icon-station"></i></div>
+					</div>
 					<div class="col col-33">
-						<div class="row">Bag Tag</div>
-						<div class="row">0436587604</div>
+						<div class="col">
+							<div class="row bag-tags-title">Bag Tag</div>
+							<div class="row bag-tags-value">0436587604</div>
+						</div>
+						<div class="col">
+							<div class="row bag-tags-title">Flight</div>
+							<div class="row bag-tags-value">KL 426</div>
+						</div>
 					</div>
 					<div class="col">
-						<div class="row">Task</div>
-						<div class="row">Deliver to MU-6</div>
+						<div class="col">
+							<div class="row bag-tags-title">Task</div>
+							<div class="row bag-tags-value">Deliver to MU-6</div>
+						</div>
+						<div class="col">
+							<div class="row bag-tags-title">Store Location</div>
+							<div class="row bag-tags-value">OOG Store Rack 2</div>
+						</div>
 					</div>
-					<div class="col col-10"><div class="row">Arrow</div></div>
-				</div>
-				<div class="row">
 					<div class="col col-10">
-						<div class="row">Icon</div></div>
-				<div class="col col-33">
-						<div class="row">Flight</div>
-						<div class="row">KL 426</div>
+						<div class="row bag-tags-icon">></div>
 					</div>
-					<div class="col">
-						<div class="row">Store Location</div>
-						<div class="row">OOG Store Rack 2</div>
-					</div>
-				<div class="col col-10">
-					<div class="row">Time Left</div>
-				</div>
 				</div>
 			</ion-item>
 		</ion-list>
-		
+
 	</ion-content>
 </div>
