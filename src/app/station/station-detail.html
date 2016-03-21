@@ -33,7 +33,12 @@ taskType:"OTHER"
 			<ion-item class="item-station-details" ng-repeat="(key, value) in vm.bagsToProcess" item="station" href="#/station/{{key}}">
 				<div class="row">
 					<div class="col col-10">
-						<div class="row bag-tags-icon"><i class="icon ion-ios-briefcase icon-station"></i></div>
+						<div class="row bag-tags-icon">
+							<i class="icon">
+								<img ng-src="images/stillage.png">
+								{{value.type}}
+							</i>
+						</div>
 					</div>
 					<div class="col col-33">
 						<div class="col">

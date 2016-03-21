@@ -7,9 +7,9 @@
 	</div>
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
 		<ion-list class="list-station">
-			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations" item="station" href="#/station/{{key}}" >
-				<i class="icon ion-ios-briefcase icon-station">
-					{{value.type}}
+			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations | orderBy:key" item="station" href="#/station/{{key}}" >
+				<i class="icon">
+					<img ng-src="images/{{value.type}}.png">
 				</i>
 				{{key}}
 				<i class="icon ion-ios-arrow-right"></i>
