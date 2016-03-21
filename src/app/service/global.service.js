@@ -6,32 +6,26 @@
 		.factory('$global', global);
 
 	global.$inject = [
-						'$http',
-						'$base64',
-						'$q',
-						'$rootScope',
-						'ApiService',
-						'UserService'
+					'$http',
+					'$base64',
+					'$q',
+					'$rootScope',
+					'ApiService',
+					'UserService'
 					];
 
 	/* @ngInject */
-	function global($http, 
-					$base64,
-					$q, 
-					$rootScope, 
-					ApiService,
-					UserService,
-					$ionicLoading) {
+	function global($http,
+		$base64,
+		$q,
+		$rootScope,
+		ApiService,
+		UserService,
+		$ionicLoading) {
 		
+		// Variable
 		var suppFunction = [];
-		
-		$rootScope.currentUser = {
-			username: '',
-			authdata: '',
-			monitoredStations: {},
-			isLoggedIn: false
-		};
-		
+
 		var service = {
 			fetchSupport: fetchSupport,
 			login: login,
@@ -45,49 +39,66 @@
 
 		////////////////
 		
+		/**
+		 * Fetching SupportedFunctions
+		 * @returns {object} Promise
+		 */
 		function fetchSupport() {
 			var defer = $q.defer();
-			
-			ApiService.supportedFunctions()
-			.then(function (response) {
-				defer.resolve(response.data);
-			}, function (response) {
-				defer.reject(response.data);
-			});
-						
-			return defer.promise;
-		}
-				
-		function login(username, password, callback) {		
-			var defer = $q.defer();
 
-			var authdata = $base64.encode(username + ':' + password);
-			
-			ApiService.restCall('Roles', authdata, '')
-			.then(function (response) {
-				setCredentials(username, authdata, response.data);
-				defer.resolve(response.data);
-			}, function (response) {
-				defer.reject(response);
-			});
-			
+			ApiService.supportedFunctions()
+				.then(function (response) {
+					defer.resolve(response.data);
+				}, function (response) {
+					defer.reject(response.data);
+				});
+
 			return defer.promise;
 		}
 		
+		/**
+		 * Login functionalities
+		 * @param   {string} username 
+		 * @param   {string} password 
+		 * @param   {object} callback 
+		 * @returns {object} Promise
+		 */
+		function login(username, password, callback) {
+			var defer = $q.defer();
+			
+			// Encode authorization data with base64
+			var authdata = $base64.encode(username + ':' + password);
+
+			ApiService.restCall('Roles', authdata, '')
+				.then(function (response) {
+					setCredentials(username, authdata, response.data);
+					defer.resolve(response.data);
+				}, function (response) {
+					defer.reject(response);
+				});
+
+			return defer.promise;
+		}
+		
+		/**
+		 * Logout, by login with wrong credentials
+		 * ex: logout:logout
+		 * @returns {object} Promise
+		 */
 		function logout() {
 			var deferred = $q.defer();
-			
+
 			// Reset Credentials
 			resetCredentials();
-			
+
 			ApiService.restCall('Roles', 'logout', '')
-			.then(function (response) {
-				deferred.resolve(response.data);
-			}, function (response) {
-				resetCredentials();
-				deferred.reject(response);
-			});
-			
+				.then(function (response) {
+					deferred.resolve(response.data);
+				}, function (response) {
+					resetCredentials();
+					deferred.reject(response);
+				});
+
 			return deferred.promise;
 		}
 
@@ -100,6 +111,12 @@
 			UserService.resetUser();
 		}
 		
+		/**
+		 * Base64 Encryptor
+		 * @param   {string} username 
+		 * @param   {string} password 
+		 * @returns {string} Encoded username:password	
+		 */
 		function encrypt64(username, password) {
 			return $base64.encode(username + ':' + password);
 		}

@@ -1,53 +1,82 @@
-(function() {
+(function () {
 	'use strict';
 
 	angular
 		.module('app.station')
 		.controller('StationDetailController', StationDetailController);
 
-	StationDetailController.$inject = ['$global', '$state', '$stateParams',
-	'$ionicPopup', 'StationService', '$ionicHistory', '$rootScope',
-	'$timeout', '$log', 'UserService'];
+	StationDetailController.$inject = [
+										'$global',
+										'$state',
+										'$stateParams',
+										'$ionicPopup',
+										'StationService',
+										'$ionicHistory',
+										'$rootScope',
+										'$timeout',
+										'$log',
+										'UserService'
+									];
 
 	/* @ngInject */
-	function StationDetailController($global, $state, $stateParams,
-	$ionicPopup, StationService, $ionicHistory, $rootScope,
-	$timeout, $log, UserService) {
+	function StationDetailController($global,
+									$state,
+									$stateParams,
+									$ionicPopup,
+									StationService,
+									$ionicHistory,
+									$rootScope,
+									$timeout,
+									$log,
+									UserService) {
+		
+		// Variable
 		var vm = this;
+		
 		UserService.setCurrentStation($stateParams);
 		vm.currentStation = $stateParams;
 		vm.logout = logout;
 		vm.back = back;
 		vm.isExist = false;
-		
+
 		activate();
 
 		////////////////
 
 		function activate() {
-			// Get MonitoredStations
-			console.log(UserService.getMonitoredStations());
 			
+			// Get Latest MonitoredStations
+			// console.log(UserService.getMonitoredStations());
+			
+			// Register Monitor
+			StationService.registerMonitor(UserService.getMonitoredStations())
+				.then(function (response) {
+					// console.log(response);
+				}, function (response) {
+					console.log(response);
+				});
+
 			// Get BagToProcess
 			StationService.getBagsToProcess(
-				UserService.getCurrentStation(),
-				'Emulator',
-				UserService.getMonitoredStations())
-			.then(function (response) {
-				console.log(response);
-				vm.isExist = true;
-				vm.bagsToProcess = response;
-			}, function (response) {
-				console.log(response);
-				vm.isExist = false;
-			});
+					UserService.getCurrentStation(),
+					'Emulator',
+					UserService.getMonitoredStations())
+				.then(function (response) {
+					// console.log(response);
+					vm.isExist = true;
+					vm.bagsToProcess = response;
+				}, function (response) {
+					console.log(response);
+					vm.isExist = false;
+				});
+
 		}
-		
+
 		function back() {
 			console.log('back');
 			$ionicHistory.goBack();
 		}
-		
+
 		function logout() {
 			console.log('logout');
 
@@ -56,7 +85,7 @@
 				template: 'Are you sure you want to logout?'
 			});
 
-			confirmPopup.then(function(res) {
+			confirmPopup.then(function (res) {
 				if (res) {
 					$global.logout();
 					$state.go('login');
@@ -64,7 +93,7 @@
 						$ionicHistory.clearCache();
 						$ionicHistory.clearHistory();
 						$log.debug('clearing cache');
-					},300);
+					}, 300);
 				} else {
 					console.log('do nothing');
 				}

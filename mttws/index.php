@@ -3,11 +3,12 @@
 define( 'INCLUDE_DIR', dirname(__FILE__) . '/inc/');
 
 $rules = array( 
-	'supportedFunctions'   => "/public/meta/SupportedFunctions",    // '/public/meta/SupportedFunctions'
-	'roles'     		   => "/security/Roles",              		// '/security/Roles/'
-	'stations'     		   => "configuration/Stations",              		// '/security/Roles/'
-	'monitoredStations'    => "monitor/MonitoredStations",              		// 'monitor/MonitoredStations'
-	'bagsToProcess'    => "query/BagsToProcess",              		// 'monitor/MonitoredStations'
+	'SupportedFunctions'   	=> "/public/meta/SupportedFunctions",	// '/public/meta/SupportedFunctions'
+	'Roles'     		   	=> "/security/Roles",              		// '/security/Roles/'
+	'Stations'     		   	=> "/configuration/Stations",           // '/security/Roles/'
+	'RegisterMonitor'		=> "/monitor/RegisterMonitor",			// '/monitor/RegisterMonitor'
+	'MonitoredStations'    	=> "/monitor/MonitoredStations",		// 'monitor/MonitoredStations'
+	'BagsToProcess'			=> "/query/BagsToProcess",              // 'monitor/bagsToProcess'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
@@ -15,14 +16,10 @@ $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 $uri = urldecode( $uri );
 
 foreach ( $rules as $action => $rule ) {
-	
-	
-	if( strpos($uri, $rule) !== false ) {
+	if( strpos($uri, $action) !== false ) {
 		include( INCLUDE_DIR . $action . '.php' );
 		exit();
-	}
-
+	} 
 }
 
-echo 'connected';
 ?>

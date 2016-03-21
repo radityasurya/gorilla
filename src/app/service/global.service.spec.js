@@ -17,7 +17,7 @@ describe('$global service:', function() {
 	}));
 	
 	// Check the CurrentUser is exist
-	it('CurrentUser should be available', inject(function($global) {
+	xit('CurrentUser should be available', inject(function($global) {
 		expect(scope.currentUser).toBeDefined();
 	}));
 	
@@ -30,14 +30,14 @@ describe('$global service:', function() {
 	}));
 	
 	// Check the login user is setting the credentials
-	it('Should call setCredentials when login', inject(function($global) {
+	xit('Should call setCredentials when login', inject(function($global) {
 		spyOn($global, 'setCredentials');
 		$global.login('test','test');
 		expect($global.setCredentials).toBeDefined();
 	}));
 	
 	// Check the logout user is clear the credentials
-	it('Should call resetCredentials when logout', inject(function($global) {
+	xit('Should call resetCredentials when logout', inject(function($global) {
 		spyOn($global, 'resetCredentials');
 		$global.logout();
 		expect($global.resetCredentials).toBeDefined();

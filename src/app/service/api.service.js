@@ -10,28 +10,21 @@
 	function ApiService($http, $q) {
 		
 		// Variable
-		var _baseUrl = 'http://172.19.18.225/mttws/';
+		var _baseUrl = 'http://172.19.18.225';
 		var _supportedFunction = {};
 		var _timeout = 5000;
-		var _header = {};
 				
 		var service = {
-			BASE_URL: BASE_URL,
 			getTimeout: getTimeout,
 			setTimeout: setTimeout,
 			supportedFunctions: supportedFunctions,
-			getURI: getURI,
 			restCall: restCall
 		};
 
 		return service;
 
 		////////////////
-		
-		function BASE_URL() {
-			return _baseUrl;
-		}
-		
+				
 		function getTimeout() {
 			return _timeout;
 		}
@@ -39,30 +32,35 @@
 		function setTimeout(t) {
 			_timeout = t;
 		}
-
+		
+		/**
+		 * Retrieve supportedFunctions
+		 * @returns {object} promise
+		 */
 		function supportedFunctions() {
-			/*return $http.get(BASE_URL() + 'public/meta/SupportedFunctions', {timeout:getTimeout()});*/
-			
 			var defer = $q.defer();
 			
-			$http.get(BASE_URL() + 'public/meta/SupportedFunctions')
-			.then(
-				function (response) { 
-					defer.resolve(response.data); 
-					setSupportedFunctions(response.data);
-				},
-				function (response) { 
-					defer.reject(response); 
-				}
-			);
+			$http.get(_baseUrl + '/mttws/public/meta/SupportedFunctions')
+			.then(function (response) {
+				defer.resolve(response.data);
+				setSupportedFunctions(response.data);
+			}, function (response) {
+				defer.reject(response);
+			});
 			
 			return defer.promise;
 		}
 		
+		// Set supportedFunctions
 		function setSupportedFunctions(supportedFunctions) {
 			_supportedFunction = supportedFunctions;
 		}
-		
+
+		/**
+		 * Get URI Name from supportedFunction
+		 * @param   {string} name	Name of the supportedFunctions
+		 * @returns {string} baseUrl + selectedURI: host/mttws/[selectedURI]
+		 */
 		function getURI(name) {
 			
 			var URI = '';
@@ -73,17 +71,63 @@
 				}
 			});
 			
-			return BASE_URL() + URI;
+			return _baseUrl + URI;
 		}
 		
+		/**
+		 * Get HTTP Method of selected supportedFunction
+		 * @param   {string} name	name of the supported functions
+		 * @returns {string} HTTP Method: GET, POST, PUT, DELETE
+		 */
+		function getMethod(name) {
+			var method = '';
+
+			angular.forEach(_supportedFunction, function(value, key) {
+				if (key === name) {
+					method = value.method;
+				}
+			});
+
+			return method;
+		}
+		
+		/**
+		 * RESTCall functions
+		 * @param   {string} name   Name of the supportedFunctions
+		 * @param   {string} auth   Basic Authorization encoded with base64
+		 * @param   {object} params Optional: for parameter or object to pass
+		 * @returns {object} Promise
+		 */
 		function restCall(name, auth, params) {
 			
-			var _url = getURI(name) + '?auth=' + auth + params;
+			if (angular.isUndefined(params)) {
+				params = '';
+			}
+			
+			var _url = getURI(name) + '?auth=' + auth;
+			var _method = getMethod(name);
 			
 			console.log(_url);
 			
-			return $http.get(_url);
+			if (_method === 'GET') {
+				_url += params;
+				return $http.get(_url);
+			}
+			
+			if (_method === 'POST') {
+				console.log('POST');
+			}
+			
+			if (_method === 'PUT') {
+				return $http({
+					url: _url,
+					method: 'PUT',
+					data: params,
+					headers: {'Content-Type' : 'application/json'}
+				});
+			}
+			
 		}
-		
+
 	}
 })();
