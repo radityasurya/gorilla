@@ -1,22 +1,38 @@
 <div id="station">
+	
+	<!-- HEADER -->
 	<div class="bar bar-header bar-header-vanderlande">
-		<div class="h1 title white">Select Location</div>
+		<div class="h1 title">Select Location</div>
 	</div>
-	<div class="bar bar-subheader">
+	
+	<!-- SUBHEADER -->
+	<div class="bar bar-subheader bar-subheader-vanderlande">
 		<h2 class="title subheader">Scan</h2>
 	</div>
+	
+	<!-- CONTENT -->
 	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
+		
+		<!-- LIST OF STATIONS -->
 		<ion-list class="list-station">
+			
+			<!-- STATION ITEM -->
 			<ion-item class="item-station item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations | orderBy:key" item="station" href="#/station/{{key}}" >
+				
+				<!-- TYPE ICON -->
 				<i class="icon">
-					<img ng-src="images/{{value.type}}.png">
+					<img class="image-responsive list-station-icon" ng-src="images/{{value.type}}.png">
 				</i>
+				
+				<!-- STATION NAME -->
 				{{key}}
-				<i class="icon ion-ios-arrow-right"></i>
+				
+				<i class="icon ion-ios-arrow-right icon-arrow"></i>
 
 			</ion-item>
+	
 		</ion-list>
 		
-		
 	</ion-content>
+	
 </div>

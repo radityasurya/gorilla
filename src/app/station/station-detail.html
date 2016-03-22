@@ -17,53 +17,62 @@ taskType:"OTHER"
 	<div class="bar bar-header bar-header-vanderlande">
 		<button class="button button-icon icon ion-power white" ng-click="vm.logout()"></button>
 		<div class="h1 title white" ng-click="vm.back()">{{vm.currentStation.stationName}}</div>
-		<button class="button button-icon icon ion-ios-location white"></button>
+		<button class="button button-icon icon ion-ios-location white" ng-click="vm.monitor()"></button>
 	</div>
-	<div class="bar bar-subheader">
+	<div class="bar bar-subheader bar-subheader-vanderlande">
 		<h2 class="title subheader">Scan</h2>
 	</div>
-	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-right=0;">
+	<ion-content class="has-header has-subheader" padding="true" scrollbar-y="false" style="padding-left=0">
 		<div class="scanbag" ng-show="!vm.isExist">
 			Scan Bag
 			<br><span>for</span>
 			<br>Task
 		</div>
 
-		<ion-list ng-show="vm.isExist" class="list-station-details">
-			<ion-item class="item-station-details" ng-repeat="(key, value) in vm.bagsToProcess" item="station" href="#/station/{{key}}">
-				<div class="row">
+		<ion-list ng-show="vm.isExist" class="list-station-details" can-swipe="true">
+			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" href="">
+				<div class="row bag-list">
 					<div class="col col-10">
-						<div class="row bag-tags-icon">
+						<div class="row">
 							<i class="icon">
-								<img ng-src="images/stillage.png">
-								{{value.type}}
+								<img class="image-responsive bag-tags-icon"
+								ng-src="images/Stillage.png">
 							</i>
 						</div>
 					</div>
 					<div class="col col-33">
 						<div class="col">
 							<div class="row bag-tags-title">Bag Tag</div>
-							<div class="row bag-tags-value">0436587604</div>
+							<div class="row bag-tags-value">{{bags.lpn}}</div>
 						</div>
 						<div class="col">
 							<div class="row bag-tags-title">Flight</div>
-							<div class="row bag-tags-value">KL 426</div>
+							<div class="row bag-tags-value">{{bags.flightNumber}}</div>
 						</div>
 					</div>
-					<div class="col">
+					<div class="col col-35">
 						<div class="col">
 							<div class="row bag-tags-title">Task</div>
-							<div class="row bag-tags-value">Deliver to MU-6</div>
+							<div class="row bag-tags-value">{{vm.setTaskDescription(bags)}}</div>
 						</div>
 						<div class="col">
 							<div class="row bag-tags-title">Store Location</div>
-							<div class="row bag-tags-value">OOG Store Rack 2</div>
+							<div class="row bag-tags-value">{{bags.storeStation}}</div>
+							<div class="row bag-tags-value">{{bags.storeLocation}}</div>
 						</div>
 					</div>
-					<div class="col col-10">
-						<div class="row bag-tags-icon">></div>
+					<div class="col col-10 col-arrow">
+						<i class="icon ion-ios-arrow-right icon-arrow"></i>
 					</div>
 				</div>
+				<ion-option-button class="button-positive"
+								   ng-click="share(item)">
+					Release
+				</ion-option-button>
+				<ion-option-button class="button-assertive"
+								   ng-click="edit(item)">
+					Missing Bag
+				</ion-option-button>
 			</ion-item>
 		</ion-list>
 

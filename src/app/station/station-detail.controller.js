@@ -36,9 +36,10 @@
 		UserService.setCurrentStation($stateParams);
 		vm.currentStation = $stateParams;
 		vm.logout = logout;
+		vm.monitor = monitor;
 		vm.back = back;
 		vm.isExist = false;
-
+		vm.setTaskDescription = setTaskDescription;
 		activate();
 
 		////////////////
@@ -62,8 +63,12 @@
 					'Emulator',
 					UserService.getMonitoredStations())
 				.then(function (response) {
-					// console.log(response);
-					vm.isExist = true;
+					console.log(response);
+					if (response === '') {
+						vm.isExist = false;
+					} else { 
+						vm.isExist = true;
+					}
 					vm.bagsToProcess = response;
 				}, function (response) {
 					console.log(response);
@@ -75,6 +80,10 @@
 		function back() {
 			console.log('back');
 			$ionicHistory.goBack();
+		}
+		
+		function monitor() {
+			$state.go('station-monitor');
 		}
 
 		function logout() {
@@ -98,6 +107,43 @@
 					console.log('do nothing');
 				}
 			});
+		}
+		
+		function setTaskDescription(bag) {
+			var _description = '';
+			
+			_description += bag.taskDescription;
+			_description += getPrePosition(bag.taskDescription);
+			_description += bag.taskDestinations;
+						
+			return _description;
+		}
+		
+		function getPrePosition(taskdescription)
+		{
+			var prePosition = '';
+
+			if (taskdescription !== null)
+			{
+				switch (taskdescription.toLowerCase())
+				{
+					case 'store':
+					case 'screen':
+						prePosition = ' at ';
+						break;
+					case 'deliver':
+						prePosition = ' to ';
+						break;
+					case 'release':
+						prePosition = ' from ';
+						break;
+					default:
+						prePosition = ' at ';
+						break;
+				}
+			}
+
+			return prePosition;
 		}
 	}
 })();

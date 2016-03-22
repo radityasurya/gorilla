@@ -1,26 +1,43 @@
-body{
-	background: #fff;
-	color: black;
-}
+/* COLORS */
+$orange : #F17B21;
+$dark-orange : #da5c28;
+$bg-active : #F7F7F7;
+$icon-color : #b6c2d1;
+$header-color : #fff;
+$subheader-bg : #f7f6ed;
+$subheader-color: #89898b;
 
+/* ICONS */
+$icon-size : 24px;
+
+/* ============================== SELECT LOCATION ============================== */
+
+/* HEADER */
 .bar-header-vanderlande {
-	background-image: linear-gradient(0deg, #F17B21, #F17B21 50%, transparent 50%);
-	background-position: bottom;
-	background-size: 100% 1px;
-	background-repeat: no-repeat;
-	background: #F17B21;
-	background-color: #F17B21;
-	color: white;
-	
-	.title{
-		font-weight: 300;
-	}
-	
-	.white {
-		color: white;
+	background: $orange;
+
+	/* HEADER TITLE */
+	.title {
+		font-weight: lighter;
+		color: $header-color;
 	}
 }
 
+/* SUB-HEADER */
+.bar-subheader-vanderlande {
+	background: $subheader-bg;
+	
+	/* SUB-HEADER TITLE */
+	.title {
+		color: $subheader-color;
+		font-weight: 400!important;
+		font-size: 14px!important;
+		height: 28px!important;
+		margin-top:-6px!important;
+	}
+}
+
+/* LOCATION LIST */
 .list-station{
 	text-align: center;
 	.list{ margin-left: 10px; }
@@ -34,18 +51,10 @@ body{
 		border-color: #F7F7F7!important;
 	}
 }
-.bar-subheader{
-	background: #f7f6ed;
-}
-.subheader{
-	color: #89898b;
-	font-weight: 400!important;
-	font-size: 14px!important;
-	height: 28px!important;
-	margin-top:-6px!important;
-}
+
 .padding{
 	padding-right: 0;
+	padding-left: 0;
 }
 .item-content{
 	padding-top: 26px!important;
@@ -73,7 +82,52 @@ body{
 }
 
 .item-station-details {
+	color: #da5c28;
+	border-left: none;
+	border-right: none;
+	.activated {
+		background: #F7F7F7!important;
+		border-color: #F7F7F7!important;
+	}
 	.item-content {
 		padding: 0!important;
+		border-left: 0!important;
 	}
+}
+.list-station-icon {
+	width: 30px;
+}
+
+.list-station-details {
+	.list{ margin-left: 0px; }
+}
+
+// STATION DETAILS
+$bag-title: #696b6f;
+$bag-value: #f27d24;
+$red-warning: #c0242c;
+$green-ok: #209d56;
+
+.bag-tags-title {
+	color: $bag-title;
+}
+.bag-tags-value {
+	color: $bag-value;
+}
+
+.bag-list {
+	padding: 0!important;
+}
+
+.bag-tags-icon {
+	width: 24px;
+}
+.icon-arrow{
+	color: $bag-value;
+	font-size: 32px;
+}
+.col-arrow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
