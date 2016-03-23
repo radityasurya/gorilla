@@ -1,16 +1,25 @@
 <div id="station-monitor">
+
+	<!-- HEADER -->
 	<div class="bar bar-header bar-header-vanderlande">
 
-		<button class="button button-icon icon ion-ios-arrow-back white" ng-click="vm.back()"></button>
+		<!-- back -->
+		<button class="button button-icon icon ion-ios-arrow-left header-icon" ng-click="vm.back()"></button>
 
-		<div class="h1 title white">Monitored Stations</div>
-
-<!--		<button ng-hide="true" class="button button-icon icon ion-person-stalker white" ng-click="vm.overview()"></button>-->
+		<!-- TITLE -->
+		<div class="h1 title">Monitored Stations</div>
+		
+		<!-- show people -->
+		<button ng-hide="true" class="button button-icon icon ion-person-stalker white" ng-click="vm.overview()"></button>
+		
 	</div>
-	<ion-content class="has-header" padding="true" scrollbar-y="false" style="padding-right=0;">
 
-		<ion-list class="list-station">
-			<ion-checkbox ng-repeat="station in vm.storeStations" ng-model="station.checked" ng-checked="station.checked">
+	<ion-content class="has-header" scrollbar-y="false" style="padding-right=0;">
+		
+		<!-- List available station -->
+		<ion-list class="list-monitor">
+		
+			<ion-checkbox class="monitor-item" ng-repeat="station in vm.storeStations" ng-model="station.checked" ng-checked="station.checked" ng-class="{'tatatat': station.checked}">
 				{{station.stationName}}
 			</ion-checkbox>
 			
