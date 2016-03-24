@@ -75,11 +75,11 @@
 			return _user.roles;
 		}
 
-		function setMonitoredStations(rolesFromJson) {
-			_user.monitoredStations = rolesFromJson;
+		function setMonitoredStations(monitoredStations) {
+			_user.monitoredStations = monitoredStations;
 		}
 
-		function getMonitoredStations() {
+		function getMonitoredStations() {	
 			return _user.monitoredStations;
 		}
 

@@ -5,10 +5,10 @@
 		.module('app.station')
 		.controller('StationMonitorController', StationMonitorController);
 
-	StationMonitorController.$inject = ['UserService', 'StationService', '$ionicHistory'];
+	StationMonitorController.$inject = ['UserService', 'StationService', '$ionicHistory', '$scope'];
 
 	/* @ngInject */
-	function StationMonitorController(UserService, StationService, $ionicHistory) {
+	function StationMonitorController(UserService, StationService, $ionicHistory, $scope) {
 		
 		// Variable
 		var vm = this;
@@ -24,20 +24,37 @@
 		function activate() {
 			
 			var monitoredStations = UserService.getMonitoredStations();
-			
 			vm.storeStations = populateViews(monitoredStations);
+			
 		}
 		
 		function back() {
+			
+			// Check changes
+			$scope.$watchCollection('vm.storeStations', function(newValue, oldValue) {
+				UserService.setMonitoredStations(newValue);
+			});
+			
 			$ionicHistory.goBack();
 		}
 		
 		function populateViews(monitoredStations) {
+						
 			var temp = [];
 			
 			for	(var key in monitoredStations) {
 				if (key !== null) {
-					temp.push({'stationName': key, 'checked' : true});
+					if (angular.isUndefined(monitoredStations[key].checked)) {
+						temp.push(
+							{'stationName': monitoredStations[key].stationName,
+							'checked' : true}
+						);
+					} else {
+						temp.push(
+							{'stationName': monitoredStations[key].stationName,
+							'checked' : monitoredStations[key].checked}
+						);
+					}
 				}
 			}
 			

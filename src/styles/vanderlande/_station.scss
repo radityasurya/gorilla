@@ -159,6 +159,10 @@ $green-ok: #209d56;
 		.button-release {
 			background: $orange;
 			color: white;
+			
+			.button.activated {
+				background: #D96F1E!important;
+			}
 		}
 		
 		.icon-arrow{
@@ -175,6 +179,20 @@ $green-ok: #209d56;
 	
 }
 
+.ion-option-button {
+	.button-release {
+		.button { 
+			.activated {
+				background: #D96F1E!important;
+			}
+		}
+	}
+}
+
+ion-option-button.button-release.button.activated {
+	background: #D96F1E!important;
+
+}
 
 /* ============================= MONITORED STATION ============================= */
 

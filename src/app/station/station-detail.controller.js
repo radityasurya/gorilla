@@ -13,8 +13,8 @@
 										'StationService',
 										'$ionicHistory',
 										'$rootScope',
+										'$scope',
 										'$timeout',
-										'$log',
 										'UserService'
 									];
 
@@ -26,8 +26,8 @@
 									StationService,
 									$ionicHistory,
 									$rootScope,
+									$scope,
 									$timeout,
-									$log,
 									UserService) {
 		
 		// Variable
@@ -40,45 +40,46 @@
 		vm.back = back;
 		vm.isExist = false;
 		vm.setTaskDescription = setTaskDescription;
-		activate();
 
 		////////////////
 
 		function activate() {
 			
-			// Get Latest MonitoredStations
-			// console.log(UserService.getMonitoredStations());
-			
 			// Register Monitor
 			StationService.registerMonitor(UserService.getMonitoredStations())
 				.then(function (response) {
-					// console.log(response);
-				}, function (response) {
-					console.log(response);
-				});
+				// console.log(response);
+			}, function (response) {
+				console.log(response);
+			});
 
 			// Get BagToProcess
 			StationService.getBagsToProcess(
-					UserService.getCurrentStation(),
-					'Emulator',
-					UserService.getMonitoredStations())
+				UserService.getCurrentStation(),
+				'Emulator',
+				UserService.getMonitoredStations())
 				.then(function (response) {
-					console.log(response);
-					if (response === '') {
-						vm.isExist = false;
-					} else { 
-						vm.isExist = true;
-					}
-					vm.bagsToProcess = response;
-				}, function (response) {
-					console.log(response);
+
+				if (angular.equals([], response)) {
 					vm.isExist = false;
-				});
+				} else { 
+					vm.isExist = true;
+				}
+
+				vm.bagsToProcess = response;
+			}, function (response) {
+				console.log(response);
+				vm.isExist = false;
+			});
 
 		}
+		
+		$scope.$on('$ionicView.enter', function() {
+
+			activate();
+		});
 
 		function back() {
-			console.log('back');
 			$ionicHistory.goBack();
 		}
 		
@@ -101,7 +102,6 @@
 					$timeout(function () {
 						$ionicHistory.clearCache();
 						$ionicHistory.clearHistory();
-						$log.debug('clearing cache');
 					}, 300);
 				} else {
 					console.log('do nothing');

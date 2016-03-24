@@ -43,12 +43,7 @@
 			}
 			
 			$rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-				// console.log($rootScope.currentUser.isLoggedIn);
-//				if ($location.path() !== '/login' && !$rootScope.currentUser.isLoggedIn) {
-//					console.log('not logged in!');
-//					console.log('redirect to login');
-//					$location.path('/login');
-//				}
+				
 			});
 			
 			// Keyboard Fix
@@ -81,6 +76,9 @@
 							console.log('do nothing');
 						}
 					});
+				} else if ($state.current.name === 'station-monitor') {
+					console.log('do nothing');
+
 				} else {
 					navigator.app.backHistory();
 				}

@@ -66,12 +66,14 @@
 		function filterStoreStation(stations) {
 			var storeStations = [];
 
-			angular.forEach(stations, function (station, index) {
-				if (stations[index].type === 'Store') {
-					storeStations[index] = station;
+			for (var key in stations) {
+				if (key !== null) {
+					if (stations[key].type === 'Store') {
+						storeStations.push({'stationName': key});
+					}
 				}
-			});
-
+			}
+						
 			return storeStations;
 		}
 
@@ -126,14 +128,21 @@
 		function createParams(currentStation, device, monitoredStations) {
 			var _url = '&station=' + currentStation;
 			_url += '&device=' + device;
-
+	
 			// Add storeStation
 			for (var key in monitoredStations) {
 				if (key !== null) {
-					_url += ('&StoreStation[]=' + key);
+					
+					if (angular.isUndefined(monitoredStations[key].checked)) {
+						_url += ('&StoreStation[]=' + monitoredStations[key].stationName);
+					} else {
+						if (monitoredStations[key].checked) {
+							_url += ('&StoreStation[]=' + monitoredStations[key].stationName);
+						}
+					}					
 				}
 			}
-
+			
 			return _url;
 		}
 		
@@ -143,12 +152,18 @@
 		 * @returns {object} Promise
 		 */
 		function registerMonitor(monitoredStations) {
-
+						
 			var temp = [];
 
 			for (var key in monitoredStations) {
 				if (key !== null) {
-					temp.push(key);
+					if (angular.isUndefined(monitoredStations[key].checked)) {
+						temp.push(monitoredStations[key].stationName);
+					} else {
+						if (monitoredStations[key].checked) {
+							temp.push(monitoredStations[key].stationName);
+						}
+					}
 				}
 			}
 
@@ -168,5 +183,6 @@
 
 			return defer.promise;
 		}
+	
 	}
 })();
