@@ -11,7 +11,9 @@
 								'UserService',
 								'$ionicPopup',
 								'StationService',
-								'$timeout'
+								'$timeout',
+								'$ionicModal',
+								'$scope'
 								];
 
 	/* @ngInject */
@@ -21,11 +23,14 @@
 								UserService, 
 								$ionicPopup,
 								StationService,
-								$timeout
+								$timeout,
+								$ionicModal,
+								$scope
 								) {
 
 		// Variable
 		var vm = this;
+		vm.scan = scan;
 		vm.logout = logout;
 
 		activate();
@@ -43,6 +48,19 @@
 				console.log(response);
 			});
 			
+		}
+		
+		$ionicModal.fromTemplateUrl('/app/modal/barcode-modal.html', {
+			scope: $scope,
+			animation: 'slide-in-up',
+			backdropClickToClose: true
+		}).then(function (modal) {
+			$scope.modal = modal;
+		});
+
+        function scan() {
+			console.log('scan');
+			$scope.modal.show();
 		}
 
 		function logout() {
