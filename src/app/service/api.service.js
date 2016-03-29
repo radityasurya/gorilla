@@ -106,11 +106,11 @@
 			
 			var _url = getURI(name) + '?auth=' + auth;
 			var _method = getMethod(name);
-			
-			console.log(_url);
-			
+						
 			if (_method === 'GET') {
 				_url += params;
+				console.log(_url);
+
 				return $http.get(_url);
 			}
 			

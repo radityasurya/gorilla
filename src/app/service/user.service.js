@@ -17,7 +17,8 @@
 			auth: '',
 			isLoggedIn: false,
 			roles: {},
-			monitoredStations: []
+			monitoredStations: [],
+			currentStation: 'default'
 		};
 
 		var service = {
@@ -56,6 +57,7 @@
 			_user.auth = '';
 			_user.isLoggedIn = false;
 			_user.roles = {};
+			_user.currentStations = 'default';
 			_user.monitoredStations = {};
 		}
 

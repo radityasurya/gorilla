@@ -77,7 +77,17 @@
 						}
 					});
 				} else if ($state.current.name === 'station-monitor') {
-					console.log('do nothing');
+					$ionicPopup.confirm({
+						title: 'Logout',
+						template: 'Are you sure you want to logout?'
+					}).then(function(res) {
+						if (res) {
+							$global.logout();
+							$state.go('login');
+						} else {
+							console.log('do nothing');
+						}
+					});
 
 				} else {
 					navigator.app.backHistory();

@@ -2,12 +2,17 @@
 	
 	<!-- HEADER -->
 	<div class="bar bar-header bar-header-vanderlande">
+	
+		<!-- back -->
+		<button ng-show="vm.isCurrentStationExist" class="button button-icon icon ion-ios-arrow-left header-icon" ng-click="vm.back()"></button>
+		
 		<div class="h1 title">Select Location</div>
+		
 	</div>
 	
 	<!-- SUBHEADER -->
 	<div class="bar bar-subheader bar-subheader-vanderlande">
-		<h2 ng-click="modal.show()" class="title subheader">Scan</h2>
+		<h2 ng-click="vm.scan()" class="title subheader">Scan</h2>
 	</div>
 	
 	<!-- CONTENT -->

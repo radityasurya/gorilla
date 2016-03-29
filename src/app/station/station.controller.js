@@ -13,7 +13,9 @@
 								'StationService',
 								'$timeout',
 								'$ionicModal',
-								'$scope'
+								'$scope',
+								'PopupService',
+								'$ionicHistory'
 								];
 
 	/* @ngInject */
@@ -25,13 +27,17 @@
 								StationService,
 								$timeout,
 								$ionicModal,
-								$scope
+								$scope,
+								PopupService,
+								$ionicHistory
 								) {
 
 		// Variable
 		var vm = this;
+		vm.back = back;
 		vm.scan = scan;
 		vm.logout = logout;
+		vm.isCurrentStationExist = false;
 
 		activate();
 
@@ -40,7 +46,7 @@
 		function activate() {
 
 			vm.username = UserService.getUser().username;
-			
+						
 			// Populate Station Views
 			StationService.getStations().then(function (data) {
 				vm.stations = data;
@@ -48,7 +54,12 @@
 				console.log(response);
 			});
 			
+			vm.isCurrentStationExist = isCurrentStationExist(UserService.getCurrentStation());
 		}
+									
+		$scope.$on('$ionicView.enter', function() {
+			activate();
+		});
 		
 		$ionicModal.fromTemplateUrl('/app/modal/barcode-modal.html', {
 			scope: $scope,
@@ -60,7 +71,25 @@
 
         function scan() {
 			console.log('scan');
-			$scope.modal.show();
+			var alertPopup = $ionicPopup.alert({
+				title: 'Alert popup',
+				template: 'Tap outside it to close it'
+			});
+			PopupService.register(alertPopup);
+		}
+									
+		function back() {
+			var stationName = UserService.getCurrentStation();
+			$state.go($ionicHistory.forwardView().stateName,
+			{'stationName' : stationName});
+		}
+									
+		function isCurrentStationExist(station) {
+			if (station === 'default') {
+				return false;
+			} else {
+				return true;
+			}
 		}
 
 		function logout() {

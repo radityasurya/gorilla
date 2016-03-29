@@ -59,10 +59,12 @@
 				'Emulator',
 				UserService.getMonitoredStations())
 				.then(function (response) {
-
-				if (angular.equals([], response)) {
+				//console.log(response);
+				if (angular.equals('', response)) {
 					vm.isExist = false;
-				} else { 
+				} else if (angular.equals([], response)) {
+					vm.isExist = false;
+				}else { 
 					vm.isExist = true;
 				}
 
@@ -80,7 +82,8 @@
 		});
 
 		function back() {
-			$ionicHistory.goBack();
+			// $ionicHistory.goBack();
+			$state.go('station');
 		}
 		
 		function monitor() {

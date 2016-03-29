@@ -1,5 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
-        "D:/xampp/htdocs/MTT/src/app/app.service.js"
+        "D:/xampp/htdocs/MTT/src/app/app.service.js",
+        "D:/xampp/htdocs/MTT/src/lib/ngCordova/demo/www/app/beacon/beacon.ctrl.js",
+        "D:/xampp/htdocs/MTT/src/lib/ngCordova/demo/www/app/camera/camera.ctrl.js"
     ]
 }

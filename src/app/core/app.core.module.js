@@ -13,7 +13,8 @@
 		
         /* Cross-app module */
         // 'my.appModule',
-		'app.service'
+		'app.service',
+		'app.barcode'
 
         /* 3rd party modules */
         // 'firebase'

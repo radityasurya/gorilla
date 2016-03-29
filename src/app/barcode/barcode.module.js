@@ -2,9 +2,9 @@
 	'use strict';
 
 	angular
-		.module('app.station', [
+		.module('app.barcode', [
 		'ionic',
 		'app.service',
-		'app.barcode'
+		'ngCordova'
 	]);
 })();
