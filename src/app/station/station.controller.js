@@ -72,8 +72,8 @@
         function scan() {
 			console.log('scan');
 			var alertPopup = $ionicPopup.alert({
-				title: 'Alert popup',
-				template: 'Tap outside it to close it'
+				title: 'Scan location',
+				template: 'Please scan location or enter manually'
 			});
 			PopupService.register(alertPopup);
 		}

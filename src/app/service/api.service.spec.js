@@ -16,8 +16,8 @@ describe('ApiService:', function() {
 	}));
 	
 	// TODO: Check the base url
-	xit('Base url is exist', inject(function(ApiService) {
-		expect(ApiService.BASE_URL()).toEqual('http://172.19.18.225/mttws/');
+	it('Should have default BASE URL', inject(function(ApiService) {
+		expect(ApiService.getURL()).toEqual('http://172.19.18.225');
 	}));
 	
 	// TODO: Check the maximum timeout for http request is 5000
@@ -31,4 +31,65 @@ describe('ApiService:', function() {
 		ApiService.setTimeout(3000);
 		expect(ApiService.getTimeout()).toEqual(3000);
 	}));
+	
+	// TODO: Should be able to get and set SupportedFunctions
+	it('Should be able to get and set SupportedFunctions',
+		inject(function(ApiService) {
+
+		var data = {
+			Bag: {
+				uri: '/mttws/query/Bag',
+				method: 'GET',
+				allowedRoles: 'QUERYBAG'
+			}
+		};
+
+		spyOn(ApiService, 'getSupportedFunctions').and.callThrough();
+
+		ApiService.setSupportedFunctions(data);
+		expect(ApiService.getSupportedFunctions())
+			.toEqual(data);
+
+	}));
+	
+	// TODO: Should be able to get URL from supportedFunctions
+	it('Should be able to get URL using Name from supportedFunctions',
+	inject(function(ApiService) {
+		
+		var data = {
+			Bag: {
+				uri: '/mttws/query/Bag',
+				method: 'GET',
+				allowedRoles: 'QUERYBAG'
+			}
+		};
+			
+		spyOn(ApiService, 'getURI').and.callThrough();
+		
+		ApiService.setSupportedFunctions(data);
+		expect(ApiService.getURI('Bag'))
+			.toEqual('http://172.19.18.225/mttws/query/Bag');
+		
+	}));
+	
+	// TODO: Should be able to get Method using Name from supportedFunctions
+	it('Should be able to get Method using Name from supportedFunctions',
+		inject(function(ApiService) {
+
+		var data = {
+			Bag: {
+				uri: '/mttws/query/Bag',
+				method: 'GET',
+				allowedRoles: 'QUERYBAG'
+			}
+		};
+
+		spyOn(ApiService, 'getMethod').and.callThrough();
+
+		ApiService.setSupportedFunctions(data);
+		expect(ApiService.getMethod('Bag'))
+			.toEqual('GET');
+
+	}));
+	
 });

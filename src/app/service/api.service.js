@@ -15,15 +15,24 @@
 		var _timeout = 5000;
 				
 		var service = {
+			getURL: getURL,
+			getURI: getURI,
+			getMethod: getMethod,
+			supportedFunctions: supportedFunctions,
 			getTimeout: getTimeout,
 			setTimeout: setTimeout,
-			supportedFunctions: supportedFunctions,
+			setSupportedFunctions: setSupportedFunctions,
+			getSupportedFunctions: getSupportedFunctions,
 			restCall: restCall
 		};
 
 		return service;
 
 		////////////////
+		
+		function getURL() {
+			return _baseUrl;
+		}
 				
 		function getTimeout() {
 			return _timeout;
@@ -55,6 +64,11 @@
 		function setSupportedFunctions(supportedFunctions) {
 			_supportedFunction = supportedFunctions;
 		}
+		
+		// Get supportedFunctions 
+		function getSupportedFunctions() {
+			return _supportedFunction;
+		}
 
 		/**
 		 * Get URI Name from supportedFunction
@@ -64,7 +78,7 @@
 		function getURI(name) {
 			
 			var URI = '';
-			
+						
 			angular.forEach(_supportedFunction, function(value, key) {
 				if (key === name) {
 					URI = value.uri;

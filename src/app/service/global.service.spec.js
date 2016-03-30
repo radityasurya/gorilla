@@ -1,14 +1,15 @@
 /* jshint -W117, -W030 */
 describe('$global service:', function() {
-	var $global, scope;
+	var $global, scope, $q;
 
 	beforeEach(module('base64'));
 	beforeEach(module('app.service'));
 
-	beforeEach(inject(function (_$global_, _$rootScope_) {
+	beforeEach(inject(function (_$global_, _$rootScope_, _$q_) {
 		$global = _$global_;
 		scope = _$rootScope_.$new();
 		scope = _$rootScope_;
+		$q = _$q_;
 	}));	
 	
 	// TODO: The Global Service be available
@@ -16,13 +17,13 @@ describe('$global service:', function() {
 		expect($global).toBeDefined();
 	}));
 	
-	// Check the CurrentUser is exist
-	xit('CurrentUser should be available', inject(function($global) {
-		expect(scope.currentUser).toBeDefined();
+	// TODO: Should have fetchSupport function
+	it('Should have fetchSupport function', inject(function($global) {
+		expect($global.fetchSupport).toBeDefined();
 	}));
 	
 	// Check the setSupport is called
-	it('Should be able fetch supportedFunctions', inject(function($global) {
+	it('Should be able to fetch supportedFunctions', inject(function($global) {
 		var temp = '{"Bag"}';
 		spyOn($global, 'fetchSupport').and.callThrough();
 		$global.fetchSupport();
@@ -30,10 +31,14 @@ describe('$global service:', function() {
 	}));
 	
 	// Check the login user is setting the credentials
-	xit('Should call setCredentials when login', inject(function($global) {
-		spyOn($global, 'setCredentials');
+	xit('Should call setCredentials when login', inject(function($global, $q) {
+		spyOn($global.prototype, 'setCredentials')
+			.and.callFake(function () {
+			var deferred = $q.defer(); 
+			return deferred.promise;
+		});
 		$global.login('test','test');
-		expect($global.setCredentials).toBeDefined();
+		expect($global.setCredentials).toHaveBeenCalled();
 	}));
 	
 	// Check the logout user is clear the credentials

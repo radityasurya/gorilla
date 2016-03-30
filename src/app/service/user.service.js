@@ -57,8 +57,8 @@
 			_user.auth = '';
 			_user.isLoggedIn = false;
 			_user.roles = {};
-			_user.currentStations = 'default';
-			_user.monitoredStations = {};
+			_user.monitoredStations = [];
+			_user.currentStation = 'default';
 		}
 
 		function setCurrentStation(selectedStation) {
@@ -73,7 +73,7 @@
 			_user.roles = angular.copy(rolesFromJson);
 		}
 
-		function getRoles(rolesFromJson) {
+		function getRoles() {
 			return _user.roles;
 		}
 
