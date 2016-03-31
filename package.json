@@ -54,5 +54,7 @@
       "id": "cordova-plugin-statusbar"
     }
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

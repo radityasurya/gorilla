@@ -12,10 +12,10 @@
 								'$ionicPopup',
 								'StationService',
 								'$timeout',
-								'$ionicModal',
 								'$scope',
 								'PopupService',
-								'$ionicHistory'
+								'$ionicHistory',
+								'$cordovaBarcodeScanner'
 								];
 
 	/* @ngInject */
@@ -26,10 +26,10 @@
 								$ionicPopup,
 								StationService,
 								$timeout,
-								$ionicModal,
 								$scope,
 								PopupService,
-								$ionicHistory
+								$ionicHistory,
+								$cordovaBarcodeScanner
 								) {
 
 		// Variable
@@ -61,21 +61,18 @@
 			activate();
 		});
 		
-		$ionicModal.fromTemplateUrl('/app/modal/barcode-modal.html', {
-			scope: $scope,
-			animation: 'slide-in-up',
-			backdropClickToClose: true
-		}).then(function (modal) {
-			$scope.modal = modal;
-		});
-
         function scan() {
 			console.log('scan');
-			var alertPopup = $ionicPopup.alert({
-				title: 'Scan location',
-				template: 'Please scan location or enter manually'
+			
+			document.addEventListener('deviceready', function () {
+				$cordovaBarcodeScanner.scan().then(function (barcodeData) {
+					alert(barcodeData.text + '\n' + barcodeData.format);
+				}, function (error) {
+					vm.text = error;
+				});
+				
 			});
-			PopupService.register(alertPopup);
+
 		}
 									
 		function back() {

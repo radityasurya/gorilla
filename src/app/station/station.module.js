@@ -5,6 +5,7 @@
 		.module('app.station', [
 		'ionic',
 		'app.service',
-		'app.barcode'
+		'app.barcode',
+		'ngCordova'
 	]);
 })();
