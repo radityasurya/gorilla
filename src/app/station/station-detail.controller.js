@@ -15,7 +15,8 @@
 										'$scope',
 										'$timeout',
 										'UserService',
-										'$cordovaBarcodeScanner'
+										'$cordovaBarcodeScanner',
+										'$ionicPlatform'
 									];
 
 	/* @ngInject */
@@ -28,7 +29,8 @@
 									$scope,
 									$timeout,
 									UserService,
-									$cordovaBarcodeScanner) {
+									$cordovaBarcodeScanner,
+									$ionicPlatform) {
 		
 		// Variable
 		var vm = this;
@@ -81,7 +83,11 @@
 
 			activate();
 		});
-
+		
+		$ionicPlatform.on('volumeupbutton', function() {
+			scan();
+		});
+		
 		function back() {
 			// $ionicHistory.goBack();
 			$state.go('station');
