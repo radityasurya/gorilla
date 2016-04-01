@@ -28,7 +28,7 @@ taskType:"OTHER"
 	</div>
 	
 	<!-- SUBHEADER -->
-	<div ng-click="vm.scan()" class="bar bar-subheader bar-subheader-vanderlande">
+	<div on-touch="vm.scan()" class="bar bar-subheader bar-subheader-vanderlande">
 		<h2 class="title subheader">Scan</h2>
 	</div>
 	
@@ -46,7 +46,7 @@ taskType:"OTHER"
 		<ion-list ng-show="vm.isExist" class="list-station-details" can-swipe="true">
 		
 			<!-- BAG ITEMS -->
-			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" href="">
+			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" ui-sref="bag({bagTag: bags.lpn})">
 				<div class="box">
 					<!-- BAG DETAILS -->
 					<div class="row bag-details">

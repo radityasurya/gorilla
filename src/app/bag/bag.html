@@ -1,0 +1,32 @@
+<div id="bag">
+
+	<!-- HEADER -->
+	<div class="bar bar-header bar-header-vanderlande">
+
+		<!-- LOGOUT -->
+		<button class="button button-icon icon ion-power header-icon" ng-click="vm.logout()"></button>
+
+		<!-- TITLE -->
+		<div class="h1 title" ng-click="vm.back()">{{vm.currentStation}}</div>
+
+		<!-- MONITORED STATIONS -->
+		<button class="button button-icon icon ion-ios-location header-icon" ng-click="vm.monitor()"></button>
+	</div>
+
+	<!-- SUBHEADER -->
+	<div on-touch="vm.scan()" class="bar bar-subheader bar-subheader-vanderlande">
+		<h2 class="title subheader">Scan</h2>
+	</div>
+
+	<!-- CONTENT -->
+	<ion-content class="has-header has-subheader" scrollbar-y="false" style="padding-left=0">
+
+		<!-- NO BAGS TO PROCESS -->
+		<div class="scanbag" >
+			Bag Details:
+			<br>
+			{{vm.lpn}}
+		</div>
+
+	</ion-content>
+</div>

@@ -9,7 +9,8 @@
 
         /* Feature areas */
 		'app.station',
-		'app.login'
+		'app.login',
+		'app.bag',
 
     ]);
 })();
