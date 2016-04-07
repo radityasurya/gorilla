@@ -15,7 +15,8 @@
 									'$rootScope',
 									'$scope',
 									'$timeout',
-									'UserService'
+									'UserService',
+									'BagService'
 								];
 
 	/* @ngInject */
@@ -28,7 +29,8 @@
 								$rootScope,
 								$scope,
 								$timeout,
-								UserService) {
+								UserService,
+								BagService) {
 
 		// Variable
 		var vm = this;
@@ -42,7 +44,21 @@
 
 		function activate() {
 			vm.currentStation = UserService.getCurrentStation();
+						
+			BagService.getBag(vm.lpn, vm.currentStation)
+			.then(function (data) {
+				console.log(data);
+				vm.task = data.task.description;
+			}, function (response) {	// Error
+				console.log(response);
+			});
+			
 		}
+		
+		$scope.$on('$ionicView.enter', function() {
+
+			activate();
+		});
 
 		function back() {
 			$ionicHistory.goBack();

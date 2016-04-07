@@ -1,4 +1,6 @@
 <div id="bag">
+	
+	
 
 	<!-- HEADER -->
 	<div class="bar bar-header bar-header-vanderlande">
@@ -18,15 +20,10 @@
 		<h2 class="title subheader">Scan</h2>
 	</div>
 
-	<!-- CONTENT -->
-	<ion-content class="has-header has-subheader" scrollbar-y="false" style="padding-left=0">
 
-		<!-- NO BAGS TO PROCESS -->
-		<div class="scanbag" >
-			Bag Details:
-			<br>
-			{{vm.lpn}}
-		</div>
-
-	</ion-content>
+	
+	<ion-pane>
+		<div id="bag-task" ui-view="bag-task" class="has-header has-subheader"></div>
+		<div id="bag-tabs" ui-view="bag-tabs" class="has-header has-subheader"></div>
+	</ion-pane>
 </div>

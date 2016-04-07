@@ -36,10 +36,22 @@
 			controller: 'StationMonitorController as vm'
 		})
 		.state('bag', {
-			url: '/bag/:bagTag',
+			url: '/bag/',
 			templateUrl: 'app/bag/bag.html',
 			params: {'bagTag': undefined}, 
-			controller: 'BagDetailController as vm'
+			controller: 'BagDetailController as vm',
+			abstract: true
+		})
+		.state('bag.task', {
+			url: ':bagTag',
+			views: {
+				'bag-task': {
+					templateUrl: 'app/bag/bag-task.html'
+				},
+				'bag-tabs': {
+					templateUrl: 'app/bag/bag-details.html'
+				}
+			}
 		});
 
         // Each tab has its own nav history stack which is defined in the corresponding module.

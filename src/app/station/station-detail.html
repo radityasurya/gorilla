@@ -46,7 +46,7 @@ taskType:"OTHER"
 		<ion-list ng-show="vm.isExist" class="list-station-details" can-swipe="true">
 		
 			<!-- BAG ITEMS -->
-			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" ui-sref="bag({bagTag: bags.lpn})">
+			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" ui-sref="bag.task({bagTag: bags.lpn})">
 				<div class="box">
 					<!-- BAG DETAILS -->
 					<div class="row bag-details">
@@ -86,7 +86,7 @@ taskType:"OTHER"
 						<div class="col col-40 bag-detail-col">
 
 							<!-- TASK -->
-							<div id="bag-task" class="col">
+							<div id="bag-tasks" class="col">
 								<div class="row bag-tags-title">Task</div>
 								<div class="row bag-tags-value">{{vm.setTaskDescription(bags)}}</div>
 							</div>
