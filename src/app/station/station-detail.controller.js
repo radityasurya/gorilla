@@ -156,6 +156,8 @@
 				switch (taskdescription.toLowerCase())
 				{
 					case 'store':
+						prePosition = ' in ';
+						break;
 					case 'screen':
 						prePosition = ' at ';
 						break;

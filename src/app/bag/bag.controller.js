@@ -36,23 +36,20 @@
 		var vm = this;
 		vm.back = back;
 		vm.logout = logout;
-		vm.lpn = $stateParams.bagTag;
-		
-		activate();
-		
+		vm.bag = {};
+				
 		////////////////
 
 		function activate() {
 			vm.currentStation = UserService.getCurrentStation();
 						
-			BagService.getBag(vm.lpn, vm.currentStation)
+			BagService.getBag($stateParams.bagTag, vm.currentStation)
 			.then(function (data) {
 				console.log(data);
-				vm.task = data.task.description;
+				loadBag(data);
 			}, function (response) {	// Error
 				console.log(response);
 			});
-			
 		}
 		
 		$scope.$on('$ionicView.enter', function() {
@@ -84,6 +81,43 @@
 					console.log('do nothing');
 				}
 			});
+		}
+		
+		function loadBag(bagFromJSON) {
+			vm.bag.lpn = bagFromJSON.lpn;
+			vm.bag.task = bagFromJSON.task.description;		
+			vm.bag.preposition = getPrePosition(bagFromJSON.task.description);
+			vm.bag.destination = bagFromJSON.task.destinations[0].name;
+			vm.bag.proposedLocation = bagFromJSON.storeLocationProposal;
+		}
+		
+		function getPrePosition(taskdescription)
+		{
+			var prePosition = '';
+
+			if (taskdescription !== null)
+			{
+				switch (taskdescription.toLowerCase())
+				{
+					case 'store':
+						prePosition = ' in ';
+						break;
+					case 'screen':
+						prePosition = ' at ';
+						break;
+					case 'deliver':
+						prePosition = ' to ';
+						break;
+					case 'release':
+						prePosition = ' from ';
+						break;
+					default:
+						prePosition = ' at ';
+						break;
+				}
+			}
+
+			return prePosition;
 		}
 
 	}

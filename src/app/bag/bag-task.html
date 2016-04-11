@@ -1,10 +1,16 @@
-<!-- NO BAGS TO PROCESS -->
+<!-- BAG TASK -->
+<div style="display: block">
+	<!-- back -->
+	<button class="button button-icon icon ion-ios-arrow-left back-button" ng-click="vm.back()"></button>
+</div>
+
 <div>
-	<span class="bag-task__text">{{vm.task}}</span> 
-	<span id="bag-task__lpn">{{vm.lpn}} </span><br>
-	<span class="bag-task__decorator"> at </span><br>
-	<span class="bag-task__text"> SOOG CI Security </span><br>
-	<span class="bag-task__decorator"> Current screening level 0 / 4 </span>
 	
-	<button type="submit" class="button button-block button-login">Screen Bag</button>
+	<span class="bag-task__text">{{vm.bag.task}}</span> 
+	<span id="bag-task__lpn">{{vm.bag.lpn}} </span>
+	<span class="bag-task__decorator">{{vm.bag.preposition}}</span>
+	<span class="bag-task__text">{{vm.bag.destination}}</span>
+	<span ng-show="vm.bag.proposedLocation" class="bag-task__decorator">{{vm.bag.proposedLocation}}<br></span>
+		
+	<button id="taskButton" type="submit" class="button button-block button-login">{{vm.bag.task}} Bag</button>
 </div>
