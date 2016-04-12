@@ -37,10 +37,15 @@
 		vm.back = back;
 		vm.logout = logout;
 		vm.bag = {};
+		
+		activate();
 				
 		////////////////
 
 		function activate() {
+			
+			console.log($stateParams.bagTag);
+			
 			vm.currentStation = UserService.getCurrentStation();
 						
 			BagService.getBag($stateParams.bagTag, vm.currentStation)
@@ -58,6 +63,7 @@
 		});
 
 		function back() {
+			console.log($ionicHistory.viewHistory());
 			$ionicHistory.goBack();
 		}
 		

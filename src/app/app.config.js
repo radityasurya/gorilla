@@ -37,6 +37,9 @@
 		});
 		
 		$ionicConfigProvider.scrolling.jsScrolling(false);
+		
+		$ionicConfigProvider.tabs.position('bottom'); // other values: top
+
     }
 
 })();

@@ -49,7 +49,7 @@
 					templateUrl: 'app/bag/bag-task.html'
 				},
 				'bag-tabs': {
-					templateUrl: 'app/bag/bag-details.html'
+					templateUrl: 'app/bag/bag-details.html',
 				}
 			}
 		});
