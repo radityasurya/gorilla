@@ -9,6 +9,7 @@ $rules = array(
 	'RegisterMonitor'		=> "/monitor/RegisterMonitor",			// '/monitor/RegisterMonitor'
 	'MonitoredStations'    	=> "/monitor/MonitoredStations",		// 'monitor/MonitoredStations'
 	'BagsToProcess'			=> "/query/BagsToProcess",              // 'monitor/bagsToProcess'
+	'Bag'					=> "/query/Bag",              			// 'monitor/bags'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
