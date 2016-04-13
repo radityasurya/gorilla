@@ -35,11 +35,10 @@
 		// Variable
 		var vm = this;
 		vm.back = back;
+		vm.isExist = isExist;
 		vm.logout = logout;
 		vm.bag = {};
 		
-		activate();
-				
 		////////////////
 
 		function activate() {
@@ -95,6 +94,168 @@
 			vm.bag.preposition = getPrePosition(bagFromJSON.task.description);
 			vm.bag.destination = bagFromJSON.task.destinations[0].name;
 			vm.bag.proposedLocation = bagFromJSON.storeLocationProposal;
+			
+			loadDestinationTab(bagFromJSON);
+			loadPersonTab(bagFromJSON);
+			loadProcessTab(bagFromJSON);
+			loadFlightTab(bagFromJSON);
+			loadStatusTab(bagFromJSON);
+		}
+		
+		function loadDestinationTab(bagFromJSON) {
+			vm.bag.destinations = bagFromJSON.outboundFlight;
+			vm.bag.process = bagFromJSON.process;
+			vm.bag.atl = getATL(bagFromJSON.reconciliation.authorityToLoad);
+		}
+		
+		function loadPersonTab(bagFromJSON) {
+			vm.person = bagFromJSON.passenger;
+			vm.person.seat = bagFromJSON.reconciliation.seatNumber;
+			vm.person.paxStatus = getPaxStatus(bagFromJSON.reconciliation.passengerStatus);
+			vm.person.exception = getExceptions(bagFromJSON.exceptions);
+		}
+		
+		function loadProcessTab(bagFromJSON) {
+			vm.process = bagFromJSON.process;
+			vm.process.handler = bagFromJSON.handler;
+			vm.process.remarks = getRemarks(bagFromJSON.process.remarks);
+		}
+		
+		function loadFlightTab(bagFromJSON) {
+			vm.outbound = bagFromJSON.outboundFlight;
+			vm.inbound = bagFromJSON.inboundFlight;
+			vm.onwards = bagFromJSON.onwardFlights;
+			
+		}
+		
+		function loadStatusTab(bagFromJSON) {
+			vm.status = bagFromJSON.container;
+			vm.status.bagStatus = getBagStatus(bagFromJSON.bagStatusCode);
+			vm.status.bagTagStatus = getBagTagStatus(bagFromJSON.reconciliation.baggageStatus);
+		}
+		
+		function isExist(flights) {
+			if (!angular.isUndefined(flights) && 
+				!angular.isUndefined(flights.airline) && 
+				!angular.isUndefined(flights.flightNumber)) {
+				if (flights.airline !== null && flights.flightNumber !== null) {
+					return true;
+				}
+			}
+			else {
+				return false;
+			}
+		}
+		
+		function getATL(ATL) {
+			if (ATL) {
+				return 'YES';
+			} else {
+				return 'NO';
+			}
+		}
+				
+		function getPaxStatus(paxStatus) {
+			var status = '';
+			
+			if (paxStatus !== null) {
+				switch (paxStatus.toUpperCase()) {
+					case 'B':
+						status = 'Boarded';
+						break;
+					case 'C':
+						status = 'Checked in';
+						break;
+					case 'N':
+						status = 'Not checked in';
+						break;
+					case 'S':
+						status = 'Standby';
+						break;
+					default:
+						status = paxStatus;
+						break;
+				}
+			}
+			
+			return status;
+		}
+		
+		function getBagStatus(bagStatus) {
+			var status = '';
+
+			if (bagStatus !== null) {
+				switch (bagStatus.toUpperCase()) {
+					case 'NAL':
+						status = 'Loaded, NOT ATL';
+						break;
+					case 'OFF':
+						status = 'Offloaded';
+						break;
+					case 'ONA':
+						status = 'On hand, ATL';
+						break;
+					case 'OND':
+						status = 'On hand, NOT ATL';
+						break;
+					case 'UNS':
+						status = 'Unseen';
+						break;
+					default:
+						status = bagStatus;
+						break;
+				}
+			}
+
+			return status;
+		}
+		
+		function getBagTagStatus(bagTagStatus) {
+			var status = '';
+
+			if (bagTagStatus !== null) {
+				switch (bagTagStatus.toUpperCase()) {
+					case 'I':
+						status = 'Inactive';
+						break;
+					case 'A':
+						status = 'Active';
+						break;
+					case 'V':
+						status = 'Validated';
+						break;
+					default:
+						status = bagTagStatus;
+						break;
+				}
+			}
+
+			return status;
+		}
+		
+		function getExceptions(exception) {
+			var exceptions = '';
+			if (exception != null)
+			{
+				for (var index = 0; index < exception.length; index++)
+				{
+					exceptions += exception[index];
+					if (index < (exception.length - 1))
+					{
+						exceptions += '/';
+					}
+				}
+			}
+			
+			return exceptions;
+		}
+		
+		function getRemarks(remarks) {
+			if (remarks != null) {
+				return remarks[0];
+			} else {
+				return '';
+			}
 		}
 		
 		function getPrePosition(taskdescription)
