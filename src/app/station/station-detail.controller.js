@@ -103,9 +103,8 @@
 			document.addEventListener('deviceready', function () {
 				$cordovaBarcodeScanner.scan().then(function (barcodeData) {
 					
-					alert(barcodeData.text + '\n' + barcodeData.format);
 					if (barcodeData.text !== '') {
-						$state.go('bag.task', {'bagTag': barcodeData.text});
+						$state.go('bag', {'bagTag': barcodeData.text});
 					}
 					
 				}, function (error) {

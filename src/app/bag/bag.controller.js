@@ -16,7 +16,9 @@
 									'$scope',
 									'$timeout',
 									'UserService',
-									'BagService'
+									'BagService',
+									'$cordovaBarcodeScanner',
+
 								];
 
 	/* @ngInject */
@@ -30,7 +32,9 @@
 								$scope,
 								$timeout,
 								UserService,
-								BagService) {
+								BagService,
+								$cordovaBarcodeScanner
+								) {
 
 		// Variable
 		var vm = this;
@@ -38,6 +42,7 @@
 		vm.isExist = isExist;
 		vm.logout = logout;
 		vm.bag = {};
+		vm.scan = scan;
 		
 		////////////////
 
@@ -53,6 +58,24 @@
 				console.log(response);
 			});
 			
+		}
+		
+		function scan() {
+			console.log('scan');
+
+			document.addEventListener('deviceready', function () {
+				$cordovaBarcodeScanner.scan().then(function (barcodeData) {
+
+					if (barcodeData.text !== '') {
+						$state.go('bag', {'bagTag': barcodeData.text});
+					}
+
+				}, function (error) {
+					vm.text = error;
+				});
+
+			});
+
 		}
 		
 		$scope.$on('$ionicView.enter', function() {
