@@ -62,7 +62,7 @@
 		}
 
 		function setCurrentStation(selectedStation) {
-			_user.currentStation = selectedStation.stationName;
+			_user.currentStation = selectedStation;
 		}
 
 		function getCurrentStation() {

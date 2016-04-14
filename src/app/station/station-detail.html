@@ -21,7 +21,7 @@ taskType:"OTHER"
 		<button class="button button-icon icon ion-power header-icon" ng-click="vm.logout()"></button>
 		
 		<!-- TITLE -->
-		<div class="h1 title" ng-click="vm.back()">{{vm.currentStation.stationName}}</div>
+		<div class="h1 title" ng-click="vm.back()">{{vm.currentStation}}</div>
 		
 		<!-- MONITORED STATIONS -->
 		<button class="button button-icon icon ion-ios-location header-icon" ng-click="vm.monitor()"></button>
@@ -46,7 +46,8 @@ taskType:"OTHER"
 		<ion-list ng-show="vm.isExist" class="list-station-details" can-swipe="true">
 		
 			<!-- BAG ITEMS -->
-			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" ui-sref="bag.task({bagTag: bags.lpn})">
+			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" 
+			ui-sref="bag({'bagTag': bags.lpn})">
 				<div class="box">
 					<!-- BAG DETAILS -->
 					<div class="row bag-details">

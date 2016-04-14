@@ -22,7 +22,7 @@
 		<ion-list class="list-station">
 			
 			<!-- STATION ITEM -->
-			<ion-item class="item-location item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations | orderBy:key" item="station" href="#/station/{{key}}" >
+			<ion-item class="item-location item-icon-left item-icon-right" ng-repeat="(key, value) in vm.stations | orderBy:key" item="station" ui-sref="station-detail({stationName: key})">
 				
 				<!-- TYPE ICON -->
 				<i class="icon">

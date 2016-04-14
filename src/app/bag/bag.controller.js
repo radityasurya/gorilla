@@ -43,28 +43,27 @@
 
 		function activate() {
 			
-			console.log($stateParams.bagTag);
-			
 			vm.currentStation = UserService.getCurrentStation();
-						
+
 			BagService.getBag($stateParams.bagTag, vm.currentStation)
-			.then(function (data) {
+				.then(function (data) {
 				console.log(data);
 				loadBag(data);
 			}, function (response) {	// Error
 				console.log(response);
 			});
+			
 		}
 		
 		$scope.$on('$ionicView.enter', function() {
-
+			
 			activate();
 		});
 
 		function back() {
-			console.log($ionicHistory.viewHistory());
-			$ionicHistory.goBack();
-		}
+			console.log(vm.currentStation);
+			$stateParams.bagTag = undefined;
+			$state.go('station-detail', {'stationName': vm.currentStation});		}
 		
 		function logout() {
 			console.log('logout');
