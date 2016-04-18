@@ -43,6 +43,7 @@
 		vm.scan = scan;
 		vm.isExist = false;
 		vm.setTaskDescription = setTaskDescription;
+		vm.getIcon = getIcon;
 
 		////////////////
 
@@ -147,13 +148,41 @@
 			return _description;
 		}
 		
-		function getPrePosition(taskdescription)
+		function getIcon(taskDescription) {
+			var icon = '';
+
+			if (taskDescription !== null)
+			{
+				switch (taskDescription.toLowerCase())
+				{
+					case 'store':
+						icon = 'Store.png';
+						break;
+					case 'screen':
+						icon = 'Screening.png';
+						break;
+					case 'deliver':
+						icon = 'Stillage.png';
+						break;
+					case 'release':
+						icon = 'StationTypeRelease.png';
+						break;
+					default:
+						icon = 'Store.png';
+						break;
+				}
+			}
+
+			return icon;
+		}
+		
+		function getPrePosition(taskDescription)
 		{
 			var prePosition = '';
 
-			if (taskdescription !== null)
+			if (taskDescription !== null)
 			{
-				switch (taskdescription.toLowerCase())
+				switch (taskDescription.toLowerCase())
 				{
 					case 'store':
 						prePosition = ' in ';

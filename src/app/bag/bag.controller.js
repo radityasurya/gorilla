@@ -12,7 +12,6 @@
 									'$ionicPopup',
 									'StationService',
 									'$ionicHistory',
-									'$rootScope',
 									'$scope',
 									'$timeout',
 									'UserService',
@@ -28,7 +27,6 @@
 								$ionicPopup,
 								StationService,
 								$ionicHistory,
-								$rootScope,
 								$scope,
 								$timeout,
 								UserService,
@@ -43,26 +41,37 @@
 		vm.logout = logout;
 		vm.bag = {};
 		vm.scan = scan;
+		vm.isError = false;
 		
 		////////////////
 
 		function activate() {
 			
 			vm.currentStation = UserService.getCurrentStation();
-
+			
+			// Get Bag Details
 			BagService.getBag($stateParams.bagTag, vm.currentStation)
 				.then(function (data) {
 				console.log(data);
-				loadBag(data);
+				if (angular.isUndefined(data.code)) {
+					vm.isError = false;
+					loadBag(data);
+				} else {
+					vm.isError = true;
+					console.log(data.message);
+					vm.error = data.message;
+				}
+				
 			}, function (response) {	// Error
 				console.log(response);
 			});
 			
 		}
 		
+		/**
+		 * Scan function
+		 */
 		function scan() {
-			console.log('scan');
-
 			document.addEventListener('deviceready', function () {
 				$cordovaBarcodeScanner.scan().then(function (barcodeData) {
 
@@ -110,6 +119,10 @@
 			});
 		}
 		
+		/**
+		 * Loading bag from json files and show it on the view
+		 * @param {object} bagFromJSON bag details from API response
+		 */
 		function loadBag(bagFromJSON) {
 			vm.bag.lpn = bagFromJSON.lpn;
 			vm.bag.task = bagFromJSON.task.description;		
@@ -156,6 +169,11 @@
 			vm.status.bagTagStatus = getBagTagStatus(bagFromJSON.reconciliation.baggageStatus);
 		}
 		
+		/**
+		 * Check if the flight is exist
+		 * @param   {object}  flights data from API response
+		 * @returns {boolean} true if the flight exists, or otherwise
+		 */
 		function isExist(flights) {
 			if (!angular.isUndefined(flights) && 
 				!angular.isUndefined(flights.airline) && 
@@ -169,6 +187,11 @@
 			}
 		}
 		
+		/**
+		 * Get ATL
+		 * @param   {boolean} ATL data from API response
+		 * @returns {string}  yes if true, or otherwise
+		 */
 		function getATL(ATL) {
 			if (ATL) {
 				return 'YES';
@@ -176,7 +199,12 @@
 				return 'NO';
 			}
 		}
-				
+		
+		/**
+		 * Get the PAX status
+		 * @param   {string} paxStatus data from API response
+		 * @returns {string} complete sentence or word based on the char
+		 */
 		function getPaxStatus(paxStatus) {
 			var status = '';
 			
@@ -203,6 +231,11 @@
 			return status;
 		}
 		
+		/**
+		 * Get the bag status
+		 * @param   {string} bagStatus data from API response
+		 * @returns {string} complete sentences or word based on the char
+		 */
 		function getBagStatus(bagStatus) {
 			var status = '';
 
@@ -232,6 +265,11 @@
 			return status;
 		}
 		
+		/**
+		 * Get the bag tag status
+		 * @param   {string} bagTagStatus data from API response
+		 * @returns {string} complete sentences or word based on the char
+		 */
 		function getBagTagStatus(bagTagStatus) {
 			var status = '';
 
@@ -255,6 +293,11 @@
 			return status;
 		}
 		
+		/**
+		 * Get exception of the passenger
+		 * @param   {Array}  exception from the API response
+		 * @returns {string} a list of exceptions in one line
+		 */
 		function getExceptions(exception) {
 			var exceptions = '';
 			if (exception != null)
@@ -272,6 +315,11 @@
 			return exceptions;
 		}
 		
+		/**
+		 * get Remarks
+		 * @param   {Array}  remarks from the API response
+		 * @returns {string} remarks
+		 */
 		function getRemarks(remarks) {
 			if (remarks != null) {
 				return remarks[0];
@@ -280,6 +328,11 @@
 			}
 		}
 		
+		/**
+		 * Get the preposition of the task
+		 * @param   {string} taskdescription from the API response
+		 * @returns {string} a preposition
+		 */
 		function getPrePosition(taskdescription)
 		{
 			var prePosition = '';

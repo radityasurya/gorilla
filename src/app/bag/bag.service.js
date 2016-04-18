@@ -19,7 +19,6 @@
 							$scope) {
 
 		// Variable
-
 		var service = {
 			getBag: getBag
 		};
@@ -28,6 +27,12 @@
 
 		////////////////
 		
+		/**
+		 * Get bag function
+		 * @param   {string} lpn            License Plate Number 
+		 * @param   {string} currentStation current selected stations
+		 * @returns {object} promise
+		 */
 		function getBag(lpn, currentStation) {
 			var defer = $q.defer();
 
@@ -42,6 +47,12 @@
 			return defer.promise;
 		}
 		
+		/**
+		 * create the parameters
+		 * @param   {string} lpn            License Plate Number
+		 * @param   {string} currentStation current selected stations
+		 * @returns {string} constructed URL (LPN+STATION+ISSCANNED+FORCECREATE)
+		 */
 		function createParams(lpn, currentStation) {
 			var _url = '&lpn=' + lpn;
 			_url += '&station=' + currentStation;

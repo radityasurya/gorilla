@@ -12,6 +12,7 @@
 		
 		var currentPopup;
 		var element = angular.element(document.querySelector('html'));
+		
 		element.on('click', function (event) {
 			if (event.target.nodeName === 'HTML') {
 				if (currentPopup) {

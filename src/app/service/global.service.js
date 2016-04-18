@@ -101,12 +101,21 @@
 
 			return deferred.promise;
 		}
-
+		
+		/**
+		 * Setting credentials
+		 * @param {string} username 
+		 * @param {string} authdata encrypted password with base64
+		 * @param {Array}  roles    roles of the user
+		 */
 		function setCredentials(username, authdata, roles) {
 			UserService.createUser(username, authdata);
 			UserService.setRoles(roles);
 		}
-
+		
+		/**
+		 * Reset credentials
+		 */
 		function resetCredentials() {
 			UserService.resetUser();
 		}

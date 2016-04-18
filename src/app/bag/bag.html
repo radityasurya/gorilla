@@ -17,10 +17,19 @@
 		<h2 class="title subheader">Scan</h2>
 	</div>
 
-
-
 	<ion-pane>
-		<div id="bag-task" class="has-header has-subheader">
+		
+		<div ng-show="vm.isError" id="bag-error" class="has-header has-subheader">
+			<div style="display: block">
+				<!-- back -->
+				<button class="button button-icon icon ion-ios-arrow-left back-button" ng-click="vm.back()"></button>
+			</div>
+			<span class="bag-task__text">{{vm.error}}</span>
+			<button id="" on-touch="vm.scan()" class="button button-block button-login"><i class=" ion-ios-refresh-empty"></i> Re-Scan</button>
+		</div>
+		
+		<!-- BAG TASK -->
+		<div ng-hide="vm.isError" id="bag-task" class="has-header has-subheader">
 			<!-- BAG TASK -->
 			<div style="display: block">
 				<!-- back -->
@@ -38,13 +47,14 @@
 				<button id="taskButton" type="submit" class="button button-block button-login">{{vm.bag.task}} Bag</button>
 			</div>
 		</div>
-		<div id="bag-tabs" class="">
+		
+		<!-- BAG TABS -->
+		<div ng-hide="vm.isError" id="bag-tabs" class="">
 			<div id="bag-details">
 
 				<div ui-view="bag-destination"></div>
 
 				<ion-tabs>
-
 					<ion-tab title="Destination">
 						<ion-nav-view name="Destination">
 							<div class="row bag-tabs-details">

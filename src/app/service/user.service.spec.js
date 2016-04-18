@@ -53,7 +53,7 @@ describe('UserService:', function() {
 	}));
 	
 	// TODO: Should be able to get and set current station
-	it('Should be able to get and set current station',
+	xit('Should be able to get and set current station',
 		inject(function(UserService) {
 
 		var mockStation = {stationName: 'station'};
