@@ -31,22 +31,12 @@ describe('LoginController:', function() {
 			controller.box(500);
 			expect(controller.box).toHaveBeenCalled();
 		}));
-		
-		// TODO: LoginController should call login on $global service
-		xit('call login on the $global service', inject(function($controller) {
-			spyOn($global, 'login').and.callThrough();
-			controller.login();
-			expect($global.login).toHaveBeenCalled();
-		}));
-		
+				
 		// TODO: LoginController should fetch supportedFunctions
 		it('should fetch supportedFunctions from $global service', function() {
 			spyOn($global, 'fetchSupport').and.callThrough();
 			
 		});
-		
-		// TODO: Success to login
-		// TODO: Failed to login
 		
     });
 

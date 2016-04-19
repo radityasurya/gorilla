@@ -5,11 +5,12 @@ describe('$global service:', function() {
 	beforeEach(module('base64'));
 	beforeEach(module('app.service'));
 
-	beforeEach(inject(function (_$global_, _$rootScope_, _$q_) {
+	beforeEach(inject(function (_$global_, _$rootScope_, _$q_, _UserService_) {
 		$global = _$global_;
 		scope = _$rootScope_.$new();
 		scope = _$rootScope_;
 		$q = _$q_;
+		UserService = _UserService_;
 	}));	
 	
 	// TODO: The Global Service be available
@@ -30,6 +31,26 @@ describe('$global service:', function() {
 		expect($global.fetchSupport).toHaveBeenCalled();
 	}));
 	
+	// Check the authdata making is base64
+	it('Should be able to encode authorization data with base64 encryption', inject(function($global) {
+		var encoded = 'c3VwZXJtYW46U3VwZXJtYW4tMQ==';
+		expect($global.encrypt64('superman', 'Superman-1')).toMatch(encoded);
+	}));
+
+	// Check the setCredentials is updating the CurrentUser
+	it('Should update CurrentUser when calling setCredentials', inject(function($global, $base64) {
+		spyOn(UserService, 'getUser').and.callThrough();
+		$global.setCredentials('test', 'test');
+		expect(UserService.getUser().username).toBe('test');
+	}));
+	
+	// Check the resetCredentials is clearing the CurrentUser
+	it('Should clear CurrentUser when calling resetCredentials', inject(function($global) {
+		spyOn(UserService, 'getUser').and.callThrough();
+		$global.resetCredentials();
+		expect(UserService.getUser().username).toBe('');
+	}));
+	
 	// Check the login user is setting the credentials
 	xit('Should call setCredentials when login', inject(function($global, $q) {
 		spyOn($global.prototype, 'setCredentials')
@@ -47,25 +68,4 @@ describe('$global service:', function() {
 		$global.logout();
 		expect($global.resetCredentials).toBeDefined();
 	}));
-	
-	// Check the authdata making is base64
-	it('Should be able to encode authorization data with base64 encryption', inject(function($global) {
-		var encoded = 'c3VwZXJtYW46U3VwZXJtYW4tMQ==';
-		expect($global.encrypt64('superman', 'Superman-1')).toMatch(encoded);
-	}));
-	
-	// Check the setCredentials is updating the CurrentUser
-	xit('Should update CurrentUser when calling setCredentials', inject(function($global, $base64) {
-		spyOn(scope, 'currentUser').and.callThrough();
-		console.log($global.setCredentials('test', 'test'));
-		expect(scope.currentUser.username).toBe('test');
-	}));
-	
-	// Check the resetCredentials is clearing the CurrentUser
-	xit('Should clear CurrentUser when calling resetCredentials', inject(function($global) {
-		spyOn(scope, 'currentUser').and.callThrough();
-		$global.resetCredentials();
-		expect(scope.currentUser.username).toBeUndefined();
-	}));
-	
 });

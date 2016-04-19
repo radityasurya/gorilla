@@ -20,7 +20,8 @@
 
 		// Variable
 		var service = {
-			getBag: getBag
+			getBag: getBag,
+			createParams: createParams
 		};
 
 		return service;
@@ -56,7 +57,7 @@
 		function createParams(lpn, currentStation) {
 			var _url = '&lpn=' + lpn;
 			_url += '&station=' + currentStation;
-			_url += '&isLpnScaned=false&forceCreate=false&device=emulator'; 
+			_url += '&isLpnScanned=false&forceCreate=false&device=emulator'; 
 			
 			return _url;
 		}

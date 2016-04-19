@@ -38,8 +38,8 @@
 		vm.scan = scan;
 		vm.logout = logout;
 		vm.isCurrentStationExist = false;
-
-		activate();
+		vm.check = isCurrentStationExist;
+		// activate();
 
 		////////////////
 

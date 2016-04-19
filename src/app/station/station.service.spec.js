@@ -14,5 +14,51 @@ describe('StationService:', function() {
 	}));
 
 	// TODO: Able to filter store stations
+	it('should be able to filter store stations', inject(function(StationService) {
+		
+		var mockStations = {
+			'OOG CI HBS E':{
+				'type': 'SCREENING'
+			},
+			'SOOG HBS':{
+				'type': 'SCREENING'
+			},
+			'(S)OOG PBStore':{
+				'type': 'Store'
+			},
+			'Lateral 17':{
+				'type': 'Stillage'
+			},
+			'Pet Store':{
+				'type': 'Store'
+			},
+		};
+		
+		var mockResults = [];
+		mockResults.push({'stationName': '(S)OOG PBStore'});
+		mockResults.push({'stationName': 'Pet Store'});
+		
+		spyOn(StationService, 'filterStoreStation').and.callThrough();
+
+		expect(StationService.filterStoreStation(mockStations)).toEqual(mockResults);
+	}));
+	
 	// TODO: Able to construct parameter for BagsToProcess
+	it('should be able to construct parameter for BagsToProcess', inject(function(StationService) {
+
+		var mockParams = '&station=OOG CI HBS E&device=Emulator&StoreStation[]=OOG Store&StoreStation[]=Pet Store';
+
+		var mockMonitoredStations = [];
+		mockMonitoredStations.push({'stationName': 'OOG Store'});
+		mockMonitoredStations.push({'stationName': 'Pet Store'});
+
+		spyOn(StationService, 'createParams').and.callThrough();
+
+		expect(StationService
+			   .createParams('OOG CI HBS E',
+							'Emulator',
+							mockMonitoredStations)
+			  ).toEqual(mockParams);
+	}));
+	
 });

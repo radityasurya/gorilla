@@ -65,7 +65,7 @@
 		 */
 		function filterStoreStation(stations) {
 			var storeStations = [];
-
+			
 			for (var key in stations) {
 				if (key !== null) {
 					if (stations[key].type === 'Store') {
@@ -73,7 +73,7 @@
 					}
 				}
 			}
-						
+				
 			return storeStations;
 		}
 
@@ -142,7 +142,7 @@
 					}					
 				}
 			}
-			
+						
 			return _url;
 		}
 		

@@ -139,6 +139,7 @@
 		}
 		
 		function setTaskDescription(bag) {
+						
 			var _description = '';
 			
 			_description += bag.taskDescription;
