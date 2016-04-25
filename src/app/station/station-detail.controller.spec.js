@@ -11,7 +11,12 @@ describe('StationDetailController:', function() {
 	beforeEach(module('app.station'));
 
 	// Instantiate the controller and mocks for every test
-	beforeEach(inject(function($rootScope, _$controller_, _$global_, _$q_, _UserService_, _StationService_) {
+	beforeEach(inject(function($rootScope, 
+								_$controller_, 
+								_$global_, 
+								_$q_, 
+								_UserService_, 
+								_StationService_) {
 		scope = $rootScope.$new();
 		$global = _$global_;
 		$q = _$q_;
@@ -29,15 +34,13 @@ describe('StationDetailController:', function() {
 
 		// Should be able to set task description
 		it('should be able to set task description and get preposition', inject(function($controller) {
-			var mockResult= 'Deliver to 240';
+			var mockResult = 'Deliver to 240';
 			var mockBag = {'taskDescription': 'Deliver', 'taskDestinations': '240'};
 			
 			expect(controller.setTaskDescription(mockBag)).toBe(mockResult);
-			
+		
 		}));
 
 	});
 
 });
-
-

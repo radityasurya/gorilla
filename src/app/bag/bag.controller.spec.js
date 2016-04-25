@@ -1,7 +1,14 @@
 /* jshint -W117, -W030 */
 
 describe('BagDetailController:', function() {
-	var controller, $global, scope, $state, $q, UserService, BagService, StationService;
+	var controller, 
+		$global, 
+		scope, 
+		$state, 
+		$q, 
+		UserService, 
+		BagService, 
+		StationService;
 
 	// Load the module for the account
 	beforeEach(module('ngCordova'));
@@ -13,7 +20,13 @@ describe('BagDetailController:', function() {
 	beforeEach(module('app.bag'));
 
 	// Instantiate the controller and mocks for every test
-	beforeEach(inject(function($rootScope, _$controller_, _$global_, _$q_, _UserService_, _BagService_, _StationService_) {
+	beforeEach(inject(function($rootScope, 
+								_$controller_, 
+								_$global_, 
+								_$q_, 
+								_UserService_, 
+								_BagService_, 
+								_StationService_) {
 		scope = $rootScope.$new();
 		$global = _$global_;
 		$q = _$q_;

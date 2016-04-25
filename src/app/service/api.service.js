@@ -129,7 +129,12 @@
 			}
 			
 			if (_method === 'POST') {
-				console.log('POST');
+				return $http({
+					url: _url,
+					method: 'POST',
+					data: params,
+					headers: {'Content-Type': 'application/json'}
+				});
 			}
 			
 			if (_method === 'PUT') {

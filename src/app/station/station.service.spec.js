@@ -46,7 +46,9 @@ describe('StationService:', function() {
 	// TODO: Able to construct parameter for BagsToProcess
 	it('should be able to construct parameter for BagsToProcess', inject(function(StationService) {
 
-		var mockParams = '&station=OOG CI HBS E&device=Emulator&StoreStation[]=OOG Store&StoreStation[]=Pet Store';
+		var mockParams = '&station=OOG CI HBS E';
+		mockParams += '&device=Emulator';
+		mockParams += '&StoreStation[]=OOG Store&StoreStation[]=Pet Store';
 
 		var mockMonitoredStations = [];
 		mockMonitoredStations.push({'stationName': 'OOG Store'});
@@ -55,10 +57,10 @@ describe('StationService:', function() {
 		spyOn(StationService, 'createParams').and.callThrough();
 
 		expect(StationService
-			   .createParams('OOG CI HBS E',
+			.createParams('OOG CI HBS E',
 							'Emulator',
-							mockMonitoredStations)
-			  ).toEqual(mockParams);
+							mockMonitoredStations))
+			.toEqual(mockParams);
 	}));
 	
 });

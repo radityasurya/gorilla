@@ -21,7 +21,8 @@ describe('BagService:', function() {
 	// TODO: Should be able to construct url parameters
 	it('should be able to construct url parameters', inject(function(BagService) {
 		
-		var mockParameters = '&lpn=1234567890&station=Station&isLpnScanned=false&forceCreate=false&device=emulator';
+		var mockParameters =
+		'&lpn=1234567890&station=Station&isLpnScanned=false&forceCreate=false&device=emulator';
 		
 		expect(BagService.createParams('1234567890', 'Station')).toBe(mockParameters);
 	}));

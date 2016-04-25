@@ -42,9 +42,10 @@
 				<span id="bag-task__lpn">{{vm.bag.lpn}} </span>
 				<span class="bag-task__decorator">{{vm.bag.preposition}}</span>
 				<span class="bag-task__text">{{vm.bag.destination}}</span>
-				<span ng-show="vm.bag.proposedLocation" class="bag-task__decorator">{{vm.bag.proposedLocation}}<br></span>
-
-				<button id="taskButton" type="submit" class="button button-block button-login">{{vm.bag.task}} Bag</button>
+				<span class="bag-task__decorator">
+					Location: {{vm.bag.currentStoreStation}} -  {{vm.bag.currentStoreLocation}}</span>
+				<span ng-show="vm.bag.proposedLocation" class="bag-task__decorator">Proposed location: {{vm.bag.proposedLocation}}</span>
+				<button id="taskButton" ng-click="vm.execute()" class="button button-block button-login">{{vm.bag.task}} Bag</button>
 			</div>
 		</div>
 		

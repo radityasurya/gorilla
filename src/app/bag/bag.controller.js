@@ -42,6 +42,7 @@
 		vm.bag = {};
 		vm.scan = scan;
 		vm.isError = false;
+		vm.execute = execute;
 		
 		////////////////
 
@@ -119,6 +120,13 @@
 			});
 		}
 		
+		function execute() {
+			if (!angular.isUndefined(vm.bag)) {
+				console.log(vm.bag.task);
+				console.log(UserService.getRoles());
+			}
+		}
+		
 		/**
 		 * Loading bag from json files and show it on the view
 		 * @param {object} bagFromJSON bag details from API response
@@ -129,6 +137,8 @@
 			vm.bag.preposition = getPrePosition(bagFromJSON.task.description);
 			vm.bag.destination = bagFromJSON.task.destinations[0].name;
 			vm.bag.proposedLocation = bagFromJSON.storeLocationProposal;
+			vm.bag.currentStoreStation = bagFromJSON.currentStoreStation;
+			vm.bag.currentStoreLocation = bagFromJSON.currentStoreLocation;
 			
 			loadDestinationTab(bagFromJSON);
 			loadPersonTab(bagFromJSON);

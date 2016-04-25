@@ -11,7 +11,12 @@ describe('StationMonitorController:', function() {
 	beforeEach(module('app.station'));
 
 	// Instantiate the controller and mocks for every test
-	beforeEach(inject(function($rootScope, _$controller_, _$global_, _$q_, _UserService_, _StationService_) {
+	beforeEach(inject(function($rootScope, 
+								_$controller_, 
+								_$global_, 
+								_$q_, 
+								_UserService_, 
+								_StationService_) {
 		scope = $rootScope.$new();
 		$global = _$global_;
 		$q = _$q_;
