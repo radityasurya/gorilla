@@ -19,9 +19,15 @@
 							$scope) {
 
 		// Variable
+		var supportedFunctions = ApiService.getSupportedFunctions();
+		var roles = UserService.getRoles();
 		var service = {
 			getBag: getBag,
-			createParams: createParams
+			createParams: createParams,
+			canRelease: canRelease,
+			canScreen: canScreen,
+			canStore: canStore,
+			canDeliver: canDeliver
 		};
 
 		return service;
@@ -61,5 +67,79 @@
 			
 			return _url;
 		}
+		
+		function canRelease(bag) {
+			
+			if ('ReleaseBag' in supportedFunctions) {
+				if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
+					console.log(supportedFunctions['ReleaseBag'].allowedRoles);	
+					if (supportedFunctions['ReleaseBag'].allowedRoles in roles) {
+						return true;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+			
+		}
+		
+		function canScreen(bag) {
+			if ('ScreenBag' in supportedFunctions) {
+				if (supportedFunctions['ScreenBag'].allowedRoles in roles) {
+					if (bag.registrationStatus === 'NOT_REGISTERED') {
+						return true;
+					} else if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
+						return false;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		
+		function canStore(bag) {
+			if ('StoreBag' in supportedFunctions) {
+				if (supportedFunctions['StoreBag'].allowedRoles in roles) {
+					if (bag.registrationStatus === 'NOT_REGISTERED') {
+						return true;
+					} else if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
+						return false;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		
+		function canDeliver(bag) {
+			if ('DeliverBag' in supportedFunctions) {
+				if (supportedFunctions['DeliverBag'].allowedRoles in roles) {
+					if (bag.registrationStatus === 'NOT_REGISTERED') {
+						return true;
+					} else if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
+						return false;
+					} else {
+						return false;
+					}
+				} else {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		
 	}
 })();

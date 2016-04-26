@@ -17,7 +17,6 @@
 									'UserService',
 									'BagService',
 									'$cordovaBarcodeScanner',
-
 								];
 
 	/* @ngInject */
@@ -123,7 +122,51 @@
 		function execute() {
 			if (!angular.isUndefined(vm.bag)) {
 				console.log(vm.bag.task);
-				console.log(UserService.getRoles());
+				BagService.canRelease(vm.bag);
+			}
+		}
+		
+		function presentBag(bagFromJSON) {
+			if (!angular.isUndefined(bagFromJSON)) {
+				// regardless of station, if bag can be released, show release
+				if (BagService.canRelease(bagFromJSON)) {
+					// release
+					console.log('release');
+				} else {
+					switch (UserService.getCurrentStation()) {
+						case 'Screening':
+							if (BagService.canScreen(bagFromJSON)) {
+								// Screen
+								console.log('release');
+							} else {
+								// read only
+								console.log('release');
+							}
+							break;
+						case 'Store':
+							if (BagService.canStore(bagFromJSON)) {
+								// Store
+								console.log('release');
+							} else {
+								// read only
+								console.log('release');
+							}
+							break;
+						case 'Stillage':
+							if (BagService.canDeliver(bagFromJSON)) {
+								// deliver
+								console.log('release');
+							} else {
+								// read only
+								console.log('release');
+							}
+							break;
+						default:
+							// read only
+							console.log('release');
+							break;
+					}
+				}
 			}
 		}
 		
@@ -139,6 +182,7 @@
 			vm.bag.proposedLocation = bagFromJSON.storeLocationProposal;
 			vm.bag.currentStoreStation = bagFromJSON.currentStoreStation;
 			vm.bag.currentStoreLocation = bagFromJSON.currentStoreLocation;
+			vm.bag.registrationStatus = bagFromJSON.registrationStatus;
 			
 			loadDestinationTab(bagFromJSON);
 			loadPersonTab(bagFromJSON);
