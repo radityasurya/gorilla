@@ -54,7 +54,7 @@
 				console.log(response);
 			});
 			
-			vm.isCurrentStationExist = isCurrentStationExist(UserService.getCurrentStation());
+			vm.isCurrentStationExist = isCurrentStationExist(UserService.getCurrentStation().stationName);
 		}
 									
 		$scope.$on('$ionicView.enter', function() {

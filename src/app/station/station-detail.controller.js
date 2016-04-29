@@ -35,7 +35,7 @@
 		// Variable
 		var vm = this;
 				
-		UserService.setCurrentStation($stateParams.stationName);
+		UserService.setCurrentStation($stateParams.stationName, $stateParams.stationType);
 		vm.currentStation = $stateParams.stationName;
 		vm.logout = logout;
 		vm.monitor = monitor;
@@ -59,7 +59,7 @@
 
 			// Get BagToProcess
 			StationService.getBagsToProcess(
-				UserService.getCurrentStation(),
+				UserService.getCurrentStation().stationName,
 				'Emulator',
 				UserService.getMonitoredStations())
 				.then(function (response) {

@@ -71,6 +71,7 @@
 		function canRelease(bag) {
 			
 			if ('ReleaseBag' in supportedFunctions) {
+				console.log('ada di supported functions');
 				if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
 					console.log(supportedFunctions['ReleaseBag'].allowedRoles);	
 					if (supportedFunctions['ReleaseBag'].allowedRoles in roles) {
@@ -89,6 +90,7 @@
 		
 		function canScreen(bag) {
 			if ('ScreenBag' in supportedFunctions) {
+				console.log('ada di supported functions');
 				if (supportedFunctions['ScreenBag'].allowedRoles in roles) {
 					if (bag.registrationStatus === 'NOT_REGISTERED') {
 						return true;
@@ -107,6 +109,7 @@
 		
 		function canStore(bag) {
 			if ('StoreBag' in supportedFunctions) {
+				console.log('ada di supported functions');
 				if (supportedFunctions['StoreBag'].allowedRoles in roles) {
 					if (bag.registrationStatus === 'NOT_REGISTERED') {
 						return true;

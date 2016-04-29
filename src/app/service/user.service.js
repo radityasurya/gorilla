@@ -18,8 +18,10 @@
 			isLoggedIn: false,
 			roles: {},
 			monitoredStations: [],
-			currentStation: 'default'
+			currentStation: {},
 		};
+		
+		_user.currentStation.stationName = 'default';
 
 		var service = {
 			createUser: createUser,
@@ -58,11 +60,13 @@
 			_user.isLoggedIn = false;
 			_user.roles = {};
 			_user.monitoredStations = [];
-			_user.currentStation = 'default';
+			_user.currentStation = {};
+			_user.currentStation.stationName = 'default';
 		}
 
-		function setCurrentStation(selectedStation) {
-			_user.currentStation = selectedStation;
+		function setCurrentStation(stationName, stationType) {
+			_user.currentStation.stationName = stationName;
+			_user.currentStation.stationType = stationType;
 		}
 
 		function getCurrentStation() {

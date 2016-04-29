@@ -47,7 +47,7 @@
 
 		function activate() {
 			
-			vm.currentStation = UserService.getCurrentStation();
+			vm.currentStation = UserService.getCurrentStation().stationName;
 			
 			// Get Bag Details
 			BagService.getBag($stateParams.bagTag, vm.currentStation)
@@ -93,9 +93,10 @@
 		});
 
 		function back() {
-			console.log(vm.currentStation);
 			$stateParams.bagTag = undefined;
-			$state.go('station-detail', {'stationName': vm.currentStation});		}
+			$state.go('station-detail', {'stationName': vm.currentStation,
+										'stationType': UserService.getCurrentStation().stationType});		
+		}
 		
 		function logout() {
 			console.log('logout');
@@ -122,7 +123,7 @@
 		function execute() {
 			if (!angular.isUndefined(vm.bag)) {
 				console.log(vm.bag.task);
-				BagService.canRelease(vm.bag);
+				presentBag(vm.bag);
 			}
 		}
 		
@@ -133,40 +134,48 @@
 					// release
 					console.log('release');
 				} else {
-					switch (UserService.getCurrentStation()) {
-						case 'Screening':
-							if (BagService.canScreen(bagFromJSON)) {
-								// Screen
-								console.log('release');
-							} else {
-								// read only
-								console.log('release');
-							}
-							break;
-						case 'Store':
-							if (BagService.canStore(bagFromJSON)) {
-								// Store
-								console.log('release');
-							} else {
-								// read only
-								console.log('release');
-							}
-							break;
-						case 'Stillage':
-							if (BagService.canDeliver(bagFromJSON)) {
-								// deliver
-								console.log('release');
-							} else {
-								// read only
-								console.log('release');
-							}
-							break;
-						default:
-							// read only
-							console.log('release');
-							break;
-					}
+					getTask(bagFromJSON);
 				}
+			}
+		}
+		
+		function getTask(bagFromJSON) {
+			var stationType = UserService.getCurrentStation().stationType;
+			
+			console.log(stationType);
+			
+			switch (stationType) {
+				case 'Screening':
+					if (BagService.canScreen(bagFromJSON)) {
+						// Screen
+						console.log('Screening');
+					} else {
+						// read only
+						console.log('readOnly');
+					}
+					break;
+				case 'Store':
+					if (BagService.canStore(bagFromJSON)) {
+						// Store
+						console.log('Store');
+					} else {
+						// read only
+						console.log('readOnly');
+					}
+					break;
+				case 'Stillage':
+					if (BagService.canDeliver(bagFromJSON)) {
+						// deliver
+						console.log('Deliver');
+					} else {
+						// read only
+						console.log('readOnly');
+					}
+					break;
+				default:
+					// read only
+					console.log('readOnly');
+					break;	
 			}
 		}
 		
@@ -178,7 +187,7 @@
 			vm.bag.lpn = bagFromJSON.lpn;
 			vm.bag.task = bagFromJSON.task.description;		
 			vm.bag.preposition = getPrePosition(bagFromJSON.task.description);
-			vm.bag.destination = bagFromJSON.task.destinations[0].name;
+			vm.bag.destination = getDestination(bagFromJSON.task.destinations);
 			vm.bag.proposedLocation = bagFromJSON.storeLocationProposal;
 			vm.bag.currentStoreStation = bagFromJSON.currentStoreStation;
 			vm.bag.currentStoreLocation = bagFromJSON.currentStoreLocation;
@@ -239,6 +248,21 @@
 			else {
 				return false;
 			}
+		}
+		
+		function getDestination(destinations) {
+			var _destination = '';
+			
+			if (destinations[0] != null) {
+				for (var i = 0; i < destinations.length; i++) {
+					if (i > 0) {
+						_destination += ', ';
+					}
+					_destination += destinations[i].name;
+				}			
+			}
+
+			return _destination;
 		}
 		
 		/**
