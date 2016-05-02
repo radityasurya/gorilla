@@ -17,6 +17,7 @@
 									'UserService',
 									'BagService',
 									'$cordovaBarcodeScanner',
+									'TaskService',
 								];
 
 	/* @ngInject */
@@ -30,7 +31,8 @@
 								$timeout,
 								UserService,
 								BagService,
-								$cordovaBarcodeScanner
+								$cordovaBarcodeScanner,
+								TaskService
 								) {
 
 		// Variable
@@ -42,6 +44,7 @@
 		vm.scan = scan;
 		vm.isError = false;
 		vm.execute = execute;
+		vm.hasTask = 'ReadOnly';
 		
 		////////////////
 
@@ -132,10 +135,11 @@
 				// regardless of station, if bag can be released, show release
 				if (BagService.canRelease(bagFromJSON)) {
 					// release
-					console.log('release');
+					vm.hasTask = 'Release';
 				} else {
 					getTask(bagFromJSON);
 				}
+				console.log(vm.hasTask);
 			}
 		}
 		
@@ -148,33 +152,35 @@
 				case 'Screening':
 					if (BagService.canScreen(bagFromJSON)) {
 						// Screen
-						console.log('Screening');
+						vm.hasTask = 'Screen';
 					} else {
 						// read only
-						console.log('readOnly');
+						console.log('ReadOnly');
+						vm.hasTask = 'ReadOnly';
 					}
 					break;
 				case 'Store':
 					if (BagService.canStore(bagFromJSON)) {
 						// Store
-						console.log('Store');
+						vm.hasTask = 'Store';
 					} else {
 						// read only
 						console.log('readOnly');
+						vm.hasTask = 'ReadOnly';
 					}
 					break;
 				case 'Stillage':
 					if (BagService.canDeliver(bagFromJSON)) {
 						// deliver
-						console.log('Deliver');
+						vm.hasTask = 'Deliver';
 					} else {
 						// read only
-						console.log('readOnly');
+						vm.hasTask = 'ReadOnly';
 					}
 					break;
 				default:
 					// read only
-					console.log('readOnly');
+					vm.hasTask = 'ReadOnly';
 					break;	
 			}
 		}

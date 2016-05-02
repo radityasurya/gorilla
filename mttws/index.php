@@ -10,17 +10,25 @@ $rules = array(
 	'MonitoredStations'    	=> "/monitor/MonitoredStations",		// 'monitor/MonitoredStations'
 	'BagsToProcess'			=> "/query/BagsToProcess",              // 'monitor/bagsToProcess'
 	'Bag'					=> "/query/Bag",              			// 'monitor/bags'
+	'ReleaseBag'			=> "/task/ReleaseBag",        			// 'task/releaseBags'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
 $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
+$uri = strtok($uri, '?');
 $uri = urldecode( $uri );
 
 foreach ( $rules as $action => $rule ) {
-	if( strpos($uri, $action) !== false ) {
+	//echo $uri . ': ' . $action . ' - ' . $rule . '<br>';
+	if($uri == $rule) {
 		include( INCLUDE_DIR . $action . '.php' );
 		exit();
-	} 
+	}
+//	if( strpos($uri, $action) !== false ) {
+//		echo $rule . '.php';
+//		include( INCLUDE_DIR . $action . '.php' );
+//		//exit();
+//	} 
 }
 
 ?>
