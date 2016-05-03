@@ -1,6 +1,6 @@
 <?php
 
-// base/mttws/task/ReleaseBag?auth=[auth]
+// base/mttws/task/Store?auth=[auth]
 
 include('httpful.phar');
 
@@ -24,12 +24,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
 	if (isset($putData))
 	{
 		$result .= "\nPOST DATA: " . $putData;
+		// Device
+		// Lpn
+		// isScanned
+		// StationName
+		// Locations[0]
 	}
 
 	//echo $result;
 }
 
-$url = "http://172.21.27.17:7003/mttws/task/ReleaseBag";
+$url = "http://172.21.27.17:7003/mttws/task/StoreBag";
 
 $response = \Httpful\Request::Post($url)                  // Build a post request...
 	->sendsJson()                               // tell it we're sending (Content-Type) JSON...

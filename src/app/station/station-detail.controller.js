@@ -34,8 +34,11 @@
 		
 		// Variable
 		var vm = this;
-				
-		UserService.setCurrentStation($stateParams.stationName, $stateParams.stationType);
+		
+		console.log($stateParams.locations);
+		
+		UserService.setCurrentStation($stateParams.stationName,
+									$stateParams.stationType, $stateParams.locations);
 		vm.currentStation = $stateParams.stationName;
 		vm.logout = logout;
 		vm.monitor = monitor;

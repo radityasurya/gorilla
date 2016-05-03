@@ -58,6 +58,7 @@
 				console.log(data);
 				if (angular.isUndefined(data.code)) {
 					vm.isError = false;
+					presentBag(data);
 					loadBag(data);
 				} else {
 					vm.isError = true;
@@ -97,8 +98,10 @@
 
 		function back() {
 			$stateParams.bagTag = undefined;
-			$state.go('station-detail', {'stationName': vm.currentStation,
-										'stationType': UserService.getCurrentStation().stationType});		
+			$state.go('station-detail',
+					{'stationName': vm.currentStation,
+					'stationType': UserService.getCurrentStation().stationType,
+					'locations':UserService.getCurrentStation().locations});		
 		}
 		
 		function logout() {
@@ -125,8 +128,25 @@
 		
 		function execute() {
 			if (!angular.isUndefined(vm.bag)) {
-				console.log(vm.bag.task);
-				presentBag(vm.bag);
+				console.log(vm.hasTask);
+				
+				switch (vm.hasTask) {
+					case 'Release':
+						TaskService.executeTask('ReleaseBag', vm.bag);
+						break;
+					case 'Screen':
+						
+						break;
+					case 'Store':
+						TaskService.executeTask('StoreBag', vm.bag);
+						break;
+					case 'Deliver':
+						
+						break;
+					default:
+					
+						break;	
+				}
 			}
 		}
 		

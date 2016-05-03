@@ -25,13 +25,21 @@
 		////////////////
 
 		function executeTask(task, bag) {
-			var temp = [];
+			
+			var data = {
+				'lpn': bag.lpn,
+				'isLpnScanned': 'false',
+				'station': UserService.getUser().currentStation.stationName,
+				'device': 'Emulator'
+			};
+			
+			data = angular.toJson(data);
 			
 			var defer = $q.defer();
 			
 			ApiService.restCall(task,
 							UserService.getUser().auth, 
-							bag)
+							data)
 			.then(function (response) {
 				defer.resolve(response);
 			}, function (response) {

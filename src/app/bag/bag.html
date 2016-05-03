@@ -45,7 +45,7 @@
 				<span class="bag-task__decorator">
 					Location: {{vm.bag.currentStoreStation}} -  {{vm.bag.currentStoreLocation}}</span>
 				<span ng-show="vm.bag.proposedLocation" class="bag-task__decorator">Proposed location: {{vm.bag.proposedLocation}}</span>
-				<button id="taskButton" ng-click="vm.execute()" class="button button-block button-login">{{vm.bag.task}} Bag</button>
+				<button id="taskButton" ng-click="vm.execute()" class="button button-block button-login">{{vm.hasTask}} Bag</button>
 			</div>
 		</div>
 		

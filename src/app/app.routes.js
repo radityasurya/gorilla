@@ -27,7 +27,9 @@
 		})
 		.state('station-detail', {
 			url: '/station/:stationName',
-			params: {'stationName': undefined, 'stationType': undefined},
+			params: {'stationName': undefined, 
+				'stationType': undefined, 
+				'locations': []},
 			templateUrl: 'app/station/station-detail.html',
 			controller: 'StationDetailController as vm'
 		})

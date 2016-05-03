@@ -129,11 +129,17 @@
 			}
 			
 			if (_method === 'POST') {
+				console.log(params);
+				console.log(_url);
 				return $http({
 					url: _url,
 					method: 'POST',
 					data: params,
-					headers: {'Content-Type': 'application/json'}
+					headers: {
+							'Content-Type': 'application/json',
+							'Accept': 'application/json',
+							'Accept-Language': 'en-GB'
+							}
 				});
 			}
 			

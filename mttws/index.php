@@ -11,6 +11,7 @@ $rules = array(
 	'BagsToProcess'			=> "/query/BagsToProcess",              // 'monitor/bagsToProcess'
 	'Bag'					=> "/query/Bag",              			// 'monitor/bags'
 	'ReleaseBag'			=> "/task/ReleaseBag",        			// 'task/releaseBags'
+	'StoreBag'				=> "/task/StoreBag",        			// 'task/StoreBags'
 );
 
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );

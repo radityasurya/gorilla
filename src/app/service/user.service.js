@@ -22,6 +22,7 @@
 		};
 		
 		_user.currentStation.stationName = 'default';
+		//_user.currentStation.locations = ['PB Store 2', 'PB Store 1', 'PB Store 3'];
 
 		var service = {
 			createUser: createUser,
@@ -62,11 +63,15 @@
 			_user.monitoredStations = [];
 			_user.currentStation = {};
 			_user.currentStation.stationName = 'default';
+			_user.currentStation.location = {};
 		}
 
-		function setCurrentStation(stationName, stationType) {
+		function setCurrentStation(stationName, stationType, locations) {
+			console.log(locations);
 			_user.currentStation.stationName = stationName;
 			_user.currentStation.stationType = stationType;
+			_user.currentStation.locations = ['PB Store 2', 'PB Store 1', 'PB Store 3'];
+			//_user.currentStations.locations = ['PB Store 2', 'PB Store 1', 'PB Store 3'];
 		}
 
 		function getCurrentStation() {
