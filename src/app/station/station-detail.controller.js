@@ -47,6 +47,8 @@
 		vm.isExist = false;
 		vm.setTaskDescription = setTaskDescription;
 		vm.getIcon = getIcon;
+		vm.bagsToProcess = null;
+		vm.open = open;
 
 		////////////////
 
@@ -76,6 +78,7 @@
 				}
 
 				vm.bagsToProcess = response;
+				
 			}, function (response) {
 				console.log(response);
 				vm.isExist = false;
@@ -101,6 +104,11 @@
 			$state.go('station-monitor');
 		}
 		
+		function open(lpn) {
+			console.log(lpn);
+			$state.go('bag', {'lpn': lpn});
+		}
+		
 		function scan() {
 			console.log('scan');
 
@@ -108,7 +116,7 @@
 				$cordovaBarcodeScanner.scan().then(function (barcodeData) {
 					
 					if (barcodeData.text !== '') {
-						$state.go('bag', {'bagTag': barcodeData.text});
+						$state.go('bag', {'lpn': barcodeData.text});
 					}
 					
 				}, function (error) {

@@ -76,9 +76,16 @@
 		}
 									
 		function back() {
-			var stationName = UserService.getCurrentStation();
-			$state.go($ionicHistory.forwardView().stateName,
-			{'stationName' : stationName});
+			var stationName = UserService.getCurrentStation().stationName;
+			var stationType = UserService.getCurrentStation().stationType;
+			var stationLocations = UserService.getCurrentStation().locations;
+			
+			$state.go('station-detail',
+						{'stationName' : stationName, 
+						'stationType': stationType, 
+						'locations': stationLocations}
+					);
+			
 		}
 									
 		function isCurrentStationExist(station) {

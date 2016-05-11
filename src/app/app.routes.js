@@ -39,9 +39,9 @@
 			controller: 'StationMonitorController as vm'
 		})
 		.state('bag', {
-			url: '/bag/:bagTag',
+			url: '/bag/:lpn',
 			templateUrl: 'app/bag/bag.html',
-			params: {'bagTag': undefined}, 
+			params: {'lpn': ''}, 
 			controller: 'BagDetailController as vm',
 		});
 

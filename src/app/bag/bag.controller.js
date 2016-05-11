@@ -51,9 +51,9 @@
 		function activate() {
 			
 			vm.currentStation = UserService.getCurrentStation().stationName;
-			
+						
 			// Get Bag Details
-			BagService.getBag($stateParams.bagTag, vm.currentStation)
+			BagService.getBag($stateParams.lpn, vm.currentStation)
 				.then(function (data) {
 				console.log(data);
 				if (angular.isUndefined(data.code)) {
@@ -92,7 +92,7 @@
 		}
 		
 		$scope.$on('$ionicView.enter', function() {
-			
+			console.log($stateParams);
 			activate();
 		});
 
@@ -132,7 +132,13 @@
 				
 				switch (vm.hasTask) {
 					case 'Release':
-						TaskService.executeTask('ReleaseBag', vm.bag);
+						TaskService.executeTask('ReleaseBag', vm.bag)
+						.then(function (response) {
+							back();
+						}, 
+							function (error) {
+							console.log('error');  
+						});
 						break;
 					case 'Screen':
 						

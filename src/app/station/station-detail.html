@@ -47,7 +47,7 @@ taskType:"OTHER"
 		
 			<!-- BAG ITEMS -->
 			<ion-item class="item-station-details" ng-repeat="bags in vm.bagsToProcess" item="station" 
-			ui-sref="bag({'bagTag': bags.lpn})">
+			ng-click="vm.open(bags.lpn)">
 				<div class="box">
 					<!-- BAG DETAILS -->
 					<div class="row bag-details">
