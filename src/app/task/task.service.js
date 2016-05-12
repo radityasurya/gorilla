@@ -33,6 +33,13 @@
 				'device': 'Emulator'
 			};
 			
+			if (task === 'StoreBag') {
+				console.log('StoreBag');
+				data.storeLocation = 'PB Store 2';
+			}
+			
+			console.log(data.lpn);
+			
 			data = angular.toJson(data);
 			
 			var defer = $q.defer();
