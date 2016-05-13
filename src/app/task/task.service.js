@@ -24,7 +24,7 @@
 
 		////////////////
 
-		function executeTask(task, bag) {
+		function executeTask(task, bag, screeningResult = '') {
 			
 			var data = {
 				'lpn': bag.lpn,
@@ -36,6 +36,12 @@
 			if (task === 'StoreBag') {
 				console.log('StoreBag');
 				data.storeLocation = 'PB Store 2';
+			}
+			
+			if (task === 'ScreenBag') {
+				console.log('ScreenBag');
+				data.screeningProcess = 'ECAC';
+				data.screeningResult = screeningResult;
 			}
 			
 			console.log(data.lpn);

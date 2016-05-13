@@ -126,6 +126,21 @@
 			});
 		}
 		
+		function checkScreening() {
+			var screenPopup = $ionicPopup.confirm({
+				title: 'Screen Bag',
+				template: 'Please choose the options below'
+			});
+			
+			screenPopup.then(function (res) {
+				if (res) {
+					console.log('clear');
+				} else {
+					console.log('cancel');
+				}
+			});
+		}
+		
 		function execute() {
 			if (!angular.isUndefined(vm.bag)) {
 				console.log(vm.hasTask);
@@ -142,12 +157,33 @@
 						break;
 					case 'Screen':
 						
+						checkScreening();
+						
+						TaskService.executeTask('ScreenBag', vm.bag, 'CLEAR')
+							.then(function (response) {
+							back();
+						}, 
+							function (error) {
+							console.log('error');  
+						});
 						break;
 					case 'Store':
-						TaskService.executeTask('StoreBag', vm.bag);
+						TaskService.executeTask('StoreBag', vm.bag)
+							.then(function (response) {
+							back();
+						}, 
+							function (error) {
+							console.log('error');  
+						});
 						break;
 					case 'Deliver':
-						
+						TaskService.executeTask('DeliverBag', vm.bag)
+							.then(function (response) {
+							back();
+						}, 
+							function (error) {
+							console.log('error');  
+						});
 						break;
 					default:
 					
