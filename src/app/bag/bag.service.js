@@ -108,10 +108,15 @@
 		}
 		
 		function canStore(bag) {
+            console.log(bag);
+            console.log('can store');
+            
 			if ('StoreBag' in supportedFunctions) {
-				//console.log('ada di supported functions');
+				console.log('ada di supported functions');
 				if (supportedFunctions['StoreBag'].allowedRoles in roles) {
-					if (bag.registrationStatus === 'NOT_REGISTERED') {
+				console.log('ada di roles');
+                    console.log(bag.registrationStatus);
+                    if (bag.registrationStatus === 'NOT_REGISTERED') {
 						return true;
 					} else if (bag.registrationStatus === 'REGISTERED_IN_MTT') {
 						return false;

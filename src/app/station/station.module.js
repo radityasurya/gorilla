@@ -6,6 +6,7 @@
 		'ionic',
 		'app.service',
 		'app.barcode',
+        'app.bag',
 		'ngCordova'
 	]);
 })();

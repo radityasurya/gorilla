@@ -16,7 +16,9 @@
 										'$timeout',
 										'UserService',
 										'$cordovaBarcodeScanner',
-										'$ionicPlatform'
+										'$ionicPlatform',
+                                        'TaskService',
+                                        'BagService'
 									];
 
 	/* @ngInject */
@@ -30,7 +32,9 @@
 									$timeout,
 									UserService,
 									$cordovaBarcodeScanner,
-									$ionicPlatform) {
+									$ionicPlatform,
+                                    TaskService,
+                                    BagService) {
 		
 		// Variable
 		var vm = this;
@@ -49,6 +53,7 @@
 		vm.getIcon = getIcon;
 		vm.bagsToProcess = null;
 		vm.open = open;
+        vm.execute = execute;
 
 		////////////////
 
@@ -84,6 +89,50 @@
 				vm.isExist = false;
 			});
 
+		}
+        
+        function execute(bag) {
+            
+            var _bag;
+            
+            // Get Bag Details
+			BagService.getBag(bag.lpn, vm.currentStation)
+				.then(function (data) {
+				console.log(data);
+				if (angular.isUndefined(data.code)) {
+					_bag = data;
+				} else {
+					vm.isError = true;
+					console.log(data.message);
+					vm.error = data.message;
+				}
+				
+			}, function (response) {	// Error
+				console.log(response);
+			});
+            
+			if (!angular.isUndefined(_bag)) {
+                switch (getTask(_bag))
+				{
+					case 'Store':
+						break;
+					case 'Screen':
+						break;
+					case 'Deliver':
+						break;
+					case 'Release':
+						TaskService.executeTask('ReleaseBag', _bag)
+						.then(function (response) {
+							activate();
+						}, 
+							function (error) {
+							console.log('error');  
+						});
+                        break;
+					default:
+						break;
+				}
+            }
 		}
 		
 		$scope.$on('$ionicView.enter', function() {
@@ -149,6 +198,44 @@
 			});
 		}
 		
+        function getTask(bagFromJSON) {
+			var stationType = UserService.getCurrentStation().stationType;
+            
+            console.log('The Station Type: ' + stationType);
+            
+            var tempTask = '';
+			
+			switch (stationType) {
+				case 'Screening':
+					if (BagService.canScreen(bagFromJSON)) {
+						tempTask = 'Screen';
+					} else {
+						tempTask = 'ReadOnly';
+					}
+					break;
+				case 'Store':
+					if (BagService.canStore(bagFromJSON)) {
+						tempTask = 'Store';
+					} else {
+						tempTask = 'ReadOnly';
+					}
+					break;
+				case 'Stillage':
+					if (BagService.canDeliver(bagFromJSON)) {
+						tempTask = 'Deliver';
+					} else {
+						tempTask = 'ReadOnly';
+					}
+					break;
+				default:
+					tempTask = 'ReadOnly';
+					break;	
+			}
+            
+            return tempTask;
+            
+		}
+        
 		function setTaskDescription(bag) {
 						
 			var _description = '';

@@ -10,7 +10,8 @@
 	function ApiService($http, $q) {
 		
 		// Variable
-		var _baseUrl = 'http://172.19.18.225';
+		// var _baseUrl = 'http://172.19.18.225';
+        var _baseUrl = 'http://192.168.192.26';
 		var _supportedFunction = {};
 		var _timeout = 5000;
 				
